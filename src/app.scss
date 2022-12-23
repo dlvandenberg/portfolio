@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $color-coffee;
+  min-height: 100vh;
+  font-family: $font-family;
+  color: $color-white;
+}
+
+/* Defaults */
+a {
+  text-decoration: none;
+  color: $color-blue;
+
+  &:hover {
+    color: $color-yellow;
+  }
+
+  &:active {
+    color: $color-gold;
+  }
+}

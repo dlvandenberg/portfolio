@@ -1,56 +1,132 @@
 <script>
-  import '../app.css';
+  import { slide } from 'svelte/transition';
+  import "../app.scss";
 
   let menuOpen = false
 </script>
 
-<div class="w-full z-50 top-0 py-3 bg-coffee">
-  <div class="container flex items-center justify-between text-white">
-    <div>
-      <a href="/" class="text-3xl font-thin">devd.be</a>
-    </div>
-    <div class="w-10 h-15">
-      <a href="/" on:click={ () => menuOpen = true }>
-        <div id="nav-burger" class="space-y-2">
-          <div class="w-8 h-0.5 bg-white"></div>
-          <div class="w-8 h-0.5 bg-white"></div>
-          <div class="w-8 h-0.5 bg-white"></div>
-        </div>
-      </a>
-      <div id="nav" class:hidden="{ !menuOpen }" class="absolute h-full w-full top-0 left-0 py-3 flex flex-col items-start bg-coffee">
-        <div class="container flex-none flex items-center justify-between">
-          <div>
-            <a href="/" class="text-3xl font-thin">devd.be</a>
-          </div>
-          <a href="/" on:click={ () => menuOpen = false }>
-            <div id="nav-cross" class="space-y-2">
-              <div class="w-8 h-0.5 rotate-45 translate-y-1.5 bg-white"></div>
-              <div class="w-8 h-0.5 -rotate-45 -translate-y-1 bg-white"></div>
-            </div>
-          </a>
-        </div>
-        <div class="container flex-col flex flex-auto items-center justify-around p-20 bg-coffee">
-            <nav class="flex-col flex items-center justify-between h-40">
-              <a href="/" class="text-3xl text-blue font-thin hover:text-yellow active:text-gold">home</a>
-              <a href="/" class="text-3xl font-thin hover:text-yellow active:text-gold">projects</a>
-              <a href="/" class="text-3xl font-thin hover:text-yellow active:text-gold">blog</a>
-            </nav>
-        </div>
-      </div>
-    </div>
+<header class="header">
+  <div class="brand">
+    <a href="/" class="brand-link">devd.be</a>
   </div>
+  <div class="nav-toggle" class:active={ menuOpen } on:click={ () => menuOpen = !menuOpen }></div>
+</header>
+
+{#if menuOpen}
+  <div class="nav-container" in:slide out:slide>
+    <nav class="nav-menu">
+      <a href="/" class="nav-menu-link active">home</a>
+      <a href="/" class="nav-menu-link">projects</a>
+      <a href="/" class="nav-menu-link">blog</a>
+    </nav>
+  </div>
+{/if}
+
+<div id="content">
+  <slot></slot>
 </div>
 
-<div id="content" class="w-full h-full p-4">
-  <slot/>
-</div>
-
-<style>
+<style lang="scss">
   #content {
-    background-image: radial-gradient(rgb(163, 144, 0, 0.1) 1px, #342E37 1px);
+    background-image: radial-gradient(rgb(163, 144, 0, 0.2) 1px, #342E37 1px);
     background-position: 0 0;
     background-size: 1em 1em;
     height: 100vh;
     width: 100vw;
+    padding: 2rem;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 4rem;
+    padding: 0 1rem;
+  }
+
+  .brand-link {
+    font-size: x-large;
+    font-weight: 100;
+    color: $color-white;
+  }
+
+  .nav-toggle {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+
+    &.active::before {
+      transform: translateY(0) rotate(45deg);
+      box-shadow: 0 0 0 $color-white;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 28px;
+      height: 2px;
+      transition: 0.2s;
+      background-color: $color-white;
+      transform: translateY(-10px);
+      box-shadow: 0 10px 0 $color-white;
+    }
+
+    &.active::after {
+      transform: translateY(0) rotate(-45deg);
+    }
+
+    &::after {
+      content: '';
+      background-color: $color-white;
+      position: absolute;
+      width: 28px;
+      height: 2px;
+      transition: 0.2s;
+      transform: translateY(10px);
+    }
+  }
+
+  .nav-container {
+    position: absolute;
+    top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 4rem);
+    width: 100vw;
+    background-color: $color-coffee;
+  }
+
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 40%;
+  }
+
+  .nav-menu-link {
+    font-size: x-large;
+    font-weight: 100;
+    color: $color-white;
+
+    &.active {
+      color: $color-blue;
+    }
+
+    &:hover {
+      color: $color-yellow;
+    }
+
+    &:active {
+      color: $color-gold;
+    }
   }
 </style>
