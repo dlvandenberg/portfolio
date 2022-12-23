@@ -9,7 +9,7 @@
   <div class="brand">
     <a href="/" class="brand-link">devd.be</a>
   </div>
-  <div class="nav-toggle" class:active={ menuOpen } on:click={ () => menuOpen = !menuOpen }></div>
+  <div class="nav-toggle" class:active={ menuOpen } on:click={ () => menuOpen = !menuOpen } ></div>
 </header>
 
 {#if menuOpen}
@@ -31,9 +31,12 @@
     background-image: radial-gradient(rgb(163, 144, 0, 0.2) 1px, #342E37 1px);
     background-position: 0 0;
     background-size: 1em 1em;
-    height: 100vh;
+    min-height: calc(100vh - $header-height);
     width: 100vw;
     padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .header {
@@ -46,7 +49,7 @@
   }
 
   .brand-link {
-    font-size: x-large;
+    font-size: xx-large;
     font-weight: 100;
     color: $color-white;
   }
