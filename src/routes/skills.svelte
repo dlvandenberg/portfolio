@@ -1,18 +1,7 @@
 <script lang="ts">
+	import type { KnowingSkill, LearningSkill } from '$lib/model/skill';
 	import Section from '$lib/section.svelte';
-
-	type Skill = {
-		name: string;
-		colorCode: string;
-	};
-
-	type KnowingSkill = Skill & {
-		yearsExp: number;
-	};
-
-	type LearningSkill = Skill & {
-		version: string;
-	};
+	import Skills from '$lib/skills.svelte';
 
 	const knowingSkills: KnowingSkill[] = [
 		{
@@ -67,38 +56,8 @@
 </script>
 
 <Section title="$ skills" subtitle="(Hover to see the color)">
-	<div slot="outline-col" class="skill-items">
-		{#each knowingSkills as skill}
-			<div class="skill-item" style="--color: {skill.colorCode};">{skill.name}</div>
-		{/each}
-	</div>
+	<Skills skills={knowingSkills} slot="outline-col" />
 </Section>
 <Section title="$ skills --learning" subtitle="(Hover to see the color)">
-	<div slot="outline-col" class="skill-items">
-		{#each learningSkills as skill}
-			<div class="skill-item" style="--color: {skill.colorCode};">{skill.name}</div>
-		{/each}
-	</div>
+	<Skills skills={learningSkills} slot="outline-col" />
 </Section>
-
-<style lang="scss">
-	.skill-items {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-	}
-
-	.skill-item {
-		background-color: $color-coffee;
-		border: 1px solid $color-sand-100;
-		padding: 0.5rem;
-		margin: 0.5rem;
-		cursor: pointer;
-		transition: 0.2s;
-
-		&:hover {
-			background-color: var(--color);
-			color: $color-coffee;
-		}
-	}
-</style>
