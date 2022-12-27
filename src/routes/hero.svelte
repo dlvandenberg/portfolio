@@ -2,6 +2,8 @@
 	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
 
+	const portraitUrl = new URL('/portrait.svg', import.meta.url).href;
+
 	let visible = false;
 
 	onMount(() => {
@@ -11,7 +13,10 @@
 
 {#if visible}
 	<div class="hero">
-		<div class="hero-avatar" in:slide={{ duration: 1000 }} />
+		<div
+			class="hero-avatar"
+			in:slide={{ duration: 1000 }}
+			style="background-image: url('{portraitUrl}')" />
 		<div class="hero-titles">
 			<h1 class="title" in:slide={{ delay: 300, duration: 1000 }}>Dennis van den Berg</h1>
 			<h3 class="subtitle" in:slide={{ delay: 500, duration: 1000 }}>Full Stack Developer</h3>
@@ -31,7 +36,7 @@
 
 	.hero-avatar {
 		background-color: $color-coffee;
-		background-image: url('./portrait.svg');
+		background-image: url('/portrait.svg');
 		background-position: 50% 50%;
 		background-size: 80% 80%;
 		background-repeat: no-repeat;
