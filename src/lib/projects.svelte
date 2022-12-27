@@ -10,7 +10,7 @@
 	export let featured = false;
 </script>
 
-<div class="projects-container">
+<div class="projects-container g-container">
 	<h1 class="projects-title">{title}</h1>
 	<div class="projects-list">
 		{#each projects as project}
@@ -38,6 +38,7 @@
 </div>
 
 <style lang="scss">
+	$project-gap: 1rem;
 	.projects-container {
 		display: flex;
 		flex-direction: column;
@@ -62,6 +63,7 @@
 		flex-wrap: wrap;
 		align-items: center;
 		justify-content: center;
+		gap: $project-gap;
 	}
 
 	.project {
@@ -69,11 +71,12 @@
 		padding: 1rem;
 		margin-bottom: 1rem;
 		background-color: $color-coffee;
-		min-width: 100%;
+		max-width: calc(($md-breakpoint - $project-gap) / 2);
 		position: relative;
 
 		&.featured {
 			background-color: $color-sand-500;
+			max-width: $md-breakpoint;
 
 			.project-title,
 			.project-tags-title {
@@ -111,6 +114,13 @@
 
 		&::first-letter {
 			color: $color-yellow;
+		}
+	}
+
+	@media (min-width: $md-breakpoint) {
+		.project-description {
+			font-size: small;
+			font-weight: 300;
 		}
 	}
 </style>

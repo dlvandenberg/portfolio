@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { blur } from 'svelte/transition';
-
+	import { slide } from 'svelte/transition';
 	interface WithName {
 		name: string;
 	}
@@ -15,7 +14,7 @@
 	$: activeTab = tabData.filter((tab) => tab.name === activeTabTitle)[0];
 </script>
 
-<div class="tabs-container">
+<div class="tabs-container g-container">
 	<div class="tabs-title">
 		<h1>$ exp --work</h1>
 	</div>
@@ -33,7 +32,7 @@
 		</div>
 		<div class="tabs-viewport">
 			{#key activeTab}
-				<div class="tab-content" transition:blur>
+				<div class="tab-content" transition:slide>
 					<slot {activeTab} />
 				</div>
 			{/key}
@@ -121,6 +120,31 @@
 
 		&::first-letter {
 			color: $color-sand-500;
+		}
+	}
+
+	@media (min-width: $md-breakpoint) {
+		.tabs-wrapper {
+			flex-direction: row;
+		}
+
+		.tabs-list {
+			flex-direction: column;
+			overflow-y: scroll;
+			overflow-x: unset;
+			scroll-snap-type: y mandatory;
+			width: 25%;
+			flex-shrink: 0;
+		}
+
+		.tabs-list-item {
+			display: inline-block;
+			transition: 250ms ease-in-out;
+
+			&:last-child {
+				border-right-color: $color-coffee;
+				border-bottom: 1px solid $color-sand-100;
+			}
 		}
 	}
 </style>

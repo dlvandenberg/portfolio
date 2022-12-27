@@ -24,10 +24,18 @@
 		margin: 0.5rem;
 		cursor: pointer;
 		transition: 0.2s;
+		color: $color-sand-100;
 
 		&:hover {
 			background-color: var(--color);
 			color: $color-coffee;
+		}
+	}
+
+	@media (min-width: $md-breakpoint) {
+		.skill-item {
+			font-size: small;
+			font-weight: 300;
 		}
 	}
 </style>

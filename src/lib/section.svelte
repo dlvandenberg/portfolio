@@ -3,7 +3,7 @@
 	export let subtitle = '';
 </script>
 
-<section class="section-container">
+<section class="section-container g-container">
 	<h1 class="section-title">{title}</h1>
 	{#if subtitle}
 		<h3 class="section-subtitle">{subtitle}</h3>
@@ -53,7 +53,6 @@
 		display: flex;
 		flex-wrap: wrap;
 		flex-direction: row;
-		width: 100%;
 	}
 
 	.section-col {

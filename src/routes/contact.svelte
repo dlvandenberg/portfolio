@@ -38,4 +38,16 @@
 			}
 		}
 	}
+
+	@media (min-width: $md-breakpoint) {
+		p {
+			font-size: small;
+			font-weight: 300;
+			text-align: center;
+		}
+
+		a.call-to-action {
+			font-size: small;
+		}
+	}
 </style>
