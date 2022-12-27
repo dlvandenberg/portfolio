@@ -1,13 +1,17 @@
 <script lang="ts">
-	import TabSection from '$lib/tab-section.svelte';
 	import About from './about.svelte';
 	import Contact from './contact.svelte';
+	import FeaturedProjects from './featured-projects.svelte';
 	import Hero from './hero.svelte';
+	import Projects from './projects.svelte';
 	import Skills from './skills.svelte';
+	import Work from './work.svelte';
 </script>
 
 <Hero />
 <About />
-<TabSection />
+<Work />
+<FeaturedProjects />
+<Projects />
 <Skills />
 <Contact />
