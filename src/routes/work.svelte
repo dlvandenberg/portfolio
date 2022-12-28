@@ -75,4 +75,11 @@
 	.job-description {
 		margin-bottom: 2rem;
 	}
+
+	@media (min-width: $md-breakpoint) {
+		.job-description p {
+			font-weight: 100;
+			font-size: small;
+		}
+	}
 </style>

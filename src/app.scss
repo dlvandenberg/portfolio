@@ -26,6 +26,10 @@ a {
   }
 }
 
+ul {
+  list-style: none;
+}
+
 @media (min-width: $md-breakpoint) {
   .g-container {
     max-width: $md-breakpoint;
