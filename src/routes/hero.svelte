@@ -45,10 +45,11 @@
 		height: 15rem;
 		border-radius: 50% 50%;
 		margin: 2rem;
-		transition: transform 250ms ease-in-out;
+		transition: $transition-duration ease-in-out;
 
 		&:hover {
-			transform: scale(1.2);
+			transform: scale(1.3);
+			border-color: $color-yellow;
 		}
 	}
 

@@ -8,29 +8,24 @@
 	let tolerance = 0;
 	let headerClass = 'show';
 
-	function updateClass(y: number): string {
-		console.log(`y: ${y}`);
+	const updateClass = (y: number): string => {
 		const dy = lastY - y;
 		lastY = y;
 
 		return deriveClass(y, dy);
-	}
+	};
 
-	function deriveClass(y: number, dy: number): string {
-		if (y < offset) {
-			return 'show';
-		}
-
-		if (Math.abs(dy) <= tolerance) {
-			return headerClass;
-		}
-
-		if (dy > 0) {
+	const deriveClass = (y: number, dy: number): string => {
+		if (isCurrentYWithinOffset(y) || isScrollingUp(dy) || isAfterMenuClose(dy)) {
 			return 'show';
 		}
 
 		return 'hide';
-	}
+	};
+
+	const isAfterMenuClose = (dy: number): boolean => dy === tolerance;
+	const isCurrentYWithinOffset = (y: number): boolean => y < offset;
+	const isScrollingUp = (dy: number): boolean => dy > 0;
 
 	const toggleMenu = (): void => {
 		menuOpen = !menuOpen;
@@ -42,6 +37,8 @@
 			const scrollY = document.body.style.top;
 			document.body.style.position = '';
 			document.body.style.top = '';
+			tolerance = parseInt(scrollY || '0');
+			console.log(`tolerance: ${tolerance}`);
 			window.scrollTo(0, parseInt(scrollY || '0') * -1);
 		}
 	};
@@ -86,7 +83,7 @@
 		border-bottom: 1px solid $color-sand-100;
 		background-color: $color-coffee;
 		z-index: 10;
-		transition: 250ms ease-in-out;
+		transition: $transition-duration ease-in-out;
 
 		&.show {
 			transform: tranlateY(0%);
@@ -168,7 +165,7 @@
 		display: flex;
 		flex-direction: column;
 		transform: translateY(-100%);
-		transition: 2050ms ease-in-out;
+		transition: $transition-duration ease-in-out;
 		z-index: 8;
 
 		&.show {
@@ -180,7 +177,7 @@
 	.nav-menu {
 		display: flex;
 		flex-direction: column;
-		height: 100vh;
+		height: calc(100vh - $header-height);
 		width: 100vw;
 		background-color: $color-coffee;
 		border-bottom: 1px solid $color-sand-100;
@@ -193,7 +190,9 @@
 		font-size: large;
 		font-weight: 100;
 		color: $color-white;
-		padding-right: 1rem;
+
+		text-align: center;
+		width: 100%;
 
 		&.active {
 			color: $color-sand-100;
@@ -232,6 +231,10 @@
 			width: 100%;
 			border: none;
 			background: transparent;
+		}
+
+		.nav-menu-item a {
+			padding-right: 1rem;
 		}
 	}
 </style>

@@ -139,7 +139,7 @@
 
 		.tabs-list-item {
 			display: inline-block;
-			transition: 250ms ease-in-out;
+			transition: $transition-duration ease-in-out;
 
 			&:last-child {
 				border-right-color: $color-coffee;

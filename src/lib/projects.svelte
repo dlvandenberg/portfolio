@@ -73,7 +73,7 @@
 		background-color: $color-coffee;
 		max-width: calc(($md-breakpoint - $project-gap) / 2);
 		position: relative;
-		transition: transform 250ms ease-in-out;
+		transition: transform $transition-duration ease-in-out;
 
 		&:hover {
 			transform: translateY(-0.5rem);
