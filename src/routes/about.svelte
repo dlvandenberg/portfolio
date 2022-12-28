@@ -1,17 +1,8 @@
 <script lang="ts">
+	import type { Person } from '$lib/model/person';
 	import Section from '$lib/section.svelte';
 
-	let person = {
-		firstName: 'Dennis',
-		lastName: 'van den Berg',
-		dateOfBirth: '14-10-1989',
-		gender: 'Gender.MALE',
-		nationality: 'Dutch',
-		email: 'dennis@devd.be',
-		married: true,
-		offspring: 2,
-		pets: ['Dog'],
-	};
+	export let person: Person;
 </script>
 
 <div class="wrapper">
