@@ -1,6 +1,6 @@
 <script lang="ts">
+	import Section from '$lib/components/section.svelte';
 	import type { Person } from '$lib/model/person';
-	import Section from '$lib/section.svelte';
 
 	export let person: Person;
 </script>

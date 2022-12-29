@@ -5,16 +5,19 @@ const config = {
 	plugins: [sveltekit()],
 
 	test: {
-		include: ['src/**/*.{test,spec}.{js,ts}']
+		include: ['src/**/*.{test,spec}.{js,ts}'],
+		globals: true,
+		environment: 'jsdom',
+		setupFiles: ['src/setupTest.ts'],
 	},
 
 	css: {
 		preprocessorOptions: {
 			scss: {
-				additionalData: '@use "src/variables.scss" as *;'
-			}
-		}
-	}
+				additionalData: '@use "src/variables.scss" as *;',
+			},
+		},
+	},
 };
 
 export default config;

@@ -11,3 +11,6 @@ vite.config.ts.timestamp-*
 
 # Deployment
 .vercel/
+
+# Output
+coverage/

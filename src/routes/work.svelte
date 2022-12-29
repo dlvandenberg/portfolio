@@ -1,7 +1,7 @@
 <script lang="ts">
+	import Skills from '$lib/components/skills.svelte';
+	import TabSection from '$lib/components/tab-section.svelte';
 	import type { Work } from '$lib/model/work';
-	import Skills from '$lib/skills.svelte';
-	import TabSection from '$lib/tab-section.svelte';
 
 	export let workExperience: Work[];
 </script>

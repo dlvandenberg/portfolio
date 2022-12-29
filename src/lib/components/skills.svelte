@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { KnowingSkill, LearningSkill, Skill } from './model/skill';
+	import type { KnowingSkill, LearningSkill, Skill } from '../model/skill';
 
 	export let skills: Skill[] | KnowingSkill[] | LearningSkill[];
 </script>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Section from '$lib/section.svelte';
+	import Section from '$lib/components/section.svelte';
 
 	const email = 'dennis@devd.be';
 </script>

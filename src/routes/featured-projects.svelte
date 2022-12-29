@@ -1,6 +1,6 @@
 <script lang="ts">
+	import Projects from '$lib/components/projects.svelte';
 	import type { Project } from '$lib/model/project';
-	import Projects from '$lib/projects.svelte';
 
 	export let featuredProjects: Project[];
 </script>

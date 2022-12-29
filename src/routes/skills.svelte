@@ -1,7 +1,7 @@
 <script lang="ts">
+	import Section from '$lib/components/section.svelte';
+	import Skills from '$lib/components/skills.svelte';
 	import type { KnowingSkill, LearningSkill } from '$lib/model/skill';
-	import Section from '$lib/section.svelte';
-	import Skills from '$lib/skills.svelte';
 
 	export let knowing: KnowingSkill[];
 
