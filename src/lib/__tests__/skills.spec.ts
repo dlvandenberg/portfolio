@@ -4,7 +4,7 @@ import Skills from '../components/skills.svelte';
 import type { KnowingSkill, LearningSkill, Skill } from '../model/skill';
 
 describe('Skills.svelte', () => {
-	it('should render skills', async () => {
+	it('should render skills', () => {
 		const skills: Skill[] = [
 			{
 				name: 'Vitest',

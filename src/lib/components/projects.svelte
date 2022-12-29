@@ -2,7 +2,7 @@
 	import { faGithub } from '@fortawesome/free-brands-svg-icons';
 	import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa/src/fa.svelte';
-	import type { Project } from './model/project';
+	import type { Project } from '../model/project';
 	import Skills from './skills.svelte';
 
 	export let projects: Project[];

@@ -24,7 +24,8 @@ describe('Section.svelte', () => {
 		expect(container.querySelector('.section-col')).not.toBeInTheDocument();
 	});
 
-	// it('should render slots', () => {
-
-	// });
+	it('should render slots', () => {
+		expect(true);
+		// -> https://github.com/sveltejs/svelte/pull/4296
+	});
 });
