@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Section from '$lib/components/section.svelte';
 
-	const email = 'dennis@devd.be';
+	const email = 'dennis@vdberg.dev';
 </script>
 
 <Section title="$ contact">

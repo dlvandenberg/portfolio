@@ -49,7 +49,7 @@
 <header class={`header ${headerClass}`} class:active={menuOpen}>
 	<div class="wrapper" class:active={menuOpen}>
 		<div class="brand">
-			<a href="/" class="brand-link">devd.be</a>
+			<a href="/" class="brand-link">vdberg</a>
 		</div>
 		<div class="nav-toggle" class:active={menuOpen} on:click={toggleMenu} />
 	</div>

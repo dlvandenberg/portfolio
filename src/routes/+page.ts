@@ -33,7 +33,7 @@ const fetchPerson = async (fetch: FetchFn): Promise<Person> => {
 		dateOfBirth: '14-10-1989',
 		gender: 'Gender.MALE',
 		nationality: 'Dutch',
-		email: 'dennis@devd.be',
+		email: 'dennis@vdberg.dev',
 		married: true,
 		offspring: 2,
 		pets: ['Dog'],
