@@ -19,8 +19,10 @@ interface ContactInfoResponse {
 
 export const GET = (async (): Promise<Response> => {
 	const url = createUrl('contact-info');
-	const response = await fetchRequest(url);
-	const { info, email, resumeUrl } = ((await response.json()) as ContactInfoResponse).data
-		.attributes;
-	return json({ info, email, resumeUrl } as ContactInfo);
+	return fetchRequest(url)
+		.then((response) => response.json())
+		.then((jsonResponse: ContactInfoResponse) => {
+			const { info, email, resumeUrl } = jsonResponse.data.attributes;
+			return json({ info, email, resumeUrl } as ContactInfo);
+		});
 }) satisfies RequestHandler;

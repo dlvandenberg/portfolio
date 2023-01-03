@@ -3,13 +3,10 @@
 	import type { ContactInfo } from '$lib/model/contact-info';
 	import { marked } from 'marked';
 
-	async function load(): Promise<ContactInfo> {
-		const response = await fetch('/api/contact-info');
-		return await response.json();
-	}
+	export let contactInfo: ContactInfo;
 </script>
 
-{#await load() then contactInfo}
+{#if contactInfo}
 	<Section title="$ contact">
 		<div slot="outline-col">
 			<div class="info">
@@ -20,7 +17,7 @@
 			</div>
 		</div>
 	</Section>
-{/await}
+{/if}
 
 <style lang="scss">
 	.button {

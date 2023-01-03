@@ -5,7 +5,7 @@ export type Work = {
 	job: string;
 	jobTitle: string;
 	dateFrom: string;
-	dateTo: string;
+	dateTo?: string;
 	description: string;
 	skills: Skill[];
 };

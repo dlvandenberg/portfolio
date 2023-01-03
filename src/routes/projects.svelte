@@ -1,17 +1,14 @@
 <script lang="ts">
 	import Projects from '$lib/components/projects.svelte';
-	import type { Project } from '$lib/model/project';
+	import type { Project } from '$lib/model';
 
-	const load = async (): Promise<Project[]> => {
-		const response = await fetch('/api/projects/');
-		return await response.json();
-	};
+	export let projects: Project[];
 </script>
 
-{#await load() then projects}
+{#if projects}
 	<Projects
 		title="$ projects --feat"
 		projects={projects.filter((project) => project.featured)}
 		featured />
 	<Projects title="$ projects" projects={projects.filter((project) => !project.featured)} />
-{/await}
+{/if}

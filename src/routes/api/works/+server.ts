@@ -1,5 +1,7 @@
 import { createUrl, fetchRequest } from '$lib/http';
+import type { Work } from '$lib/model';
 import { json } from '@sveltejs/kit';
+import type { SkillResponse } from '../skills/+server';
 import type { RequestHandler } from './$types';
 
 interface WorkResponse {
@@ -9,40 +11,32 @@ interface WorkResponse {
 			name: string;
 			job: string;
 			jobTitle: string;
-			dateFrom: Date;
-			dateTo?: Date;
+			dateFrom: string;
+			dateTo?: string;
 			description: string;
-			createdAt: Date;
-			updatedAt: Date;
+			createdAt: string;
+			updatedAt: string;
 			locale: string;
-			skills: {
-				data: {
-					id: number;
-					attributes: {
-						name: string;
-						colorCode: string;
-						createdAt: Date;
-						updatedAt: Date;
-						learning: boolean;
-						level: number;
-					};
-				}[];
-			};
+			skills: SkillResponse;
 		};
 	}[];
 }
 
 export const GET = (async (): Promise<Response> => {
 	const url = createUrl('works', { populate: '*' });
-	const response = await fetchRequest(url);
-	const jsonResponse: WorkResponse = await response.json();
+	return fetchRequest(url)
+		.then((response) => response.json())
+		.then((jsonResponse: WorkResponse) => {
+			const workData: Work[] = jsonResponse.data.map((item) => {
+				const { name, job, jobTitle, dateFrom, dateTo, description } = item.attributes;
+				const skills = item.attributes.skills.data
+					.map((skill) => skill.attributes)
+					.map(({ name, colorCode, learning, level }) => {
+						return { name, colorCode, learning, level };
+					});
 
-	const workData = jsonResponse.data.map((item) => {
-		return {
-			...item.attributes,
-			skills: item.attributes.skills.data.map((skill) => skill.attributes),
-		};
-	});
-
-	return json(workData);
+				return { name, job, jobTitle, dateFrom, dateTo, description, skills };
+			});
+			return json(workData);
+		});
 }) satisfies RequestHandler;

@@ -4,13 +4,10 @@
 	import type { Work } from '$lib/model/work';
 	import { marked } from 'marked';
 
-	const load = async (): Promise<Work[]> => {
-		const response = await fetch('/api/works/', { method: 'GET' });
-		return await response.json();
-	};
+	export let workExperience: Work[];
 </script>
 
-{#await load() then workExperience}
+{#if workExperience}
 	<TabSection tabData={workExperience}>
 		<svelte:fragment let:activeTab>
 			<div class="job">
@@ -34,7 +31,7 @@
 			</div>
 		</svelte:fragment>
 	</TabSection>
-{/await}
+{/if}
 
 <style lang="scss">
 	.job {

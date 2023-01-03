@@ -10,20 +10,45 @@ interface PersonalInfoResponse {
 			firstName: string;
 			lastName: string;
 			nationality: string;
-			dateOfBirth: Date;
+			dateOfBirth: string;
 			gender: string;
 			email: string;
 			married: boolean;
 			kids: number;
 			description: string;
-			createdAt: Date;
-			updatedAt: Date;
+			createdAt: string;
+			updatedAt: string;
 		};
 	};
 }
 export const GET = (async (): Promise<Response> => {
 	const url = createUrl('personal-info');
-	const response = await fetchRequest(url);
-	const jsonResponse: PersonalInfoResponse = await response.json();
-	return json({ ...jsonResponse.data.attributes } as PersonalInfo);
+
+	return fetchRequest(url)
+		.then((response) => response.json())
+		.then((jsonResponse: PersonalInfoResponse) => {
+			const {
+				firstName,
+				lastName,
+				nationality,
+				dateOfBirth,
+				gender,
+				email,
+				married,
+				kids,
+				description,
+			} = jsonResponse.data.attributes;
+
+			return json({
+				firstName,
+				lastName,
+				nationality,
+				dateOfBirth,
+				gender,
+				email,
+				married,
+				kids,
+				description,
+			} as PersonalInfo);
+		});
 }) satisfies RequestHandler;

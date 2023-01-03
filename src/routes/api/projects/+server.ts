@@ -1,5 +1,7 @@
-import { createUrl, extractSearchParams, fetchRequest } from '$lib/http';
+import { createUrl, fetchRequest } from '$lib/http';
+import type { Project } from '$lib/model';
 import { json, type RequestHandler } from '@sveltejs/kit';
+import type { SkillResponse } from '../skills/+server';
 
 interface ProjectResponse {
 	data: {
@@ -9,38 +11,36 @@ interface ProjectResponse {
 			websiteUrl: string;
 			githubUrl: string;
 			description: string;
-			createdAt: Date;
-			updatedAt: Date;
+			featured: boolean;
+			createdAt: string;
+			updatedAt: string;
 			locale: string;
-			skills: {
-				data: {
-					id: number;
-					attributes: {
-						name: string;
-						colorCode: string;
-						createdAt: Date;
-						updatedAt: Date;
-						learning: boolean;
-						level: number;
-					};
-				}[];
-			};
+			skills: SkillResponse;
 		};
 	}[];
 }
 
-export const GET = (async ({ url }): Promise<Response> => {
-	const searchParamsFromClient = extractSearchParams(url.searchParams);
-	const requestUrl = createUrl('projects', { populate: '*', ...searchParamsFromClient });
-	const response = await fetchRequest(requestUrl);
-	const jsonResponse: ProjectResponse = await response.json();
-
-	const projectData = jsonResponse.data.map((item) => {
-		return {
-			...item.attributes,
-			skills: item.attributes.skills.data.map((skill) => skill.attributes),
-		};
-	});
-
-	return json(projectData);
+export const GET = (async (): Promise<Response> => {
+	const requestUrl = createUrl('projects', { populate: '*' });
+	return fetchRequest(requestUrl)
+		.then((response) => response.json())
+		.then((jsonResponse: ProjectResponse) => {
+			const projectData: Project[] = jsonResponse.data.map((item) => {
+				const { title, websiteUrl, githubUrl, description, featured } = item.attributes;
+				const skills = item.attributes.skills.data
+					.map((skill) => skill.attributes)
+					.map(({ name, colorCode, learning, level }) => {
+						return { name, colorCode, learning, level };
+					});
+				return {
+					title,
+					websiteUrl,
+					githubUrl,
+					description,
+					featured,
+					skills,
+				};
+			});
+			return json(projectData);
+		});
 }) satisfies RequestHandler;

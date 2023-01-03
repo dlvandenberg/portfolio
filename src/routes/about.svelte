@@ -1,38 +1,35 @@
 <script lang="ts">
 	import Section from '$lib/components/section.svelte';
-	import type { PersonalInfo } from '$lib/model/personal-info';
+	import type { PersonalInfo } from '$lib/model';
 	import { marked } from 'marked';
 
-	async function load(): Promise<PersonalInfo> {
-		const response = await fetch('/api/personal-info/', { method: 'GET' });
-		return await response.json();
-	}
+	export let personalInfo: PersonalInfo;
 </script>
 
-{#await load() then person}
+{#if personalInfo}
 	<div class="wrapper">
 		<Section title="$ whoami">
 			<div slot="outline-col">
 				<!-- prettier-ignore -->
 				<pre>
-&#123;
-  "firstName": <span class="value">"{person.firstName}"</span>,
-  "lastName": <span class="value">"{person.lastName}"</span>,
-  "dateOfBirth": <span class="value">"{person.dateOfBirth}"</span>,
-  "gender": <span class="value">"{person.gender}"</span>,
-  "nationality": <span class="value">"{person.nationality}"</span>,
-  "email": <span class="value">"{person.email}"</span>,
-  "married": <span class="value">{person.married}</span>,
-  "kids": <span class="value">{person.kids}</span>,
+&#123;qs
+  "firstName": <span class="value">"{personalInfo.firstName}"</span>,
+  "lastName": <span class="value">"{personalInfo.lastName}"</span>,
+  "dateOfBirth": <span class="value">"{personalInfo.dateOfBirth}"</span>,
+  "gender": <span class="value">"{personalInfo.gender}"</span>,
+  "nationality": <span class="value">"{personalInfo.nationality}"</span>,
+  "email": <span class="value">"{personalInfo.email}"</span>,
+  "married": <span class="value">{personalInfo.married}</span>,
+  "kids": <span class="value">{personalInfo.kids}</span>,
 &#125;
 			</pre>
 			</div>
 			<div slot="col">
-				{@html marked(person.description)}
+				{@html marked(personalInfo.description)}
 			</div>
 		</Section>
 	</div>
-{/await}
+{/if}
 
 <style lang="scss">
 	pre {
