@@ -1,16 +1,19 @@
 <script lang="ts">
 	import Section from '$lib/components/section.svelte';
 	import Skills from '$lib/components/skills.svelte';
-	import type { KnowingSkill, LearningSkill } from '$lib/model/skill';
+	import type { Skill } from '$lib/model/skill';
 
-	export let knowing: KnowingSkill[];
-
-	export let learning: LearningSkill[];
+	const load = async (): Promise<Skill[]> => {
+		const response = await fetch('/api/skills/');
+		return await response.json();
+	};
 </script>
 
-<Section title="$ skills" subtitle="(Hover to see the color)">
-	<Skills skills={knowing} slot="outline-col" />
-</Section>
-<Section title="$ skills --learning" subtitle="(Hover to see the color)">
-	<Skills skills={learning} slot="outline-col" />
-</Section>
+{#await load() then skills}
+	<Section title="$ skills" subtitle="(Hover to see the color)">
+		<Skills skills={skills.filter((skill) => !skill.learning)} slot="outline-col" />
+	</Section>
+	<Section title="$ skills --learning" subtitle="(Hover to see the color)">
+		<Skills skills={skills.filter((skill) => skill.learning)} slot="outline-col" />
+	</Section>
+{/await}

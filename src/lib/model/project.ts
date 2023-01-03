@@ -5,5 +5,6 @@ export type Project = {
 	websiteUrl?: string;
 	githubUrl?: string;
 	description: string;
-	tags: Skill[];
+	featured: boolean;
+	skills: Skill[];
 };

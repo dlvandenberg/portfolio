@@ -2,31 +2,39 @@
 	import Skills from '$lib/components/skills.svelte';
 	import TabSection from '$lib/components/tab-section.svelte';
 	import type { Work } from '$lib/model/work';
+	import { marked } from 'marked';
 
-	export let workExperience: Work[];
+	const load = async (): Promise<Work[]> => {
+		const response = await fetch('/api/works/', { method: 'GET' });
+		return await response.json();
+	};
 </script>
 
-<TabSection tabData={workExperience}>
-	<svelte:fragment let:activeTab>
-		<div class="job">
-			<div class="job-data">
-				<h1 class="job-title">{activeTab.jobTitle}</h1>
-				<h3 class="job-location">@ {activeTab.job}</h3>
+{#await load() then workExperience}
+	<TabSection tabData={workExperience}>
+		<svelte:fragment let:activeTab>
+			<div class="job">
+				<div class="job-data">
+					<h1 class="job-title">{activeTab.jobTitle}</h1>
+					<h3 class="job-location">@ {activeTab.job}</h3>
+				</div>
+				<div class="job-period">
+					<p>{activeTab.dateFrom} - {activeTab.dateTo ?? 'Present'}</p>
+				</div>
 			</div>
-			<div class="job-period">
-				<p>{activeTab.dateFrom} - {activeTab.dateTo}</p>
+			<div class="job-description">
+				<h3>_ description</h3>
+				<div>
+					{@html marked(activeTab.description)}
+				</div>
 			</div>
-		</div>
-		<div class="job-description">
-			<h3>_ description</h3>
-			<p>{activeTab.description}</p>
-		</div>
-		<div class="job-tags">
-			<h3>_ tags</h3>
-			<Skills skills={activeTab.tags} />
-		</div>
-	</svelte:fragment>
-</TabSection>
+			<div class="job-tags">
+				<h3>_ tags</h3>
+				<Skills skills={activeTab.skills} />
+			</div>
+		</svelte:fragment>
+	</TabSection>
+{/await}
 
 <style lang="scss">
 	.job {
@@ -77,7 +85,7 @@
 	}
 
 	@media (min-width: $md-breakpoint) {
-		.job-description p {
+		.job-description div {
 			font-weight: 100;
 			font-size: small;
 		}

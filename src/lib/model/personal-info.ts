@@ -1,4 +1,4 @@
-export type Person = {
+export type PersonalInfo = {
 	firstName: string;
 	lastName: string;
 	dateOfBirth: string;
@@ -6,6 +6,6 @@ export type Person = {
 	nationality: string;
 	email: string;
 	married: boolean;
-	offspring: number;
-	pets: string[];
+	kids: number;
+	description: string;
 };

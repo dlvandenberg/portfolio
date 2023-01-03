@@ -9,12 +9,14 @@ describe('Projects.svelte', () => {
 		{
 			title: 'Vitest project',
 			description: 'A project made with vitest for unit testing',
-			tags: [],
+			featured: false,
+			skills: [],
 		},
 		{
 			title: 'Unit test',
 			description: 'Unit test project',
-			tags: [],
+			featured: false,
+			skills: [],
 		},
 	];
 
@@ -44,7 +46,8 @@ describe('Projects.svelte', () => {
 			title: 'Github Project',
 			description: 'A project description',
 			githubUrl: 'https://github.com',
-			tags: [],
+			featured: false,
+			skills: [],
 		};
 		const { container } = render(Projects, { title, projects: [project] });
 
@@ -59,7 +62,8 @@ describe('Projects.svelte', () => {
 			title: 'Website Project',
 			description: 'A project description',
 			websiteUrl: 'https://website.com',
-			tags: [],
+			featured: false,
+			skills: [],
 		};
 		const { container } = render(Projects, { title, projects: [project] });
 
@@ -75,7 +79,8 @@ describe('Projects.svelte', () => {
 			description: 'A project description',
 			githubUrl: 'https://github.com',
 			websiteUrl: 'https://website.com',
-			tags: [],
+			featured: false,
+			skills: [],
 		};
 		const { container } = render(Projects, { title, projects: [project] });
 

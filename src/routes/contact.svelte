@@ -1,21 +1,26 @@
 <script lang="ts">
 	import Section from '$lib/components/section.svelte';
+	import type { ContactInfo } from '$lib/model/contact-info';
+	import { marked } from 'marked';
 
-	const email = 'dennis@vdberg.dev';
+	async function load(): Promise<ContactInfo> {
+		const response = await fetch('/api/contact-info');
+		return await response.json();
+	}
 </script>
 
-<Section title="$ contact">
-	<div slot="outline-col">
-		<p>
-			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo, repellat voluptatum adipisci
-			sit qui tempora doloribus illo ullam eveniet odio id blanditiis aut modi dicta aspernatur
-			laudantium nostrum temporibus nemo.
-		</p>
-		<div class="button">
-			<a class="call-to-action" href="mailto:{email}">contact me</a>
+{#await load() then contactInfo}
+	<Section title="$ contact">
+		<div slot="outline-col">
+			<div class="info">
+				{@html marked(contactInfo.info)}
+			</div>
+			<div class="button">
+				<a class="call-to-action" href="mailto:{contactInfo.email}">contact me</a>
+			</div>
 		</div>
-	</div>
-</Section>
+	</Section>
+{/await}
 
 <style lang="scss">
 	.button {
@@ -40,7 +45,7 @@
 	}
 
 	@media (min-width: $md-breakpoint) {
-		p {
+		.info {
 			font-size: small;
 			font-weight: 300;
 			text-align: center;

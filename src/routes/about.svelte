@@ -1,15 +1,20 @@
 <script lang="ts">
 	import Section from '$lib/components/section.svelte';
-	import type { Person } from '$lib/model/person';
+	import type { PersonalInfo } from '$lib/model/personal-info';
+	import { marked } from 'marked';
 
-	export let person: Person;
+	async function load(): Promise<PersonalInfo> {
+		const response = await fetch('/api/personal-info/', { method: 'GET' });
+		return await response.json();
+	}
 </script>
 
-<div class="wrapper">
-	<Section title="$ whoami">
-		<div slot="outline-col">
-			<!-- prettier-ignore -->
-			<pre>
+{#await load() then person}
+	<div class="wrapper">
+		<Section title="$ whoami">
+			<div slot="outline-col">
+				<!-- prettier-ignore -->
+				<pre>
 &#123;
   "firstName": <span class="value">"{person.firstName}"</span>,
   "lastName": <span class="value">"{person.lastName}"</span>,
@@ -18,21 +23,16 @@
   "nationality": <span class="value">"{person.nationality}"</span>,
   "email": <span class="value">"{person.email}"</span>,
   "married": <span class="value">{person.married}</span>,
-  "offspring": <span class="value">{person.offspring}</span>,
-  "pets": <span class="value">{JSON.stringify(person.pets)}</span>
+  "kids": <span class="value">{person.kids}</span>,
 &#125;
 			</pre>
-		</div>
-		<div slot="col">
-			<p>
-				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore numquam nobis, consectetur
-				quasi dolorum necessitatibus eius asperiores repudiandae explicabo, praesentium
-				exercitationem deleniti sapiente accusamus repellat eveniet, modi aperiam architecto?
-				Voluptatum!
-			</p>
-		</div>
-	</Section>
-</div>
+			</div>
+			<div slot="col">
+				{@html marked(person.description)}
+			</div>
+		</Section>
+	</div>
+{/await}
 
 <style lang="scss">
 	pre {

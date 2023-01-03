@@ -7,5 +7,5 @@ export type Work = {
 	dateFrom: string;
 	dateTo: string;
 	description: string;
-	tags: Skill[];
+	skills: Skill[];
 };

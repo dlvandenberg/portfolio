@@ -30,7 +30,7 @@
 				<p class="project-description">{project.description}</p>
 				<div class="project-tags">
 					<h2 class="project-tags-title">_ tags</h2>
-					<Skills skills={project.tags} />
+					<Skills skills={project.skills} />
 				</div>
 			</div>
 		{/each}

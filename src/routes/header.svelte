@@ -56,14 +56,14 @@
 	<nav class="nav-collapse" class:show={menuOpen} transition:slide>
 		<ul class="nav-menu">
 			<li class="nav-menu-item">
-				<a class="active" href="/">home</a>
+				<a class="active" href="/">about</a>
 			</li>
-			<li class="nav-menu-item">
+			<!-- <li class="nav-menu-item">
 				<a href="/">projects</a>
 			</li>
 			<li class="nav-menu-item">
 				<a href="/">blog</a>
-			</li>
+			</li> -->
 		</ul>
 	</nav>
 </header>
