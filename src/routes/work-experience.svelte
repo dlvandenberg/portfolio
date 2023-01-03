@@ -7,7 +7,7 @@
 	export let workExperience: Work[];
 </script>
 
-{#if workExperience}
+{#if workExperience && workExperience.length >= 1}
 	<TabSection tabData={workExperience}>
 		<svelte:fragment let:activeTab>
 			<div class="job">
