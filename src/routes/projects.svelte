@@ -5,7 +5,7 @@
 	export let projects: Project[];
 </script>
 
-{#if projects}
+{#if projects && projects.length >= 1}
 	<Projects
 		title="$ projects --feat"
 		projects={projects.filter((project) => project.featured)}

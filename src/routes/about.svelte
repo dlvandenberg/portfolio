@@ -12,7 +12,7 @@
 			<div slot="outline-col">
 				<!-- prettier-ignore -->
 				<pre>
-&#123;qs
+&#123;
   "firstName": <span class="value">"{personalInfo.firstName}"</span>,
   "lastName": <span class="value">"{personalInfo.lastName}"</span>,
   "dateOfBirth": <span class="value">"{personalInfo.dateOfBirth}"</span>,
