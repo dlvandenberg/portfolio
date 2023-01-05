@@ -9,6 +9,12 @@ const config = {
 		globals: true,
 		environment: 'jsdom',
 		setupFiles: ['src/setupTest.ts'],
+		coverage: {
+			all: true,
+			include: ['src/**/*.{ts,svelte}'],
+			exclude: ['**/index.ts', '**/*.d.ts'],
+			reporter: ['text', 'json', 'html'],
+		},
 	},
 
 	css: {
