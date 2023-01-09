@@ -1,7 +1,7 @@
 import type { ContactInfo } from '$lib/model';
 import { render, screen } from '@testing-library/svelte';
 import { describe, expect, it } from 'vitest';
-import Contact from '../contact.svelte';
+import Contact from './contact.svelte';
 
 describe('Contact.svelte', () => {
 	it('should render contact-info', () => {

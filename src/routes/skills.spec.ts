@@ -1,7 +1,7 @@
 import type { Skill } from '$lib/model';
 import { render, screen } from '@testing-library/svelte';
 import { describe, expect, it } from 'vitest';
-import Skills from '../skills.svelte';
+import Skills from './skills.svelte';
 
 describe('Skills.svelte', () => {
 	it('should render skills and learning skills', () => {

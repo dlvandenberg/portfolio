@@ -1,7 +1,7 @@
-import Projects from '$lib/components/projects.svelte';
 import type { Project } from '$lib/model/project';
 import { render, screen } from '@testing-library/svelte';
 import { describe, it } from 'vitest';
+import Projects from './projects.svelte';
 
 describe('Projects.svelte', () => {
 	const title = 'Projects';

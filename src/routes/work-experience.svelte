@@ -4,7 +4,7 @@
 	import type { Work } from '$lib/model/work';
 	import { marked } from 'marked';
 
-	export let workExperience: Work[];
+	export let workExperience: Work[] | undefined;
 </script>
 
 {#if workExperience && workExperience.length >= 1}

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/svelte';
 import { describe, expect, it } from 'vitest';
-import Footer from '../footer.svelte';
+import Footer from './footer.svelte';
 
 describe('Footer.svelte', () => {
 	it('should render social links', () => {

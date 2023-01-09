@@ -1,12 +1,4 @@
-import { API_TOKEN, API_URL } from '$env/static/private';
-
-export const fetchRequest = async (request: URL | RequestInfo): Promise<Response> => {
-	const headers = new Headers({
-		Authorization: `Bearer ${API_TOKEN}`,
-	});
-	const method = 'GET';
-	return fetch(request, { method, headers });
-};
+import { API_URL } from '$env/static/private';
 
 export const createUrl = (endpoint: string, searchParams?: { [key: string]: string }): URL => {
 	const url = new URL(endpoint, API_URL);

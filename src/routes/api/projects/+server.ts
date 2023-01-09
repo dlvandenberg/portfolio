@@ -1,4 +1,4 @@
-import { createUrl, fetchRequest } from '$lib/http';
+import { createUrl } from '$lib/http';
 import type { Project } from '$lib/model';
 import { json, type RequestHandler } from '@sveltejs/kit';
 import type { SkillResponse } from '../skills/+server';
@@ -20,9 +20,9 @@ interface ProjectResponse {
 	}[];
 }
 
-export const GET = (async (): Promise<Response> => {
+export const GET = (async ({ fetch }): Promise<Response> => {
 	const requestUrl = createUrl('projects', { populate: '*' });
-	return fetchRequest(requestUrl)
+	return fetch(requestUrl)
 		.then((response) => response.json())
 		.then((jsonResponse: ProjectResponse) => {
 			const projectData: Project[] = jsonResponse.data.map((item) => {

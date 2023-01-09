@@ -1,6 +1,6 @@
-import Section from '$lib/components/section.svelte';
 import { render, screen } from '@testing-library/svelte';
 import { describe, expect, it } from 'vitest';
+import Section from './section.svelte';
 
 describe('Section.svelte', () => {
 	it('should render only title with required props', () => {

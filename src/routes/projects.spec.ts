@@ -1,7 +1,7 @@
 import type { Project } from '$lib/model';
 import { render, screen } from '@testing-library/svelte';
 import { describe, expect, it } from 'vitest';
-import Projects from '../projects.svelte';
+import Projects from './projects.svelte';
 
 describe('Projects.svelte', () => {
 	it('should render featured and normal projects', () => {

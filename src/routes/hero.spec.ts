@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/svelte';
 import { describe, expect, it } from 'vitest';
-import Hero from '../hero.svelte';
+import Hero from './hero.svelte';
 
 describe('Hero.svelte', () => {
 	it('should render hero items when mounted', () => {

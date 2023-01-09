@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/svelte';
 import { describe, expect, it } from 'vitest';
-import type { Skill } from '../../model';
-import Skills from '../skills.svelte';
+import type { Skill } from '../model';
+import Skills from './skills.svelte';
 
 describe('Skills.svelte', () => {
 	it('should render skills', () => {

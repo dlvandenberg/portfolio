@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/svelte';
 import { describe, expect, it } from 'vitest';
-import TabSection from '../tab-section.svelte';
+import TabSection from './tab-section.svelte';
 
 describe('TabSection.svelte', () => {
 	it('should render title and no tabs', () => {

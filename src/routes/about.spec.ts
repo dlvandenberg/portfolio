@@ -1,7 +1,7 @@
 import type { PersonalInfo } from '$lib/model';
 import { render, screen } from '@testing-library/svelte';
 import { describe, expect, it } from 'vitest';
-import About from '../about.svelte';
+import About from './about.svelte';
 
 describe('About.svelte', () => {
 	it('should render personal info', () => {

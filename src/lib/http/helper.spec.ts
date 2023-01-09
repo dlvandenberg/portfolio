@@ -1,6 +1,6 @@
 import { API_URL } from '$env/static/private';
 import { describe, expect, it } from 'vitest';
-import { createUrl, extractSearchParams } from '../helper';
+import { createUrl, extractSearchParams } from './helper';
 
 describe('HTTP Helpers', () => {
 	it('should create an url for an endpoint', () => {

@@ -1,4 +1,4 @@
-import { createUrl, fetchRequest } from '$lib/http';
+import { createUrl } from '$lib/http';
 import type { PersonalInfo } from '$lib/model/personal-info';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
@@ -21,10 +21,10 @@ interface PersonalInfoResponse {
 		};
 	};
 }
-export const GET = (async (): Promise<Response> => {
+export const GET = (async ({ fetch }): Promise<Response> => {
 	const url = createUrl('personal-info');
 
-	return fetchRequest(url)
+	return fetch(url)
 		.then((response) => response.json())
 		.then((jsonResponse: PersonalInfoResponse) => {
 			const {
