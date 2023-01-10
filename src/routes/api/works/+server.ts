@@ -12,6 +12,7 @@ interface WorkResponse {
 			company: string;
 			jobTitle: string;
 			dateFrom: string;
+			order: number;
 			dateTo?: string;
 			description: string;
 			createdAt: string;
@@ -23,7 +24,7 @@ interface WorkResponse {
 }
 
 export const GET = (async ({ fetch }): Promise<Response> => {
-	const url = createUrl('works', { populate: '*' });
+	const url = createUrl('works', { populate: '*', sort: 'order:desc' });
 	return fetch(url)
 		.then((response) => response.json())
 		.then((jsonResponse: WorkResponse) => {
