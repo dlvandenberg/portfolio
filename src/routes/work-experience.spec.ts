@@ -14,7 +14,7 @@ describe('WorkExperience.svelte', () => {
 		expect(container.querySelector('.tabs-container')).not.toBeInTheDocument();
 	});
 
-	it('should render workExperience with dateTo undefined', () => {
+	it('should render workExperience with dateTo undefined and empty skills', () => {
 		const workExperienceList: Work[] = [
 			{
 				name: 'Vitest',
@@ -33,7 +33,7 @@ describe('WorkExperience.svelte', () => {
 		expect(screen.getByText(`${job.dateFrom} - Present`)).toBeInTheDocument();
 		expect(screen.getByText('_ description')).toBeInTheDocument();
 		expect(screen.getByText(job.description)).toBeInTheDocument();
-		expect(screen.getByText('_ tags')).toBeInTheDocument();
+		expect(screen.queryByText('_ tags')).not.toBeInTheDocument();
 	});
 
 	it('should render workExperience with dateTo', () => {

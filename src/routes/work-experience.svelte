@@ -25,10 +25,12 @@
 					<SvelteMarkdown source={activeTab.description} />
 				</div>
 			</div>
-			<div class="job-tags">
-				<h3>_ tags</h3>
-				<Skills skills={activeTab.skills} />
-			</div>
+			{#if activeTab.skills && activeTab.skills.length >= 1}
+				<div class="job-tags">
+					<h3>_ tags</h3>
+					<Skills skills={activeTab.skills} />
+				</div>
+			{/if}
 		</svelte:fragment>
 	</TabSection>
 {/if}
