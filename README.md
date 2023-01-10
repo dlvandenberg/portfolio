@@ -8,7 +8,7 @@
   The first version of my personal portfolio <a href="https://vdberg.dev" target="_blank">vdberg.dev</a>, built with <a href="https://kit.svelte.dev" target="_blank">SvelteKit</a> and hosted on <a href="https://vercel.com" target="_blank">Vercel</a>.
 </p>
 
-![demo](https://github.com/dlvandenberg/portfolio/raw/main/demo.png)
+![demo](https://github.com/dlvandenberg/portfolio/raw/main/src/demo.png)
 
 ## Overview
 
