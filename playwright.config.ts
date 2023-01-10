@@ -6,6 +6,9 @@ const config: PlaywrightTestConfig = {
 		port: 4173,
 	},
 	testDir: 'tests',
+	use: {
+		trace: 'on',
+	},
 };
 
 export default config;
