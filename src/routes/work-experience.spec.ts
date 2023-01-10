@@ -20,7 +20,7 @@ describe('WorkExperience.svelte', () => {
 				name: 'Vitest',
 				dateFrom: '2023-01-01',
 				description: 'Unit testing',
-				job: 'Tester',
+				company: 'Tester',
 				jobTitle: 'Tester',
 				skills: [],
 			},
@@ -29,7 +29,7 @@ describe('WorkExperience.svelte', () => {
 		render(WorkExperience, { workExperience: workExperienceList });
 		const [job] = workExperienceList;
 		expect(screen.getByText(job.jobTitle)).toBeInTheDocument();
-		expect(screen.getByText(`@ ${job.job}`)).toBeInTheDocument();
+		expect(screen.getByText(`@ ${job.company}`)).toBeInTheDocument();
 		expect(screen.getByText(`${job.dateFrom} - Present`)).toBeInTheDocument();
 		expect(screen.getByText('_ description')).toBeInTheDocument();
 		expect(screen.getByText(job.description)).toBeInTheDocument();
@@ -43,7 +43,7 @@ describe('WorkExperience.svelte', () => {
 				dateFrom: '2023-01-01',
 				dateTo: '2023-10-10',
 				description: 'Unit testing',
-				job: 'Tester',
+				company: 'Tester',
 				jobTitle: 'Tester',
 				skills: [],
 			},

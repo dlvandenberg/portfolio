@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { faGithub } from '@fortawesome/free-brands-svg-icons';
 	import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
-	import { marked } from 'marked';
 	import Fa from 'svelte-fa/src/fa.svelte';
+	import SvelteMarkdown from 'svelte-markdown';
 	import type { Project } from '../model/project';
 	import Skills from './skills.svelte';
 
@@ -28,7 +28,9 @@
 						{/if}
 					</div>
 				{/if}
-				<div class="project-description">{@html marked(project.description)}</div>
+				<div class="project-description">
+					<SvelteMarkdown source={project.description} />
+				</div>
 				<div class="project-tags">
 					<h2 class="project-tags-title">_ tags</h2>
 					<Skills skills={project.skills} />

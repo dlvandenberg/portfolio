@@ -7,3 +7,6 @@ vi.mock('$env/static/private', () => {
 		API_TOKEN: 'vitest',
 	};
 });
+
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+Object.defineProperty(window, 'scrollTo', { value: () => {}, writable: true });

@@ -9,7 +9,7 @@ interface WorkResponse {
 		id: number;
 		attributes: {
 			name: string;
-			job: string;
+			company: string;
 			jobTitle: string;
 			dateFrom: string;
 			dateTo?: string;
@@ -28,14 +28,14 @@ export const GET = (async ({ fetch }): Promise<Response> => {
 		.then((response) => response.json())
 		.then((jsonResponse: WorkResponse) => {
 			const workData: Work[] = jsonResponse.data.map((item) => {
-				const { name, job, jobTitle, dateFrom, dateTo, description } = item.attributes;
+				const { name, company, jobTitle, dateFrom, dateTo, description } = item.attributes;
 				const skills = item.attributes.skills.data
 					.map((skill) => skill.attributes)
 					.map(({ name, colorCode, learning, level }) => {
 						return { name, colorCode, learning, level };
 					});
 
-				return { name, job, jobTitle, dateFrom, dateTo, description, skills };
+				return { name, company, jobTitle, dateFrom, dateTo, description, skills };
 			});
 			return json(workData);
 		});

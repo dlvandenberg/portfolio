@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Section from '$lib/components/section.svelte';
 	import type { PersonalInfo } from '$lib/model';
-	import { marked } from 'marked';
+	import SvelteMarkdown from 'svelte-markdown';
 
 	export let personalInfo: PersonalInfo;
 </script>
@@ -25,7 +25,7 @@
 			</pre>
 			</div>
 			<div slot="col">
-				{@html marked(personalInfo.description)}
+				<SvelteMarkdown source={personalInfo.description} />
 			</div>
 		</Section>
 	</div>

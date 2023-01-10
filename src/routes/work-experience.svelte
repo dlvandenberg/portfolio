@@ -2,7 +2,7 @@
 	import Skills from '$lib/components/skills.svelte';
 	import TabSection from '$lib/components/tab-section.svelte';
 	import type { Work } from '$lib/model/work';
-	import { marked } from 'marked';
+	import SvelteMarkdown from 'svelte-markdown';
 
 	export let workExperience: Work[] | undefined;
 </script>
@@ -13,7 +13,7 @@
 			<div class="job">
 				<div class="job-data">
 					<h1 class="job-title">{activeTab.jobTitle}</h1>
-					<h3 class="job-location">@ {activeTab.job}</h3>
+					<h3 class="job-location">@ {activeTab.company}</h3>
 				</div>
 				<div class="job-period">
 					<p>{activeTab.dateFrom} - {activeTab.dateTo ?? 'Present'}</p>
@@ -21,8 +21,8 @@
 			</div>
 			<div class="job-description">
 				<h3>_ description</h3>
-				<div>
-					{@html marked(activeTab.description)}
+				<div class="md-wrapper">
+					<SvelteMarkdown source={activeTab.description} />
 				</div>
 			</div>
 			<div class="job-tags">
