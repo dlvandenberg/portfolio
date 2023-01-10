@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Section from '$lib/components/section.svelte';
 	import type { ContactInfo } from '$lib/model/contact-info';
-	import { marked } from 'marked';
+	import SvelteMarkdown from 'svelte-markdown';
 
 	export let contactInfo: ContactInfo;
 </script>
@@ -9,8 +9,8 @@
 {#if contactInfo}
 	<Section title="$ contact">
 		<div slot="outline-col">
-			<div class="info">
-				{@html marked(contactInfo.info)}
+			<div class="info md-wrapper">
+				<SvelteMarkdown source={contactInfo.info} />
 			</div>
 			<div class="button">
 				<a class="call-to-action" href="mailto:{contactInfo.email}">contact me</a>

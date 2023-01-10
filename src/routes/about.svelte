@@ -24,7 +24,7 @@
 &#125;
 			</pre>
 			</div>
-			<div slot="col">
+			<div slot="col" class="md-wrapper">
 				<SvelteMarkdown source={personalInfo.description} />
 			</div>
 		</Section>

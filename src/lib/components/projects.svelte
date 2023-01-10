@@ -28,7 +28,7 @@
 						{/if}
 					</div>
 				{/if}
-				<div class="project-description">
+				<div class="project-description md-wrapper">
 					<SvelteMarkdown source={project.description} />
 				</div>
 				<div class="project-tags">
