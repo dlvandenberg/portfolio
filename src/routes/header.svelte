@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
+	const brandUrl = new URL('/brand.svg', import.meta.url).href;
 
 	let menuOpen = false;
 	let y: number;
@@ -49,7 +50,10 @@
 <header class={`header ${headerClass}`} class:active={menuOpen}>
 	<div class="wrapper" class:active={menuOpen}>
 		<div class="brand">
-			<a href="/" class="brand-link">vdberg</a>
+			<a href="/" class="brand-link">
+				<div class="brand-logo" style="background-image: url('{brandUrl}')" />
+				<p>vdberg</p>
+			</a>
 		</div>
 		<div class="nav-toggle" class:active={menuOpen} on:click={toggleMenu} />
 	</div>
@@ -98,11 +102,27 @@
 		}
 	}
 
+	.brand-logo {
+		width: 30px;
+		height: 30px;
+		display: inline-block;
+		background-position: 50% 50%;
+		background-size: 60%;
+		background-repeat: no-repeat;
+		margin-right: 0.7rem;
+	}
+
 	.brand-link {
 		font-size: xx-large;
 		font-weight: 100;
 		padding: 0 1rem;
 		color: $color-white;
+		display: inline-flex;
+		align-items: center;
+
+		p {
+			display: none;
+		}
 	}
 
 	.wrapper {
@@ -210,6 +230,16 @@
 	@media (min-width: $md-breakpoint) {
 		.header {
 			flex-direction: row;
+		}
+
+		.brand-link {
+			p {
+				display: inline;
+			}
+
+			&:hover p {
+				color: $color-yellow;
+			}
 		}
 
 		.nav-collapse {
