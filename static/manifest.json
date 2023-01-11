@@ -1,0 +1,39 @@
+{
+	"name": "vdberg.dev Portfolio",
+	"lang": "en-US",
+	"startUrl": "/",
+	"short_name": "vdberg.dev",
+	"icons": [
+		{ "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+		{ "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
+	],
+	"screenshots": [
+		{
+			"src": "/home.jpg",
+			"sizes": "1170x1969",
+			"type": "image/jpg",
+			"platform": "narrow",
+			"label": "Home screen"
+		},
+		{
+			"src": "/whoami.jpg",
+			"sizes": "1170x2246",
+			"type": "image/jpg",
+			"platform": "narrow",
+			"label": "About section"
+		},
+		{
+			"src": "/skills-contact.jpg",
+			"sizes": "1170x2229",
+			"type": "image/jpg",
+			"platform": "narrow",
+			"label": "Skills and contact section"
+		}
+	],
+	"dir": "ltr",
+	"orientation": "portrait",
+	"theme_color": "#342E37",
+	"background_color": "#342E37",
+	"display": "standalone",
+	"description": "Personal Portfolio of Dennis van den Berg, with a blog."
+}

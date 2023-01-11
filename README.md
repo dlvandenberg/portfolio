@@ -25,7 +25,7 @@ If you wish to run this site yourself, follow these steps:
 1. Install dependencies
 
 ```bash
-
+yarn install
 ```
 
 2. Start the development server
