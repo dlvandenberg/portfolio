@@ -1,7 +1,7 @@
 {
 	"name": "vdberg.dev Portfolio",
 	"lang": "en-US",
-	"startUrl": "/",
+	"start_url": "/",
 	"short_name": "vdberg.dev",
 	"icons": [
 		{ "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
