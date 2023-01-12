@@ -64,7 +64,7 @@
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
-		align-items: center;
+		align-items: stretch;
 		justify-content: center;
 		gap: $project-gap;
 	}
@@ -74,7 +74,6 @@
 		padding: 1rem;
 		margin-bottom: 1rem;
 		background-color: $color-coffee;
-		max-width: calc(($md-breakpoint - $project-gap) / 2);
 		position: relative;
 		transition: transform $transition-duration ease-in-out;
 
@@ -129,6 +128,14 @@
 		.project-description {
 			font-size: small;
 			font-weight: 300;
+		}
+
+		.project.featured {
+			max-width: calc(($md-breakpoint - $project-gap) / 2);
+		}
+
+		.project {
+			width: calc(($md-breakpoint - $project-gap) / 2);
 		}
 	}
 </style>
