@@ -6,8 +6,10 @@ const config: PlaywrightTestConfig = {
 		port: 4173,
 	},
 	testDir: 'tests',
+	testMatch: 'specs/**/*.{spec,test}.{js,ts}',
 	use: {
-		trace: 'on',
+		trace: 'retain-on-failure',
+		video: 'retain-on-failure',
 	},
 };
 

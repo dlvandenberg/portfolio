@@ -131,7 +131,8 @@
 		}
 
 		.project.featured {
-			max-width: calc(($md-breakpoint - $project-gap) / 2);
+			max-width: $md-breakpoint;
+			width: $md-breakpoint;
 		}
 
 		.project {

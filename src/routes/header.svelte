@@ -1,53 +1,37 @@
 <script lang="ts">
+	import SlidingHeader from '$lib/components/sliding-header.svelte';
 	import { slide } from 'svelte/transition';
 	const brandUrl = new URL('/brand.svg', import.meta.url).href;
 
 	let menuOpen = false;
 	let y: number;
-	let lastY = 0;
-	let offset = 40;
-	let tolerance = 0;
-	let headerClass = 'show';
 
-	const updateClass = (y: number): string => {
-		const dy = lastY - y;
-		lastY = y;
-
-		return deriveClass(y, dy);
-	};
-
-	const deriveClass = (y: number, dy: number): string => {
-		if (isCurrentYWithinOffset(y) || isScrollingUp(dy) || isAfterMenuClose(dy)) {
-			return 'show';
+	const toggleMenu = (e?: KeyboardEvent | MouseEvent): void => {
+		if (e instanceof KeyboardEvent && !isEnterOrSpacePressed(e)) {
+			return;
 		}
-
-		return 'hide';
+		menuOpen = !menuOpen;
+		handleScrollForMenuToggle();
 	};
 
-	const isAfterMenuClose = (dy: number): boolean => dy === tolerance;
-	const isCurrentYWithinOffset = (y: number): boolean => y < offset;
-	const isScrollingUp = (dy: number): boolean => dy > 0;
+	const isEnterOrSpacePressed = (e: KeyboardEvent): boolean => {
+		return e.key === 'Enter' || e.key === 'Space';
+	};
 
-	const toggleMenu = (): void => {
-		menuOpen = !menuOpen;
-
+	const handleScrollForMenuToggle = (): void => {
 		if (menuOpen) {
 			document.body.style.position = 'fixed';
-			document.body.style.top = `-${lastY}px`;
+			document.body.style.top = `-${y}px`;
 		} else {
 			const scrollY = document.body.style.top;
 			document.body.style.position = '';
 			document.body.style.top = '';
-			tolerance = parseInt(scrollY || '0');
-			console.log(`tolerance: ${tolerance}`);
 			window.scrollTo(0, parseInt(scrollY || '0') * -1);
 		}
 	};
-
-	$: headerClass = updateClass(y);
 </script>
 
-<header class={`header ${headerClass}`} class:active={menuOpen}>
+<SlidingHeader activeClass="active" isActive={menuOpen}>
 	<div class="wrapper" class:active={menuOpen}>
 		<div class="brand">
 			<a href="/" class="brand-link">
@@ -55,7 +39,11 @@
 				<p>vdberg</p>
 			</a>
 		</div>
-		<div class="nav-toggle" class:active={menuOpen} on:click={toggleMenu} />
+		<div
+			class="nav-toggle"
+			class:active={menuOpen}
+			on:click={toggleMenu}
+			on:keyup={(e) => toggleMenu(e)} />
 	</div>
 	<nav class="nav-collapse" class:show={menuOpen} transition:slide>
 		<ul class="nav-menu">
@@ -70,38 +58,11 @@
 			</li> -->
 		</ul>
 	</nav>
-</header>
+</SlidingHeader>
 
 <svelte:window bind:scrollY={y} />
 
 <style lang="scss">
-	.header {
-		position: fixed;
-		top: 0;
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		align-items: center;
-		height: $header-height;
-		border-bottom: 1px solid $color-sand-100;
-		background-color: $color-coffee;
-		z-index: 10;
-		transition: $transition-duration ease-in-out;
-
-		&.show {
-			transform: tranlateY(0%);
-		}
-
-		&.hide {
-			transform: translateY(-100%);
-		}
-
-		&.active {
-			border-bottom-color: $color-coffee;
-		}
-	}
-
 	.brand-logo {
 		width: 30px;
 		height: 30px;
@@ -228,10 +189,6 @@
 	}
 
 	@media (min-width: $md-breakpoint) {
-		.header {
-			flex-direction: row;
-		}
-
 		.brand-link {
 			p {
 				display: inline;

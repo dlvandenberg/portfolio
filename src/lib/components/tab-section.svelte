@@ -7,9 +7,16 @@
 
 	export let tabData: T[] = [];
 
-	let activeTabTitle: string;
+	let activeTabTitle: string = tabData[0]?.name ?? '';
 
-	activeTabTitle = tabData[0]?.name ?? '';
+	const selectTab = (title: string, e?: KeyboardEvent) => {
+		if (e && !(e.key === 'Enter' || e.key === 'Space')) {
+			return;
+		}
+
+		activeTabTitle = title;
+	};
+
 	$: tabTitles = tabData.map((tab) => tab.name);
 	$: activeTab = tabData.filter((tab) => tab.name === activeTabTitle)[0];
 </script>
@@ -21,11 +28,11 @@
 	<div class="tabs-wrapper">
 		<div class="tabs-list">
 			{#each tabTitles as title}
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<div
 					class="tabs-list-item"
 					class:active={activeTabTitle === title}
-					on:click={() => (activeTabTitle = title)}>
+					on:click={() => selectTab(title)}
+					on:keyup={(e) => selectTab(title, e)}>
 					{title}
 				</div>
 			{/each}
@@ -95,6 +102,7 @@
 
 	.tabs-viewport {
 		border: 1px solid $color-sand-100;
+		flex-grow: 1;
 	}
 
 	.tab-content {
