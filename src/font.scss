@@ -33,6 +33,14 @@
   src: url('/fonts/FiraCode-Bold.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Fira Code Fallback';
+  descent-override: 30%;
+  size-adjust: 108%;
+  ascent-override: 90%;
+  src: local('Arial');
+}
+
 /* 100 – Thin.
 200 – Extra Light (Ultra Light)
 300 – Light.

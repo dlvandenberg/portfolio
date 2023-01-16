@@ -13,7 +13,7 @@ $color-sand-500: #938F79;
 $color-white: #FFF;
 
 /* Fonts */
-$font-family: 'Fira Code', sans-serif;
+$font-family: 'Fira Code', 'Fira Code Fallback', sans-serif;
 
 /* Time */
 $transition-duration: 350ms;
