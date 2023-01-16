@@ -4,14 +4,14 @@
 
 	const portraitUrl = new URL('/portrait.svg', import.meta.url).href;
 
-	let visible = false;
+	let mounted = false;
 
 	onMount(() => {
-		visible = true;
+		mounted = true;
 	});
 </script>
 
-{#if visible}
+{#if mounted}
 	<div class="hero">
 		<div
 			class="hero-avatar"

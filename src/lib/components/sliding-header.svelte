@@ -14,7 +14,6 @@
 	};
 
 	const deriveClass = (y: number, dy: number): string => {
-		console.log(`deriveClass(y: ${y}, dy: ${dy});`);
 		if (isCurrentYWithinOffset(y) || isScrollingUp(dy) || isAfterMenuClose(dy)) {
 			return 'show';
 		}

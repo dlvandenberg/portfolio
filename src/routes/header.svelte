@@ -1,10 +1,16 @@
 <script lang="ts">
 	import SlidingHeader from '$lib/components/sliding-header.svelte';
+	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
 	const brandUrl = new URL('/brand.svg', import.meta.url).href;
 
+	let mounted = false;
 	let menuOpen = false;
 	let y: number;
+
+	onMount(() => {
+		mounted = true;
+	});
 
 	const toggleMenu = (e?: KeyboardEvent | MouseEvent): void => {
 		if (e instanceof KeyboardEvent && !isEnterOrSpacePressed(e)) {
@@ -31,34 +37,36 @@
 	};
 </script>
 
-<SlidingHeader activeClass="active" isActive={menuOpen}>
-	<div class="wrapper" class:active={menuOpen}>
-		<div class="brand">
-			<a href="/" class="brand-link">
-				<div class="brand-logo" style="background-image: url('{brandUrl}')" />
-				<p>vdberg</p>
-			</a>
+{#if mounted}
+	<SlidingHeader activeClass="active" isActive={menuOpen}>
+		<div class="wrapper" class:active={menuOpen}>
+			<div class="brand">
+				<a href="/" class="brand-link">
+					<div class="brand-logo" style="background-image: url('{brandUrl}')" />
+					<p>vdberg</p>
+				</a>
+			</div>
+			<div
+				class="nav-toggle"
+				class:active={menuOpen}
+				on:click={toggleMenu}
+				on:keyup={(e) => toggleMenu(e)} />
 		</div>
-		<div
-			class="nav-toggle"
-			class:active={menuOpen}
-			on:click={toggleMenu}
-			on:keyup={(e) => toggleMenu(e)} />
-	</div>
-	<nav class="nav-collapse" class:show={menuOpen} transition:slide>
-		<ul class="nav-menu">
-			<li class="nav-menu-item">
-				<a class="active" href="/">about</a>
-			</li>
-			<!-- <li class="nav-menu-item">
+		<nav class="nav-collapse" class:show={menuOpen} transition:slide>
+			<ul class="nav-menu">
+				<li class="nav-menu-item">
+					<a class="active" href="/">about</a>
+				</li>
+				<!-- <li class="nav-menu-item">
 				<a href="/">projects</a>
 			</li>
 			<li class="nav-menu-item">
 				<a href="/">blog</a>
 			</li> -->
-		</ul>
-	</nav>
-</SlidingHeader>
+			</ul>
+		</nav>
+	</SlidingHeader>
+{/if}
 
 <svelte:window bind:scrollY={y} />
 
@@ -67,6 +75,7 @@
 		width: 30px;
 		height: 30px;
 		display: inline-block;
+		background-image: url('/brand.svg');
 		background-position: 50% 50%;
 		background-size: 60%;
 		background-repeat: no-repeat;

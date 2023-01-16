@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 import Header from './header.svelte';
 
 describe('Header.svelte', () => {
-	it('should render navigation bar', () => {
+	it('should render navigation bar when mounted', () => {
 		window.scrollTo = vi.fn().mockImplementation(() => {
 			return;
 		});
