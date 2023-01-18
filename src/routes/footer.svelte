@@ -39,6 +39,7 @@
 		.social-item a {
 			color: $color-sand-100;
 			margin-right: 0.5rem;
+			font-size: 2rem;
 
 			&:hover {
 				color: $color-yellow;
@@ -63,6 +64,12 @@
 			font-size: x-small;
 			font-weight: 100;
 			color: $color-sand-100;
+		}
+	}
+
+	@media (min-width: $md-breakpoint) {
+		.footer-socials .social-item a {
+			font-size: 1.5rem;
 		}
 	}
 </style>
