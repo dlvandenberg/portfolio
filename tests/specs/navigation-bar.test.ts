@@ -14,8 +14,8 @@ test.describe('Navigation bar', () => {
 	});
 
 	test('should dissapear/appear on scroll down/up', async ({ page }) => {
-		expect(navigationBar.header).toBeVisible();
-		expect(navigationBar.header).toHaveClass(/show/);
+		await expect(navigationBar.header).toBeVisible();
+		await expect(navigationBar.header).toHaveClass(/show/);
 
 		await page.mouse.wheel(0, 1000);
 
