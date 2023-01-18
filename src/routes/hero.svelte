@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { slide } from 'svelte/transition';
 
 	const portraitUrl = new URL('/portrait.svg', import.meta.url).href;
 
@@ -11,18 +10,15 @@
 	});
 </script>
 
-{#if mounted}
-	<div class="hero">
-		<div
-			class="hero-avatar"
-			in:slide={{ duration: 1000 }}
-			style="background-image: url('{portraitUrl}')" />
-		<div class="hero-titles">
-			<h1 class="title" in:slide={{ delay: 300, duration: 1000 }}>Dennis van den Berg</h1>
-			<h3 class="subtitle" in:slide={{ delay: 500, duration: 1000 }}>Full Stack Developer</h3>
-		</div>
+<div class="hero">
+	{#if mounted}
+		<div class="hero-avatar animate" style="background-image: url('{portraitUrl}')" />
+	{/if}
+	<div class="hero-titles">
+		<h1 class="title animate">Dennis van den Berg</h1>
+		<h3 class="subtitle animate">Full Stack Developer</h3>
 	</div>
-{/if}
+</div>
 
 <style lang="scss">
 	.hero {
@@ -34,9 +30,24 @@
 		margin-bottom: 5rem;
 	}
 
+	.animate {
+		animation-duration: 0.5s;
+		animation-name: animate-fade-in;
+		animation-delay: 0.2s;
+		animation-fill-mode: backwards;
+	}
+
+	@keyframes animate-fade-in {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+
 	.hero-avatar {
 		background-color: $color-coffee;
-		background-image: url('/portrait.svg');
 		background-position: 50% 50%;
 		background-size: 80% 80%;
 		background-repeat: no-repeat;

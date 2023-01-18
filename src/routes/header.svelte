@@ -37,37 +37,36 @@
 	};
 </script>
 
-{#if mounted}
-	<SlidingHeader activeClass="active" isActive={menuOpen}>
-		<div class="wrapper" class:active={menuOpen}>
-			<div class="brand">
-				<a href="/" class="brand-link">
+<SlidingHeader activeClass="active" isActive={menuOpen}>
+	<div class="wrapper" class:active={menuOpen}>
+		<div class="brand">
+			<a href="/" class="brand-link">
+				{#if mounted}
 					<div class="brand-logo" style="background-image: url('{brandUrl}')" />
-					<p>vdberg</p>
-				</a>
-			</div>
-			<div
-				class="nav-toggle"
-				class:active={menuOpen}
-				on:click={toggleMenu}
-				on:keyup={(e) => toggleMenu(e)} />
+				{/if}
+				<p>vdberg</p>
+			</a>
 		</div>
-		<nav class="nav-collapse" class:show={menuOpen} transition:slide>
-			<ul class="nav-menu">
-				<li class="nav-menu-item">
-					<a class="active" href="/">about</a>
-				</li>
-				<!-- <li class="nav-menu-item">
+		<div
+			class="nav-toggle"
+			class:active={menuOpen}
+			on:click={toggleMenu}
+			on:keyup={(e) => toggleMenu(e)} />
+	</div>
+	<nav class="nav-collapse" class:show={menuOpen} transition:slide>
+		<ul class="nav-menu">
+			<li class="nav-menu-item">
+				<a class="active" href="/">about</a>
+			</li>
+			<!-- <li class="nav-menu-item">
 				<a href="/">projects</a>
 			</li>
 			<li class="nav-menu-item">
 				<a href="/">blog</a>
 			</li> -->
-			</ul>
-		</nav>
-	</SlidingHeader>
-{/if}
-
+		</ul>
+	</nav>
+</SlidingHeader>
 <svelte:window bind:scrollY={y} />
 
 <style lang="scss">
