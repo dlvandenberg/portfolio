@@ -6,67 +6,71 @@
 	import type { Project } from '../model/project';
 	import Skills from './skills.svelte';
 
-	export let projects: Project[];
+	export let projects: Project[] | undefined;
 	export let title: string;
 	export let featured = false;
 </script>
 
-<div class="projects-container g-container">
-	<h1 class="projects-title">{title}</h1>
-	<div class="projects-list">
-		{#each projects as project}
-			<div class="project" class:featured>
-				<h2 class="project-title">_ {project.title}</h2>
-				{#if project.githubUrl || project.websiteUrl}
-					<div class="project-link-container">
-						{#if project.githubUrl}
-							<a href={project.githubUrl} class="project-link"><Fa icon={faGithub} /></a>
-						{/if}
-						{#if project.websiteUrl}
-							<a href={project.websiteUrl} class="project-link"
-								><Fa icon={faArrowUpRightFromSquare} /></a>
-						{/if}
+{#if projects && projects.length > 0}
+	<div class="projects g-container">
+		<h1 class="projects__title">{title}</h1>
+		<div class="projects__list">
+			{#each projects as project}
+				<div class="project {featured ? '-featured' : ''}">
+					<h2 class="project__title">_ {project.title}</h2>
+					{#if project.githubUrl || project.websiteUrl}
+						<div class="project__links">
+							{#if project.githubUrl}
+								<a href={project.githubUrl} class="project__link"><Fa icon={faGithub} /></a>
+							{/if}
+							{#if project.websiteUrl}
+								<a href={project.websiteUrl} class="project__link"
+									><Fa icon={faArrowUpRightFromSquare} /></a>
+							{/if}
+						</div>
+					{/if}
+					<div class="project__description md-wrapper">
+						<SvelteMarkdown source={project.content} />
 					</div>
-				{/if}
-				<div class="project-description md-wrapper">
-					<SvelteMarkdown source={project.description} />
+					{#if project.tags && project.tags.length > 0}
+						<div class="project__tags">
+							<h2 class="project__tags-title">_ tags</h2>
+							<Skills skills={project.tags} />
+						</div>
+					{/if}
 				</div>
-				<div class="project-tags">
-					<h2 class="project-tags-title">_ tags</h2>
-					<Skills skills={project.skills} />
-				</div>
-			</div>
-		{/each}
+			{/each}
+		</div>
 	</div>
-</div>
+{/if}
 
 <style lang="scss">
 	$project-gap: 1rem;
-	.projects-container {
+	.projects {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-	}
 
-	.projects-title {
-		font-weight: 100;
-		font-size: x-large;
-		color: $color-sand-100;
-		margin-bottom: 0.5rem;
+		&__title {
+			font-weight: 100;
+			font-size: x-large;
+			color: $color-sand-100;
+			margin-bottom: 0.5rem;
 
-		&::first-letter {
-			color: $color-sand-500;
+			&::first-letter {
+				color: $color-sand-500;
+			}
 		}
-	}
 
-	.projects-list {
-		margin-bottom: 3rem;
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		align-items: stretch;
-		justify-content: center;
-		gap: $project-gap;
+		&__list {
+			margin-bottom: 3rem;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			align-items: stretch;
+			justify-content: center;
+			gap: $project-gap;
+		}
 	}
 
 	.project {
@@ -81,62 +85,61 @@
 			transform: translateY(-0.5rem);
 		}
 
-		&.featured {
+		&.-featured {
 			background-color: $color-sand-500;
 			max-width: $md-breakpoint;
 
-			.project-title,
-			.project-tags-title {
+			.project__title,
+			.project__tags-title {
 				color: $color-coffee;
 			}
 		}
-	}
 
-	.project-link-container {
-		position: absolute;
-		top: 1rem;
-		right: 1rem;
-	}
+		&__title {
+			font-weight: 100;
+			font-size: large;
+			text-transform: uppercase;
+			margin-bottom: 0.5rem;
+			color: $color-sand-100;
 
-	.project-title {
-		font-weight: 100;
-		font-size: large;
-		text-transform: uppercase;
-		margin-bottom: 0.5rem;
-		color: $color-sand-100;
+			&::first-letter {
+				color: $color-yellow;
+			}
+		}
 
-		&::first-letter {
-			color: $color-yellow;
+		&__links {
+			position: absolute;
+			top: 1rem;
+			right: 1rem;
+		}
+
+		&__description {
+			margin-bottom: 1rem;
+		}
+
+		&__tags-title {
+			font-weight: 100;
+			font-size: medium;
+			color: $color-sand-100;
+
+			&::first-letter {
+				color: $color-yellow;
+			}
 		}
 	}
-
-	.project-description {
-		margin-bottom: 1rem;
-	}
-
-	.project-tags-title {
-		font-weight: 100;
-		font-size: medium;
-		color: $color-sand-100;
-
-		&::first-letter {
-			color: $color-yellow;
-		}
-	}
-
 	@media (min-width: $md-breakpoint) {
-		.project-description {
-			font-size: small;
-			font-weight: 300;
-		}
-
-		.project.featured {
-			max-width: $md-breakpoint;
-			width: $md-breakpoint;
-		}
-
 		.project {
 			width: calc(($md-breakpoint - $project-gap) / 2);
+
+			&.-featured {
+				max-width: $md-breakpoint;
+				width: $md-breakpoint;
+			}
+
+			&__description {
+				font-size: small;
+				font-weight: 300;
+			}
 		}
 	}
 </style>
