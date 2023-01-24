@@ -12,7 +12,7 @@ const config = {
 		coverage: {
 			all: true,
 			include: ['src/**/*.{ts,svelte}'],
-			exclude: ['**/index.ts', '**/*.d.ts'],
+			exclude: ['**/index.ts', '**/*.d.ts', '**/*.spec.ts', '**/__tests__/*.svelte'],
 			reporter: ['text', 'json', 'html'],
 		},
 	},
