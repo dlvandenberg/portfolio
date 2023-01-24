@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let activeClass = 'active';
+	export let activeClass = '-active';
 	export let isActive = false;
 
 	let y: number;
@@ -15,10 +15,10 @@
 
 	const deriveClass = (y: number, dy: number): string => {
 		if (isCurrentYWithinOffset(y) || isScrollingUp(dy) || isAfterMenuClose(dy)) {
-			return 'show';
+			return '-visible';
 		}
 
-		return 'hide';
+		return '-hidden';
 	};
 
 	const isAfterMenuClose = (dy: number): boolean => Math.abs(dy) === lastY;
@@ -49,15 +49,15 @@
 		z-index: 10;
 		transition: $transition-duration ease-in-out;
 
-		&.show {
+		&.-visible {
 			transform: tranlateY(0%);
 		}
 
-		&.hide {
+		&.-hidden {
 			transform: translateY(-100%);
 		}
 
-		&.active {
+		&.-active {
 			border-bottom-color: $color-coffee;
 		}
 	}
