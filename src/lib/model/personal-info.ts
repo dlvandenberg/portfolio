@@ -7,5 +7,5 @@ export type PersonalInfo = {
 	email: string;
 	married: boolean;
 	kids: number;
-	description: string;
+	content: string;
 };

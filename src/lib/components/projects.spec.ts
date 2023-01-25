@@ -1,93 +1,88 @@
-import type { Project } from '$lib/model/project';
+import type { Project } from '$lib/model';
 import { render, screen } from '@testing-library/svelte';
 import { describe, it } from 'vitest';
 import Projects from './projects.svelte';
 
 describe('Projects.svelte', () => {
-	const title = 'Projects';
-	const projectsWithOnlyRequiredFields: Project[] = [
-		{
-			title: 'Vitest project',
-			description: 'A project made with vitest for unit testing',
-			featured: false,
-			skills: [],
-		},
-		{
-			title: 'Unit test',
-			description: 'Unit test project',
-			featured: false,
-			skills: [],
-		},
-	];
+	const featuredClass = '-featured';
 
-	it('should render title and projects', () => {
-		const { container } = render(Projects, { title, projects: projectsWithOnlyRequiredFields });
+	const selectors = {
+		projects: '.projects',
+		projectsTitle: '.projects__title',
+		project: '.project',
+		projectTitle: '.project__title',
+		projectLink: '.project__link',
+		projectDescription: '.project__description',
+		projectTags: '.project__tags',
+	};
 
-		projectsWithOnlyRequiredFields.forEach((project) => {
+	it('should not render anything when projectlist is undefined', () => {
+		const { container } = render(Projects, { projects: undefined, title: 'Vitest project' });
+		expect(container.querySelector(selectors.projects)).not.toBeInTheDocument();
+	});
+
+	it('should not render anything when projectlist is empty', () => {
+		const { container } = render(Projects, { projects: [], title: 'Vitest project' });
+		expect(container.querySelector(selectors.projects)).not.toBeInTheDocument();
+	});
+
+	it('should render title and minimal projects', () => {
+		const title = 'Projects';
+		const projects: Project[] = [
+			{
+				title: 'Vitest',
+				content: '# Header\nSample Markdown',
+				featured: false,
+			},
+			{
+				title: 'SvelteKit',
+				content: 'Some content',
+				featured: false,
+			},
+		];
+
+		const { container } = render(Projects, { projects, title });
+		expect(container.querySelector(selectors.projectsTitle)?.textContent).toEqual(title);
+		expect(container.querySelectorAll(selectors.projectTitle)).toHaveLength(projects.length);
+		Array.from(container.querySelectorAll(selectors.project)).every((project) =>
+			expect(project).not.toHaveClass(featuredClass),
+		);
+
+		projects.forEach((project) => {
 			expect(screen.getByText(`_ ${project.title}`)).toBeInTheDocument();
-			expect(screen.getByText(project.description)).toBeInTheDocument();
 		});
 
-		expect(container.querySelector('.project-link-container')).not.toBeInTheDocument();
-		expect(container.querySelector('.project-link-container')).not.toBeInTheDocument();
-		expect(container.querySelector('.project')).not.toHaveClass('featured');
+		expect(container.querySelector(selectors.projectTags)).not.toBeInTheDocument();
+		expect(container.querySelector(selectors.projectLink)).not.toBeInTheDocument();
+	});
+
+	it('should render full project', () => {
+		const title = 'Projects';
+		const project: Project = {
+			title: 'Vitest',
+			content: '# Header\nSample Markdown',
+			featured: false,
+			githubUrl: 'https://url.com',
+			websiteUrl: 'https://site.com',
+			tags: ['Unit', 'Test'],
+		};
+
+		const { container } = render(Projects, { projects: [project], title });
+		expect(container.querySelectorAll(selectors.projectLink)).toHaveLength(2);
+		expect(container.querySelector(`a[href="${project.githubUrl}"]`)).toBeInTheDocument();
+		expect(container.querySelector(`a[href="${project.websiteUrl}"]`)).toBeInTheDocument();
+		expect(container.querySelector(selectors.projectTags)).toBeInTheDocument();
 	});
 
 	it('should render a featured project', () => {
-		const project = projectsWithOnlyRequiredFields[0];
-		const { container } = render(Projects, { title, projects: [project], featured: true });
-		expect(screen.getByText(`_ ${project.title}`)).toBeInTheDocument();
-		expect(screen.getByText(project.description)).toBeInTheDocument();
-		expect(container.querySelector('.project')).toHaveClass('featured');
-	});
-
-	it('should render a project with only a github link', () => {
+		const title = 'Projects';
 		const project: Project = {
-			title: 'Github Project',
-			description: 'A project description',
-			githubUrl: 'https://github.com',
+			title: 'Vitest',
+			content: '# Header\nSample Markdown',
 			featured: false,
-			skills: [],
 		};
-		const { container } = render(Projects, { title, projects: [project] });
 
-		expect(screen.getByText(`_ ${project.title}`)).toBeInTheDocument();
-		expect(screen.getByText(project.description)).toBeInTheDocument();
-		expect(container.querySelector(`a[href='${project.githubUrl}']`)).toBeInTheDocument();
-		expect(container.querySelectorAll('.project-link').length).toEqual(1);
-	});
-
-	it('should render a project with only a website link', () => {
-		const project: Project = {
-			title: 'Website Project',
-			description: 'A project description',
-			websiteUrl: 'https://website.com',
-			featured: false,
-			skills: [],
-		};
-		const { container } = render(Projects, { title, projects: [project] });
-
-		expect(screen.getByText(`_ ${project.title}`)).toBeInTheDocument();
-		expect(screen.getByText(project.description)).toBeInTheDocument();
-		expect(container.querySelector(`a[href='${project.websiteUrl}']`)).toBeInTheDocument();
-		expect(container.querySelectorAll('.project-link').length).toEqual(1);
-	});
-
-	it('should render a project with all link types', () => {
-		const project: Project = {
-			title: 'Github Project',
-			description: 'A project description',
-			githubUrl: 'https://github.com',
-			websiteUrl: 'https://website.com',
-			featured: false,
-			skills: [],
-		};
-		const { container } = render(Projects, { title, projects: [project] });
-
-		expect(screen.getByText(`_ ${project.title}`)).toBeInTheDocument();
-		expect(screen.getByText(project.description)).toBeInTheDocument();
-		expect(container.querySelector(`a[href='${project.githubUrl}']`)).toBeInTheDocument();
-		expect(container.querySelector(`a[href='${project.websiteUrl}']`)).toBeInTheDocument();
-		expect(container.querySelectorAll('.project-link').length).toEqual(2);
+		const { container } = render(Projects, { projects: [project], title, featured: true });
+		expect(container.querySelector(selectors.project)).toHaveClass(featuredClass);
 	});
 });

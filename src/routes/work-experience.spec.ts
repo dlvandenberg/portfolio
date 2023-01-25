@@ -1,28 +1,33 @@
+import { formatDate } from '$lib/date';
 import type { Work } from '$lib/model';
 import { render, screen } from '@testing-library/svelte';
 import { describe, expect, it } from 'vitest';
 import WorkExperience from './work-experience.svelte';
 
 describe('WorkExperience.svelte', () => {
+	const selectors = {
+		job: '.job',
+	};
+
 	it('should not render anything if workExperience list is empty', () => {
 		const { container } = render(WorkExperience, { workExperience: [] });
-		expect(container.querySelector('.tabs-container')).not.toBeInTheDocument();
+		expect(container.querySelector(selectors.job)).not.toBeInTheDocument();
 	});
 
 	it('should not render anything if workExperience list is undefined', () => {
 		const { container } = render(WorkExperience, { workExperience: undefined });
-		expect(container.querySelector('.tabs-container')).not.toBeInTheDocument();
+		expect(container.querySelector(selectors.job)).not.toBeInTheDocument();
 	});
 
-	it('should render workExperience with dateTo undefined and empty skills', () => {
+	it('should render workExperience with dateTo undefined and empty tags', () => {
 		const workExperienceList: Work[] = [
 			{
 				name: 'Vitest',
 				dateFrom: '2023-01-01',
-				description: 'Unit testing',
+				content: 'Unit testing',
 				company: 'Tester',
 				jobTitle: 'Tester',
-				skills: [],
+				tags: [],
 			},
 		];
 
@@ -30,9 +35,9 @@ describe('WorkExperience.svelte', () => {
 		const [job] = workExperienceList;
 		expect(screen.getByText(job.jobTitle)).toBeInTheDocument();
 		expect(screen.getByText(`@ ${job.company}`)).toBeInTheDocument();
-		expect(screen.getByText(`${job.dateFrom} - Present`)).toBeInTheDocument();
+		expect(screen.getByText(`${formatDate(job.dateFrom)} - Present`)).toBeInTheDocument();
 		expect(screen.getByText('_ description')).toBeInTheDocument();
-		expect(screen.getByText(job.description)).toBeInTheDocument();
+		expect(screen.getByText(job.content)).toBeInTheDocument();
 		expect(screen.queryByText('_ tags')).not.toBeInTheDocument();
 	});
 
@@ -40,17 +45,19 @@ describe('WorkExperience.svelte', () => {
 		const workExperienceList: Work[] = [
 			{
 				name: 'Vitest',
-				dateFrom: '2023-01-01',
-				dateTo: '2023-10-10',
-				description: 'Unit testing',
+				dateFrom: '2023-01-01T00:00:00',
+				dateTo: '2023-10-10T00:00:00',
+				content: 'Unit testing',
 				company: 'Tester',
 				jobTitle: 'Tester',
-				skills: [],
+				tags: [],
 			},
 		];
 
 		render(WorkExperience, { workExperience: workExperienceList });
 		const [job] = workExperienceList;
-		expect(screen.getByText(`${job.dateFrom} - ${job.dateTo}`)).toBeInTheDocument();
+		expect(
+			screen.getByText(`${formatDate(job.dateFrom)} - ${formatDate(job.dateTo)}`),
+		).toBeInTheDocument();
 	});
 });

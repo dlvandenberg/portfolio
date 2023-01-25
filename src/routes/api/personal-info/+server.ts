@@ -1,54 +1,21 @@
-import { createUrl } from '$lib/http';
-import type { PersonalInfo } from '$lib/model/personal-info';
+import { readFile } from '$lib/fs';
+import type { PersonalInfo } from '$lib/model';
+import { isPersonalInfo } from '$lib/type-guard/personal-info';
 import { json } from '@sveltejs/kit';
+import matter from 'front-matter';
 import type { RequestHandler } from './$types';
 
-interface PersonalInfoResponse {
-	data: {
-		id: number;
-		attributes: {
-			firstName: string;
-			lastName: string;
-			nationality: string;
-			dateOfBirth: string;
-			gender: string;
-			email: string;
-			married: boolean;
-			kids: number;
-			description: string;
-			createdAt: string;
-			updatedAt: string;
-		};
-	};
-}
-export const GET = (async ({ fetch }): Promise<Response> => {
-	const url = createUrl('personal-info');
-
-	return fetch(url)
-		.then((response) => response.json())
-		.then((jsonResponse: PersonalInfoResponse) => {
-			const {
-				firstName,
-				lastName,
-				nationality,
-				dateOfBirth,
-				gender,
-				email,
-				married,
-				kids,
-				description,
-			} = jsonResponse.data.attributes;
-
-			return json({
-				firstName,
-				lastName,
-				nationality,
-				dateOfBirth,
-				gender,
-				email,
-				married,
-				kids,
-				description,
-			} as PersonalInfo);
+export const GET = (async (): Promise<Response> => {
+	const fileContents = await readFile('data/personal/info.md');
+	const { attributes, body } = matter(fileContents);
+	let about: PersonalInfo;
+	if (isPersonalInfo(attributes)) {
+		about = { ...attributes, content: body };
+	} else {
+		throw Error('Could not extract Personal Information from file', {
+			cause: 'Incorrect metadata format',
 		});
+	}
+
+	return json(about);
 }) satisfies RequestHandler;

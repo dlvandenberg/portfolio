@@ -12,13 +12,13 @@ export class WorkExperienceElement {
 
 	constructor(page: Page) {
 		this.page = page;
-		this.tabsList = this.page.locator('.tabs-list-item');
-		this.jobTitle = this.page.locator('.job-title');
-		this.jobCompany = this.page.locator('.job-location');
-		this.jobPeriod = this.page.locator('.job-period > p');
-		this.jobDescription = this.page.locator('.job-description > .md-wrapper');
-		this.jobSkills = this.page.locator('.job-tags > .skill-item');
-		this.tabContent = this.page.locator('.tab-content');
+		this.tabsList = this.page.locator('.tabs__item');
+		this.jobTitle = this.page.locator('.job__title');
+		this.jobCompany = this.page.locator('.job__company');
+		this.jobPeriod = this.page.locator('.job__period');
+		this.jobDescription = this.page.locator('.job__description > md-wrapper');
+		this.jobSkills = this.page.locator('.job__tags > .skill__item');
+		this.tabContent = this.page.locator('.tab__content');
 	}
 
 	public async clickTab(tabTitle: string): Promise<void> {

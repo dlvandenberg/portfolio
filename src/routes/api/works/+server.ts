@@ -1,43 +1,22 @@
-import { createUrl } from '$lib/http';
+import { readFiles } from '$lib/fs';
 import type { Work } from '$lib/model';
+import { isWork } from '$lib/type-guard';
 import { json } from '@sveltejs/kit';
-import type { SkillResponse } from '../skills/+server';
+import matter from 'front-matter';
 import type { RequestHandler } from './$types';
 
-interface WorkResponse {
-	data: {
-		id: number;
-		attributes: {
-			name: string;
-			company: string;
-			jobTitle: string;
-			dateFrom: string;
-			order: number;
-			dateTo?: string;
-			description: string;
-			createdAt: string;
-			updatedAt: string;
-			locale: string;
-			skills: SkillResponse;
-		};
-	}[];
-}
+export const GET = (async (): Promise<Response> => {
+	const experiences = (await readFiles('data/work')).map((fileContents) => {
+		const { attributes, body } = matter(fileContents);
 
-export const GET = (async ({ fetch }): Promise<Response> => {
-	const url = createUrl('works', { populate: '*', sort: 'order:desc' });
-	return fetch(url)
-		.then((response) => response.json())
-		.then((jsonResponse: WorkResponse) => {
-			const workData: Work[] = jsonResponse.data.map((item) => {
-				const { name, company, jobTitle, dateFrom, dateTo, description } = item.attributes;
-				const skills = item.attributes.skills.data
-					.map((skill) => skill.attributes)
-					.map(({ name, colorCode, learning, level }) => {
-						return { name, colorCode, learning, level };
-					});
-
-				return { name, company, jobTitle, dateFrom, dateTo, description, skills };
+		if (isWork(attributes)) {
+			return { ...attributes, content: body } as Work;
+		} else {
+			throw Error('Could not extract Work information from file', {
+				cause: 'Incorrect metadata format',
 			});
-			return json(workData);
-		});
+		}
+	});
+
+	return json(experiences);
 }) satisfies RequestHandler;
