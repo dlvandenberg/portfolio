@@ -2,6 +2,8 @@ import { ENDPOINT_TOKEN } from '$env/static/private';
 import type { PersonalInfo, Project, Work } from '$lib/model';
 import type { PageServerLoad } from './$types';
 
+export const prerender = true;
+
 export const load = (async ({ fetch }) => {
 	const personalInfoResponse = await request(fetch, '/api/personal-info');
 	const workExperienceResponse = await request(fetch, '/api/works');

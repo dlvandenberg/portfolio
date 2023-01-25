@@ -12,7 +12,6 @@
 
 	const skills = ['Angular', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'Java'];
 	const learning = ['Svelte', 'SvelteKit', 'SwiftUI'];
-	const email = 'dennis@vdberg.dev';
 </script>
 
 <svelte:head>
