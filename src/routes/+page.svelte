@@ -32,4 +32,4 @@
 	<Skills skills={learning} slot="outline-col" />
 </Section>
 
-<Contact {email} />
+<Contact email={data.personalInfo.email} />

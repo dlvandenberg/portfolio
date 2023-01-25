@@ -10,19 +10,20 @@ test.describe('Navigation bar', () => {
 	});
 
 	test('should have "about" as default active page', async () => {
+		await expect(navigationBar.header).toBeVisible();
 		expect(await navigationBar.activeLinkText()).toBe('about');
 	});
 
 	test('should dissapear/appear on scroll down/up', async ({ page }) => {
 		await expect(navigationBar.header).toBeVisible();
-		await expect(navigationBar.header).toHaveClass(/show/);
+		await expect(navigationBar.header).toHaveClass(/-visible/);
 
 		await page.mouse.wheel(0, 1000);
 
-		await expect(navigationBar.header).toHaveClass(/hide/);
+		await expect(navigationBar.header).toHaveClass(/-hidden/);
 
 		await page.mouse.wheel(0, -1000);
-		await expect(navigationBar.header).toHaveClass(/show/);
+		await expect(navigationBar.header).toHaveClass(/-visible/);
 	});
 
 	test('should not have the menu toggle on desktop', async () => {
@@ -47,15 +48,15 @@ test.describe('Small viewport header', () => {
 	});
 
 	test('should open/close the menu when toggle is clicked', async () => {
-		expect(navigationBar.menu).not.toHaveClass(/show/);
-		expect(navigationBar.menuToggle).not.toHaveClass(/active/);
+		expect(navigationBar.menu).not.toHaveClass(/-visible/);
+		expect(navigationBar.menuToggle).not.toHaveClass(/-active/);
 
 		await navigationBar.clickMenu();
-		expect(navigationBar.menu).toHaveClass(/show/);
-		expect(navigationBar.menuToggle).toHaveClass(/active/);
+		expect(navigationBar.menu).toHaveClass(/-visible/);
+		expect(navigationBar.menuToggle).toHaveClass(/-active/);
 
 		await navigationBar.clickMenu();
-		expect(navigationBar.menu).not.toHaveClass(/show/);
-		expect(navigationBar.menuToggle).not.toHaveClass(/active/);
+		expect(navigationBar.menu).not.toHaveClass(/-visible/);
+		expect(navigationBar.menuToggle).not.toHaveClass(/-active/);
 	});
 });

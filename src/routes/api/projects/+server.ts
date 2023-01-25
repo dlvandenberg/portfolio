@@ -1,46 +1,21 @@
-import { createUrl } from '$lib/http';
+import { readFiles } from '$lib/fs';
 import type { Project } from '$lib/model';
+import { isProject } from '$lib/type-guard';
 import { json, type RequestHandler } from '@sveltejs/kit';
-import type { SkillResponse } from '../skills/+server';
+import matter from 'front-matter';
 
-interface ProjectResponse {
-	data: {
-		id: number;
-		attributes: {
-			title: string;
-			websiteUrl: string;
-			githubUrl: string;
-			description: string;
-			featured: boolean;
-			createdAt: string;
-			updatedAt: string;
-			locale: string;
-			skills: SkillResponse;
-		};
-	}[];
-}
+export const GET = (async (): Promise<Response> => {
+	const projects = (await readFiles('data/projects')).map((fileContents) => {
+		const { attributes, body } = matter(fileContents);
 
-export const GET = (async ({ fetch }): Promise<Response> => {
-	const requestUrl = createUrl('projects', { populate: '*' });
-	return fetch(requestUrl)
-		.then((response) => response.json())
-		.then((jsonResponse: ProjectResponse) => {
-			const projectData: Project[] = jsonResponse.data.map((item) => {
-				const { title, websiteUrl, githubUrl, description, featured } = item.attributes;
-				const skills = item.attributes.skills.data
-					.map((skill) => skill.attributes)
-					.map(({ name, colorCode, learning, level }) => {
-						return { name, colorCode, learning, level };
-					});
-				return {
-					title,
-					websiteUrl,
-					githubUrl,
-					description,
-					featured,
-					skills,
-				};
+		if (isProject(attributes)) {
+			return { ...attributes, content: body } as Project;
+		} else {
+			throw Error('Could not extract Project information from file', {
+				cause: 'Incorrect metadata format',
 			});
-			return json(projectData);
-		});
+		}
+	});
+
+	return json(projects);
 }) satisfies RequestHandler;
