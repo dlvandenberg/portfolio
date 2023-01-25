@@ -26,6 +26,7 @@
 			color: $color-sand-100;
 
 			&:hover {
+				background-color: $color-sand-500;
 				color: $color-coffee;
 
 				&.-angular {
