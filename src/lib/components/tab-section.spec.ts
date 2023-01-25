@@ -16,13 +16,8 @@ describe('TabSection.svelte', () => {
 		active: '-active',
 	};
 
-	it('should not render anything when tabData is undefined', () => {
-		const { container } = render(TabSection, { tabData: undefined });
-		expect(container.querySelector(selectors.tabs)).not.toBeInTheDocument();
-	});
-
 	it('should not render anything when tabData is empty', () => {
-		const { container } = render(TabSection, { tabData: [] });
+		const { container } = render(TabSection, { tabData: new Map() });
 		expect(container.querySelector(selectors.tabs)).not.toBeInTheDocument();
 	});
 
@@ -39,6 +34,7 @@ describe('TabSection.svelte', () => {
 				description: 'ANOTHER',
 			},
 		];
+		const tabsMap = new Map(tabs.map((tab) => [tab.name, tab]));
 
 		let container: HTMLElement;
 
@@ -46,7 +42,7 @@ describe('TabSection.svelte', () => {
 			container = render(TabSectionSlot, {
 				props: {
 					component: TabSection,
-					data: tabs,
+					data: tabsMap,
 				},
 			}).container;
 		});

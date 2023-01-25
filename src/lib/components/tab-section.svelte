@@ -1,13 +1,10 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
-	interface WithName {
-		name: string;
-	}
-	type T = $$Generic<WithName>;
+	type T = $$Generic;
 
-	export let tabData: T[] | undefined;
+	type KeyValueData = Map<string, T>;
 
-	let activeTabTitle: string = tabData ? tabData[0]?.name : '';
+	export let tabData: KeyValueData;
 
 	const selectTab = (title: string, e?: KeyboardEvent) => {
 		if (e && !(e.key === 'Enter' || e.key === 'Space')) {
@@ -17,11 +14,12 @@
 		activeTabTitle = title;
 	};
 
-	$: tabTitles = tabData?.map((tab) => tab.name) ?? [];
-	$: activeTab = tabData?.filter((tab) => tab.name === activeTabTitle)[0] ?? {};
+	$: tabTitles = Array.from(tabData.keys());
+	$: activeTabTitle = tabTitles[0];
+	$: activeTab = tabData.get(activeTabTitle)!;
 </script>
 
-{#if tabData && tabData.length > 0}
+{#if tabData && tabData.size > 0}
 	<div class="tabs g-container">
 		<h1 class="tabs__title">$ exp --work</h1>
 		<div class="tabs__wrapper">
