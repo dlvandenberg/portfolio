@@ -1,22 +1,22 @@
 <script lang="ts">
 	import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-	import Fa from 'svelte-fa/src/fa.svelte';
+	import Fa from 'svelte-fa';
 </script>
 
 <footer class="footer">
-	<div class="footer-socials">
-		<div class="social-item">
-			<a href="https://www.linkedin.com/in/dlvandenberg/">
+	<div class="footer__socials">
+		<div class="footer__item">
+			<a class="footer__item__link" href="https://www.linkedin.com/in/dlvandenberg/">
 				<Fa icon={faLinkedin} />
 			</a>
 		</div>
-		<div class="social-item">
-			<a href="https://github.com/dlvandenberg">
+		<div class="footer__item">
+			<a class="footer__item__link" href="https://github.com/dlvandenberg">
 				<Fa icon={faGithub} />
 			</a>
 		</div>
 	</div>
-	<div class="footer-message">
+	<div class="footer__message">
 		<p>Designed and built by me (2022)</p>
 		<p>with <a href="https://kit.svelte.dev" target="_blank" rel="noreferrer">SvelteKit</a></p>
 	</div>
@@ -30,13 +30,13 @@
 		align-items: center;
 		height: 4rem;
 		padding: 0.5rem;
-	}
 
-	.footer-socials {
-		display: flex;
-		flex-direction: row;
+		&__socials {
+			display: flex;
+			flex-direction: row;
+		}
 
-		.social-item a {
+		&__item__link {
 			color: $color-sand-100;
 			margin-right: 0.5rem;
 			font-size: 2rem;
@@ -50,25 +50,27 @@
 			}
 		}
 
-		.social-item:last-child a {
-			margin-right: 0;
+		&__item:last-child {
+			.footer__item__link {
+				margin-right: 0;
+			}
 		}
-	}
 
-	.footer-message {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+		&__message {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 
-		p {
-			font-size: x-small;
-			font-weight: 100;
-			color: $color-sand-100;
+			p {
+				font-size: x-small;
+				font-weight: 100;
+				color: $color-sand-100;
+			}
 		}
 	}
 
 	@media (min-width: $md-breakpoint) {
-		.footer-socials .social-item a {
+		.footer__item__link {
 			font-size: 1.5rem;
 		}
 	}
