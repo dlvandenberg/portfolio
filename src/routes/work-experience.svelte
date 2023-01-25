@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Skills from '$lib/components/skills.svelte';
 	import TabSection from '$lib/components/tab-section.svelte';
+	import { formatDate } from '$lib/date';
 	import type { Work } from '$lib/model/work';
 	import SvelteMarkdown from 'svelte-markdown';
 
@@ -17,7 +18,9 @@
 					<h1 class="job__title">{activeTab.jobTitle}</h1>
 					<h3 class="job__company">@ {activeTab.company}</h3>
 				</div>
-				<p class="job__period">{activeTab.dateFrom} - {activeTab.dateTo ?? 'Present'}</p>
+				<p class="job__period">
+					{formatDate(activeTab.dateFrom)} - {formatDate(activeTab.dateTo) ?? 'Present'}
+				</p>
 			</div>
 			<div class="job__description">
 				<h3 class="job__subtitle">_ description</h3>

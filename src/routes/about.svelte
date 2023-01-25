@@ -1,13 +1,12 @@
 <script lang="ts">
 	import Section from '$lib/components/section.svelte';
+	import { formatDate } from '$lib/date';
 	import type { PersonalInfo } from '$lib/model';
 	import SvelteMarkdown from 'svelte-markdown';
 
 	export let personalInfo: PersonalInfo;
 
-	$: formattedDate = personalInfo
-		? new Date(personalInfo.dateOfBirth).toLocaleDateString('en-US')
-		: '';
+	$: formattedDate = personalInfo ? formatDate(personalInfo.dateOfBirth) : '';
 </script>
 
 {#if personalInfo}

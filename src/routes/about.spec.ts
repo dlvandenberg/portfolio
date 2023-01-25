@@ -1,3 +1,4 @@
+import { formatDate } from '$lib/date';
 import type { PersonalInfo } from '$lib/model';
 import { render, screen } from '@testing-library/svelte';
 import { describe, expect, it } from 'vitest';
@@ -21,13 +22,11 @@ describe('About.svelte', () => {
 			nationality: 'Dutch',
 		};
 
-		const formattedDate = new Date(info.dateOfBirth).toLocaleDateString('en-US');
-
 		render(About, { personalInfo: info });
 		expect(screen.getByText('$ whoami')).toBeInTheDocument();
 		expect(screen.getByText(`"${info.firstName}"`)).toBeInTheDocument();
 		expect(screen.getByText(`"${info.lastName}"`)).toBeInTheDocument();
-		expect(screen.getByText(`"${formattedDate}"`)).toBeInTheDocument();
+		expect(screen.getByText(`"${formatDate(info.dateOfBirth)}"`)).toBeInTheDocument();
 		expect(screen.getByText(`"${info.gender}"`)).toBeInTheDocument();
 		expect(screen.getByText(`"${info.email}"`)).toBeInTheDocument();
 		expect(screen.getByText(`"${info.nationality}"`)).toBeInTheDocument();

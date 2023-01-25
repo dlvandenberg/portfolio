@@ -1,3 +1,4 @@
+import { formatDate } from '$lib/date';
 import type { Work } from '$lib/model';
 import { render, screen } from '@testing-library/svelte';
 import { describe, expect, it } from 'vitest';
@@ -34,7 +35,7 @@ describe('WorkExperience.svelte', () => {
 		const [job] = workExperienceList;
 		expect(screen.getByText(job.jobTitle)).toBeInTheDocument();
 		expect(screen.getByText(`@ ${job.company}`)).toBeInTheDocument();
-		expect(screen.getByText(`${job.dateFrom} - Present`)).toBeInTheDocument();
+		expect(screen.getByText(`${formatDate(job.dateFrom)} - Present`)).toBeInTheDocument();
 		expect(screen.getByText('_ description')).toBeInTheDocument();
 		expect(screen.getByText(job.content)).toBeInTheDocument();
 		expect(screen.queryByText('_ tags')).not.toBeInTheDocument();
@@ -44,8 +45,8 @@ describe('WorkExperience.svelte', () => {
 		const workExperienceList: Work[] = [
 			{
 				name: 'Vitest',
-				dateFrom: '2023-01-01',
-				dateTo: '2023-10-10',
+				dateFrom: '2023-01-01T00:00:00',
+				dateTo: '2023-10-10T00:00:00',
 				content: 'Unit testing',
 				company: 'Tester',
 				jobTitle: 'Tester',
@@ -55,6 +56,8 @@ describe('WorkExperience.svelte', () => {
 
 		render(WorkExperience, { workExperience: workExperienceList });
 		const [job] = workExperienceList;
-		expect(screen.getByText(`${job.dateFrom} - ${job.dateTo}`)).toBeInTheDocument();
+		expect(
+			screen.getByText(`${formatDate(job.dateFrom)} - ${formatDate(job.dateTo)}`),
+		).toBeInTheDocument();
 	});
 });
