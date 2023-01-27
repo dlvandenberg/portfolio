@@ -15,6 +15,6 @@ To get familiar with Svelte and SvelteKit, I created this portfolio website. I a
 
 When SvelteKit 1.0.0 was released, I felt that it was time to start experimenting and finally create my portfolio.
 
-The data comes from a headless CMS, _[Strapi](https://strapi.io)_, and the _[SvelteKit](https://kit.svelte.dev)_ consumes the data and generates HTML pages out of it. The UI is styled using SCSS.
+At first the data came from a headless CMS, _[Strapi](https://strapi.io)_, making it easy for me to add new content without redeploying the app. But, as that meant having to maintain two systems, and the pages are pre-rendered anyway, I decided to abandon the headless CMS and replace it with content driven by local markdown files. The UI is styled using SCSS.
 
 In the near future, the site will be expanded with a blog section.
