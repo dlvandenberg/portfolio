@@ -13,7 +13,7 @@
 {#if experienceMap && experienceMap.size > 0}
 	<TabSection tabData={experienceMap}>
 		<svelte:fragment let:activeTab>
-			<div class="job">
+			<div data-testid="job" class="job">
 				<div class="job__data">
 					<h1 class="job__title">{activeTab.jobTitle}</h1>
 					<h3 class="job__company">@ {activeTab.company}</h3>

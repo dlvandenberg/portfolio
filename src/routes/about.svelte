@@ -10,7 +10,7 @@
 </script>
 
 {#if personalInfo}
-	<div class="wrapper">
+	<div data-testid="personal-info" class="wrapper">
 		<Section title="$ whoami">
 			<div slot="outline-col">
 				<!-- prettier-ignore -->

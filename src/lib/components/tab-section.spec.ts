@@ -5,11 +5,10 @@ import TabSection from './tab-section.svelte';
 import TabSectionSlot from './__tests__/tab-section-slot.svelte';
 
 describe('TabSection.svelte', () => {
-	const selectors = {
-		tabs: '.tabs',
-		tabsTitle: '.tabs__title',
-		tabsItem: '.tabs__item',
-		tabContent: '.tab__content',
+	const testIds = {
+		tabs: 'tabs',
+		tabsItem: 'tabs-item',
+		tabContent: 'tab-content',
 	};
 
 	const modifiers = {
@@ -17,8 +16,8 @@ describe('TabSection.svelte', () => {
 	};
 
 	it('should not render anything when tabData is empty', () => {
-		const { container } = render(TabSection, { tabData: new Map() });
-		expect(container.querySelector(selectors.tabs)).not.toBeInTheDocument();
+		render(TabSection, { tabData: new Map() });
+		expect(screen.queryByTestId(testIds.tabs)).not.toBeInTheDocument();
 	});
 
 	describe('when slot is provided', () => {
@@ -36,27 +35,25 @@ describe('TabSection.svelte', () => {
 		];
 		const tabsMap = new Map(tabs.map((tab) => [tab.name, tab]));
 
-		let container: HTMLElement;
-
 		beforeEach(() => {
-			container = render(TabSectionSlot, {
+			render(TabSectionSlot, {
 				props: {
 					component: TabSection,
 					data: tabsMap,
 				},
-			}).container;
+			});
 		});
 
 		it('should render tabs', () => {
-			expect(container.querySelector(selectors.tabContent)).toBeInTheDocument();
-			expect(container.querySelectorAll(selectors.tabsItem)).toHaveLength(tabs.length);
+			expect(screen.queryByTestId(testIds.tabContent)).toBeInTheDocument();
+			expect(screen.queryAllByTestId(testIds.tabsItem)).toHaveLength(tabs.length);
 			tabs.forEach((tab) => {
 				expect(screen.getByText(tab.name)).toBeInTheDocument();
 			});
 		});
 
 		it('should render the first tab as active', () => {
-			const [firstTabElement] = container.querySelectorAll(selectors.tabsItem);
+			const [firstTabElement] = screen.queryAllByTestId(testIds.tabsItem);
 			const [firstTab] = tabs;
 			expect(firstTabElement).toHaveClass(modifiers.active);
 
@@ -66,7 +63,7 @@ describe('TabSection.svelte', () => {
 
 		it('should render the second tab when tab title is clicked', async () => {
 			const user = userEvent.setup();
-			const [, secondTabElement] = container.querySelectorAll(selectors.tabsItem);
+			const [, secondTabElement] = screen.queryAllByTestId(testIds.tabsItem);
 			const [, secondTab] = tabs;
 
 			await user.click(secondTabElement);

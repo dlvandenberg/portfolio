@@ -4,9 +4,10 @@ import { describe, expect, it } from 'vitest';
 import Section from './section.svelte';
 
 describe('Section.svelte', () => {
-	const selectors = {
-		subtitle: '.section__subtitle',
-		column: '.section__column',
+	const testIds = {
+		subtitle: 'section-subtitle',
+		column: 'section-column',
+		outlineColumn: 'section-column-outline',
 	};
 
 	const modifiers = {
@@ -15,21 +16,23 @@ describe('Section.svelte', () => {
 
 	it('should render only title with required props', () => {
 		const title = 'Unit Test';
-		const { container } = render(Section, { title });
+
+		render(Section, { title });
 
 		expect(screen.getByText(title)).toBeInTheDocument();
-		expect(container.querySelector(selectors.subtitle)).not.toBeInTheDocument();
-		expect(container.querySelector(selectors.column)).not.toBeInTheDocument();
+		expect(screen.queryByTestId(testIds.subtitle)).not.toBeInTheDocument();
+		expect(screen.queryByTestId(testIds.column)).not.toBeInTheDocument();
+		expect(screen.queryByTestId(testIds.outlineColumn)).not.toBeInTheDocument();
 	});
 
 	it('should render title and subtitle if prop is set', () => {
 		const title = 'Unit Test';
 		const subtitle = 'using vitest';
-		const { container } = render(Section, { title, subtitle });
+
+		render(Section, { title, subtitle });
 
 		expect(screen.getByText(title)).toBeInTheDocument();
 		expect(screen.getByText(subtitle)).toBeInTheDocument();
-		expect(container.querySelector(selectors.column)).not.toBeInTheDocument();
 	});
 
 	describe('when slots are passed in', () => {
@@ -37,7 +40,7 @@ describe('Section.svelte', () => {
 		const slotContent = 'This is a column';
 
 		it('should show col slot', () => {
-			const { container } = render(html`
+			render(html`
 				<${Section} title="${title}">
 					<div slot="col"><span>${slotContent}</span></div>
 				<//>
@@ -46,11 +49,11 @@ describe('Section.svelte', () => {
 			expect(screen.getByText(title)).toBeInTheDocument();
 			expect(screen.getByText(slotContent)).toBeInTheDocument();
 
-			expect(container.querySelector(selectors.column)).not.toHaveClass(modifiers.outline);
+			expect(screen.queryByTestId(testIds.outlineColumn)).not.toBeInTheDocument();
 		});
 
 		it('should show outline-col slot', () => {
-			const { container } = render(html`
+			render(html`
 				<${Section} title="${title}">
 					<div slot="outline-col"><span>${slotContent}</span></div>
 				<//>
@@ -59,7 +62,7 @@ describe('Section.svelte', () => {
 			expect(screen.getByText(title)).toBeInTheDocument();
 			expect(screen.getByText(slotContent)).toBeInTheDocument();
 
-			expect(container.querySelector(selectors.column)).toHaveClass(modifiers.outline);
+			expect(screen.queryByTestId(testIds.column)).not.toBeInTheDocument();
 		});
 	});
 });

@@ -6,12 +6,18 @@
 <footer class="footer">
 	<div class="footer__socials">
 		<div class="footer__item">
-			<a class="footer__item__link" href="https://www.linkedin.com/in/dlvandenberg/">
+			<a
+				data-testid="footer-linkedin-link"
+				class="footer__item__link"
+				href="https://www.linkedin.com/in/dlvandenberg/">
 				<Fa icon={faLinkedin} />
 			</a>
 		</div>
 		<div class="footer__item">
-			<a class="footer__item__link" href="https://github.com/dlvandenberg">
+			<a
+				data-testid="footer-github-link"
+				class="footer__item__link"
+				href="https://github.com/dlvandenberg">
 				<Fa icon={faGithub} />
 			</a>
 		</div>

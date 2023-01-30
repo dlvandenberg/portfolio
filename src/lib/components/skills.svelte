@@ -3,7 +3,7 @@
 </script>
 
 {#if skills && skills.length > 0}
-	<div class="skill-list">
+	<div data-testid="skill-list" class="skill-list">
 		{#each skills as skill}
 			<div class="skill-list__item -{skill.toLowerCase()}">{skill}</div>
 		{/each}

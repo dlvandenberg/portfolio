@@ -6,24 +6,23 @@ import Projects from './projects.svelte';
 describe('Projects.svelte', () => {
 	const featuredClass = '-featured';
 
-	const selectors = {
-		projects: '.projects',
-		projectsTitle: '.projects__title',
-		project: '.project',
-		projectTitle: '.project__title',
-		projectLink: '.project__link',
-		projectDescription: '.project__description',
-		projectTags: '.project__tags',
+	const testIds = {
+		projects: 'projects',
+		project: 'project',
+		projectLink: 'project-link',
+		projectGithubLink: 'project-github-url',
+		projectSiteLink: 'project-website-url',
+		projectTags: 'project-tags',
 	};
 
 	it('should not render anything when projectlist is undefined', () => {
-		const { container } = render(Projects, { projects: undefined, title: 'Vitest project' });
-		expect(container.querySelector(selectors.projects)).not.toBeInTheDocument();
+		render(Projects, { projects: undefined, title: 'Vitest project' });
+		expect(screen.queryByTestId(testIds.projects)).not.toBeInTheDocument();
 	});
 
 	it('should not render anything when projectlist is empty', () => {
-		const { container } = render(Projects, { projects: [], title: 'Vitest project' });
-		expect(container.querySelector(selectors.projects)).not.toBeInTheDocument();
+		render(Projects, { projects: [], title: 'Vitest project' });
+		expect(screen.queryByTestId(testIds.projects)).not.toBeInTheDocument();
 	});
 
 	it('should render title and minimal projects', () => {
@@ -31,7 +30,7 @@ describe('Projects.svelte', () => {
 		const projects: Project[] = [
 			{
 				title: 'Vitest',
-				content: '# Header\nSample Markdown',
+				content: 'Unit test framework',
 				featured: false,
 			},
 			{
@@ -41,19 +40,15 @@ describe('Projects.svelte', () => {
 			},
 		];
 
-		const { container } = render(Projects, { projects, title });
-		expect(container.querySelector(selectors.projectsTitle)?.textContent).toEqual(title);
-		expect(container.querySelectorAll(selectors.projectTitle)).toHaveLength(projects.length);
-		Array.from(container.querySelectorAll(selectors.project)).every((project) =>
-			expect(project).not.toHaveClass(featuredClass),
-		);
+		render(Projects, { projects, title });
 
+		expect(screen.getByText(title)).toBeInTheDocument();
 		projects.forEach((project) => {
 			expect(screen.getByText(`_ ${project.title}`)).toBeInTheDocument();
+			expect(screen.getByText(project.content)).toBeInTheDocument();
 		});
-
-		expect(container.querySelector(selectors.projectTags)).not.toBeInTheDocument();
-		expect(container.querySelector(selectors.projectLink)).not.toBeInTheDocument();
+		expect(screen.queryByTestId(testIds.projectTags)).not.toBeInTheDocument();
+		expect(screen.queryByTestId(testIds.projectLink)).not.toBeInTheDocument();
 	});
 
 	it('should render full project', () => {
@@ -67,11 +62,14 @@ describe('Projects.svelte', () => {
 			tags: ['Unit', 'Test'],
 		};
 
-		const { container } = render(Projects, { projects: [project], title });
-		expect(container.querySelectorAll(selectors.projectLink)).toHaveLength(2);
-		expect(container.querySelector(`a[href="${project.githubUrl}"]`)).toBeInTheDocument();
-		expect(container.querySelector(`a[href="${project.websiteUrl}"]`)).toBeInTheDocument();
-		expect(container.querySelector(selectors.projectTags)).toBeInTheDocument();
+		render(Projects, { projects: [project], title });
+
+		expect(screen.getByTestId(testIds.projectGithubLink)).toHaveAttribute(
+			'href',
+			project.githubUrl,
+		);
+		expect(screen.getByTestId(testIds.projectSiteLink)).toHaveAttribute('href', project.websiteUrl);
+		expect(screen.getByTestId(testIds.projectTags)).toBeInTheDocument();
 	});
 
 	it('should render a featured project', () => {
@@ -82,7 +80,7 @@ describe('Projects.svelte', () => {
 			featured: false,
 		};
 
-		const { container } = render(Projects, { projects: [project], title, featured: true });
-		expect(container.querySelector(selectors.project)).toHaveClass(featuredClass);
+		render(Projects, { projects: [project], title, featured: true });
+		expect(screen.getByTestId(testIds.project)).toHaveClass(featuredClass);
 	});
 });

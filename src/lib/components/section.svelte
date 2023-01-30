@@ -6,16 +6,16 @@
 <section class="section g-container">
 	<h1 class="section__title">{title}</h1>
 	{#if subtitle}
-		<h3 class="section__subtitle">{subtitle}</h3>
+		<h3 data-testid="section-subtitle" class="section__subtitle">{subtitle}</h3>
 	{/if}
 	<div class="section__content">
 		{#if $$slots['outline-col']}
-			<div class="section__column -outline">
+			<div data-testid="section-column-outline" class="section__column -outline">
 				<slot name="outline-col" />
 			</div>
 		{/if}
 		{#if $$slots.col}
-			<div class="section__column">
+			<div data-testid="section-column" class="section__column">
 				<slot name="col" />
 			</div>
 		{/if}

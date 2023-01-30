@@ -56,7 +56,7 @@
 	<nav class="navbar__collapse" class:-visible={menuOpen} transition:slide>
 		<ul class="navbar__menu">
 			<li class="navbar__item">
-				<a class="navbar__item-link -active" href="/">about</a>
+				<a data-testid="navbar-link-about" class="navbar__item-link -active" href="/">about</a>
 			</li>
 			<!-- <li class="navbar__item">
 				<a href="/">projects</a>

@@ -20,12 +20,13 @@
 </script>
 
 {#if tabData && tabData.size > 0}
-	<div class="tabs g-container">
+	<div data-testid="tabs" class="tabs g-container">
 		<h1 class="tabs__title">$ exp --work</h1>
 		<div class="tabs__wrapper">
 			<div class="tabs__list">
 				{#each tabTitles as title}
 					<div
+						data-testid="tabs-item"
 						class="tabs__item"
 						class:-active={activeTabTitle === title}
 						on:click={() => selectTab(title)}
@@ -36,7 +37,7 @@
 			</div>
 			<div class="tab">
 				{#key activeTab}
-					<div class="tab__content" transition:slide>
+					<div data-testid="tab-content" class="tab__content" transition:slide>
 						<slot {activeTab} />
 					</div>
 				{/key}

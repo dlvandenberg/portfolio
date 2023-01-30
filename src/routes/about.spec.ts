@@ -5,8 +5,8 @@ import { describe, expect, it } from 'vitest';
 import About from './about.svelte';
 
 describe('About.svelte', () => {
-	const selectors = {
-		wrapper: '.wrapper',
+	const testIds = {
+		personalInfo: 'personalInfo',
 	};
 
 	it('should render personal info', () => {
@@ -35,8 +35,8 @@ describe('About.svelte', () => {
 		expect(screen.getByText(info.content)).toBeInTheDocument();
 	});
 
-	it('should render nothing when prop is undefined', () => {
-		const { container } = render(About, { personalInfo: undefined as unknown as PersonalInfo });
-		expect(container.querySelector(selectors.wrapper)).not.toBeInTheDocument();
+	it('should render nothing when personalInfo is undefined', () => {
+		render(About, { personalInfo: undefined as unknown as PersonalInfo });
+		expect(screen.queryByTestId(testIds.personalInfo)).not.toBeInTheDocument();
 	});
 });

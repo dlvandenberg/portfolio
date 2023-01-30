@@ -5,18 +5,19 @@ import { describe, expect, it } from 'vitest';
 import WorkExperience from './work-experience.svelte';
 
 describe('WorkExperience.svelte', () => {
-	const selectors = {
-		job: '.job',
+	const testIds = {
+		job: 'job',
 	};
 
 	it('should not render anything if workExperience list is empty', () => {
-		const { container } = render(WorkExperience, { workExperience: [] });
-		expect(container.querySelector(selectors.job)).not.toBeInTheDocument();
+		render(WorkExperience, { workExperience: [] });
+
+		expect(screen.queryByTestId(testIds.job)).not.toBeInTheDocument();
 	});
 
 	it('should not render anything if workExperience list is undefined', () => {
-		const { container } = render(WorkExperience, { workExperience: undefined });
-		expect(container.querySelector(selectors.job)).not.toBeInTheDocument();
+		render(WorkExperience, { workExperience: undefined });
+		expect(screen.queryByTestId(testIds.job)).not.toBeInTheDocument();
 	});
 
 	it('should render workExperience with dateTo undefined and empty tags', () => {
@@ -30,9 +31,10 @@ describe('WorkExperience.svelte', () => {
 				tags: [],
 			},
 		];
+		const [job] = workExperienceList;
 
 		render(WorkExperience, { workExperience: workExperienceList });
-		const [job] = workExperienceList;
+
 		expect(screen.getByText(job.jobTitle)).toBeInTheDocument();
 		expect(screen.getByText(`@ ${job.company}`)).toBeInTheDocument();
 		expect(screen.getByText(`${formatDate(job.dateFrom)} - Present`)).toBeInTheDocument();
@@ -53,9 +55,10 @@ describe('WorkExperience.svelte', () => {
 				tags: [],
 			},
 		];
+		const [job] = workExperienceList;
 
 		render(WorkExperience, { workExperience: workExperienceList });
-		const [job] = workExperienceList;
+
 		expect(
 			screen.getByText(`${formatDate(job.dateFrom)} - ${formatDate(job.dateTo)}`),
 		).toBeInTheDocument();

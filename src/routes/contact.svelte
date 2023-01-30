@@ -6,13 +6,13 @@
 
 <Section title="$ contact">
 	<svelte:fragment slot="outline-col">
-		<p class="info">
+		<p data-testid="contact-info" class="info">
 			I am not looking for any jobs at the moment, but if you wish to contact me with a question or
 			to say hi, feel free to send me an email!
 		</p>
 		{#if email}
 			<div class="button">
-				<a class="button__email" href="mailto:{email}">contact me</a>
+				<a data-testid="email-button" class="button__email" href="mailto:{email}">contact me</a>
 			</div>
 		{/if}
 	</svelte:fragment>

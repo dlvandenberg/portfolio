@@ -28,7 +28,7 @@
 	$: headerClass = updateClass(y);
 </script>
 
-<header class={`header ${headerClass} ${isActive ? activeClass : ''}`}>
+<header data-testid="header" class={`header ${headerClass} ${isActive ? activeClass : ''}`}>
 	<slot />
 </header>
 

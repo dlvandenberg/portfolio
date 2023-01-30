@@ -12,28 +12,29 @@
 </script>
 
 {#if projects && projects.length > 0}
-	<div class="projects g-container">
-		<h1 class="projects__title">{title}</h1>
+	<div data-testid="projects" class="projects g-container">
+		<h1 data-testid="projects-title" class="projects__title">{title}</h1>
 		<div class="projects__list">
 			{#each projects as project}
-				<div class="project {featured ? '-featured' : ''}">
-					<h2 class="project__title">_ {project.title}</h2>
+				<div data-testid="project" class="project" class:-featured={featured}>
+					<h2 data-testid="project-title" class="project__title">_ {project.title}</h2>
 					{#if project.githubUrl || project.websiteUrl}
 						<div class="project__links">
 							{#if project.githubUrl}
-								<a href={project.githubUrl} class="project__link"><Fa icon={faGithub} /></a>
+								<a data-testid="project-github-url" href={project.githubUrl} class="project__link"
+									><Fa icon={faGithub} /></a>
 							{/if}
 							{#if project.websiteUrl}
-								<a href={project.websiteUrl} class="project__link"
+								<a data-testid="project-website-url" href={project.websiteUrl} class="project__link"
 									><Fa icon={faArrowUpRightFromSquare} /></a>
 							{/if}
 						</div>
 					{/if}
-					<div class="project__description md-wrapper">
+					<div data-testid="project-description" class="project__description md-wrapper">
 						<SvelteMarkdown source={project.content} />
 					</div>
 					{#if project.tags && project.tags.length > 0}
-						<div class="project__tags">
+						<div data-testid="project-tags" class="project__tags">
 							<h2 class="project__tags-title">_ tags</h2>
 							<Skills skills={project.tags} />
 						</div>

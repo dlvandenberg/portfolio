@@ -3,8 +3,9 @@ import { describe, expect, it } from 'vitest';
 import Footer from './footer.svelte';
 
 describe('Footer.svelte', () => {
-	const selectors = {
-		socialLink: '.footer__item__link',
+	const testIds = {
+		githubLink: 'footer-github-link',
+		linkedInLink: 'footer-linkedin-link',
 	};
 
 	const links = {
@@ -13,12 +14,10 @@ describe('Footer.svelte', () => {
 	};
 
 	it('should render social links', () => {
-		const { container } = render(Footer);
+		render(Footer);
 
-		const [linkedin, github] = container.querySelectorAll(selectors.socialLink);
-
-		expect(linkedin).toHaveAttribute('href', links.linkedin);
-		expect(github).toHaveAttribute('href', links.github);
+		expect(screen.queryByTestId(testIds.linkedInLink)).toHaveAttribute('href', links.linkedin);
+		expect(screen.queryByTestId(testIds.githubLink)).toHaveAttribute('href', links.github);
 	});
 
 	it('should render footer message', () => {
