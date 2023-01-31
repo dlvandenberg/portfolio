@@ -2,6 +2,7 @@
 	import Projects from '$lib/components/projects.svelte';
 	import Section from '$lib/components/section.svelte';
 	import Skills from '$lib/components/skills.svelte';
+	import type { SkillIcon } from '$lib/model/skill-icon';
 	import type { PageData } from './$types';
 	import About from './about.svelte';
 	import Contact from './contact.svelte';
@@ -10,8 +11,20 @@
 
 	export let data: PageData;
 
-	const skills = ['Angular', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'Java'];
-	const learning = ['Svelte', 'SvelteKit', 'SwiftUI'];
+	const skills: SkillIcon[] = [
+		{ name: 'Angular', icon: 'angular' },
+		{ name: 'TypeScript', icon: 'typescript', prefix: 'vdb' },
+		{ name: 'JavaScript', icon: 'js-square' },
+		{ name: 'HTML', icon: 'html5' },
+		{ name: 'CSS', icon: 'css3-alt' },
+		{ name: 'Java', icon: 'java' },
+	];
+
+	const learning: SkillIcon[] = [
+		{ name: 'Svelte', icon: 'svelte', prefix: 'vdb' },
+		{ name: 'SvelteKit', icon: 'svelte', prefix: 'vdb' },
+		{ name: 'SwiftUI', icon: 'swift' },
+	];
 
 	$: featuredProjects = data.projects?.filter((project) => project.featured) ?? [];
 	$: regularProjects = data.projects?.filter((project) => !project.featured) ?? [];

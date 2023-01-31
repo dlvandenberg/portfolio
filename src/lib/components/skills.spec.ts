@@ -1,3 +1,4 @@
+import type { SkillIcon } from '$lib/model/skill-icon';
 import { render, screen } from '@testing-library/svelte';
 import { describe, expect, it } from 'vitest';
 import Skills from './skills.svelte';
@@ -5,6 +6,7 @@ import Skills from './skills.svelte';
 describe('Skills.svelte', () => {
 	const testIds = {
 		skillList: 'skill-list',
+		skillItem: 'skill-item',
 	};
 
 	it('should render skills', () => {
@@ -15,6 +17,25 @@ describe('Skills.svelte', () => {
 		skills.forEach((skill) => {
 			expect(screen.getByText(skill)).toBeInTheDocument();
 		});
+	});
+
+	it('should render skillicons', () => {
+		const skillIcons = [
+			{
+				name: 'CSS',
+				icon: 'css3-alt',
+			},
+			{
+				name: 'TypeScript',
+				icon: 'typescript',
+				prefix: 'vdb',
+			},
+		] satisfies SkillIcon[];
+
+		render(Skills, { skills: skillIcons });
+
+		expect(screen.queryByTestId(testIds.skillList)).toBeInTheDocument();
+		skillIcons.forEach((skill) => expect(screen.getByText(skill.name)).toBeInTheDocument());
 	});
 
 	it('should not render skills if list is undefined', () => {

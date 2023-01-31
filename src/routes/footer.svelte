@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-	import Fa from 'svelte-fa';
+	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
 </script>
 
 <footer class="footer">
@@ -10,7 +10,7 @@
 				data-testid="footer-linkedin-link"
 				class="footer__item__link"
 				href="https://www.linkedin.com/in/dlvandenberg/">
-				<Fa icon={faLinkedin} />
+				<FontAwesomeIcon icon={faLinkedin} />
 			</a>
 		</div>
 		<div class="footer__item">
@@ -18,7 +18,7 @@
 				data-testid="footer-github-link"
 				class="footer__item__link"
 				href="https://github.com/dlvandenberg">
-				<Fa icon={faGithub} />
+				<FontAwesomeIcon icon={faGithub} />
 			</a>
 		</div>
 	</div>

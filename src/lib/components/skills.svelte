@@ -1,11 +1,28 @@
 <script lang="ts">
-	export let skills: string[] | undefined;
+	import type { SkillIcon } from '$lib/model/skill-icon';
+	import { isSkillIcon } from '$lib/type-guard/skill-icon';
+	import type { IconName, IconPrefix } from '@fortawesome/free-brands-svg-icons';
+	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
+
+	export let skills: string[] | SkillIcon[] | undefined;
+
+	const skillName = (skill: string | SkillIcon) => (isSkillIcon(skill) ? skill.name : skill);
+
+	const getIconDefinition = (skill: SkillIcon): [IconPrefix, IconName] => {
+		// Force cast to IconPrefix and IconName
+		return [(skill.prefix as unknown as IconPrefix) ?? 'fab', skill.icon as unknown as IconName];
+	};
 </script>
 
 {#if skills && skills.length > 0}
 	<div data-testid="skill-list" class="skill-list">
 		{#each skills as skill}
-			<div class="skill-list__item -{skill.toLowerCase()}">{skill}</div>
+			<div data-testid="skill-item" class="skill-list__item -{skillName(skill).toLowerCase()}">
+				{#if isSkillIcon(skill)}
+					<FontAwesomeIcon icon={getIconDefinition(skill)} size={'2x'} />
+				{/if}
+				{skillName(skill)}
+			</div>
 		{/each}
 	</div>
 {/if}
@@ -24,6 +41,10 @@
 			cursor: pointer;
 			transition: 0.2s;
 			color: $color-sand-100;
+
+			display: inline-flex;
+			gap: 0.5rem;
+			align-items: center;
 
 			&:hover {
 				background-color: $color-sand-500;

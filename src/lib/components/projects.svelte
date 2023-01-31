@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { faGithub } from '@fortawesome/free-brands-svg-icons';
 	import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
-	import Fa from 'svelte-fa/src/fa.svelte';
+	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
 	import SvelteMarkdown from 'svelte-markdown';
 	import type { Project } from '../model/project';
 	import Skills from './skills.svelte';
@@ -21,12 +21,17 @@
 					{#if project.githubUrl || project.websiteUrl}
 						<div class="project__links">
 							{#if project.githubUrl}
-								<a data-testid="project-github-url" href={project.githubUrl} class="project__link"
-									><Fa icon={faGithub} /></a>
+								<a data-testid="project-github-url" href={project.githubUrl} class="project__link">
+									<FontAwesomeIcon icon={faGithub} />
+								</a>
 							{/if}
 							{#if project.websiteUrl}
-								<a data-testid="project-website-url" href={project.websiteUrl} class="project__link"
-									><Fa icon={faArrowUpRightFromSquare} /></a>
+								<a
+									data-testid="project-website-url"
+									href={project.websiteUrl}
+									class="project__link">
+									<FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+								</a>
 							{/if}
 						</div>
 					{/if}
