@@ -23,7 +23,7 @@
 		</div>
 	</div>
 	<div class="footer__message">
-		<p>Designed and built by me (2022)</p>
+		<p>Designed and built by me (2022-{new Date().getFullYear()})</p>
 		<p>with <a href="https://kit.svelte.dev" target="_blank" rel="noreferrer">SvelteKit</a></p>
 	</div>
 </footer>
