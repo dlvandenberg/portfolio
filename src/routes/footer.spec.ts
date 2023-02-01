@@ -22,6 +22,8 @@ describe('Footer.svelte', () => {
 
 	it('should render footer message', () => {
 		render(Footer);
-		expect(screen.getByText('Designed and built by me (2022)')).toBeInTheDocument();
+		expect(
+			screen.getByText(`Designed and built by me (2022-${new Date().getFullYear()})`),
+		).toBeInTheDocument();
 	});
 });
