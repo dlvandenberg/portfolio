@@ -1,20 +1,18 @@
 import { readFiles } from '$lib/fs';
 import type { Work } from '$lib/model';
 import { isWork } from '$lib/type-guard';
-import { json } from '@sveltejs/kit';
+import { error, json } from '@sveltejs/kit';
 import matter from 'front-matter';
 import type { RequestHandler } from './$types';
 
 export const GET = (async (): Promise<Response> => {
-	const experiences = (await readFiles('data/work')).map((fileContents) => {
-		const { attributes, body } = matter(fileContents);
+	const experiences = (await readFiles('data/work')).map(({ content }): Work => {
+		const { attributes, body } = matter(content);
 
 		if (isWork(attributes)) {
-			return { ...attributes, content: body } as Work;
+			return { ...attributes, content: body };
 		} else {
-			throw Error('Could not extract Work information from file', {
-				cause: 'Incorrect metadata format',
-			});
+			throw error(500, 'Could not extract Work information from file');
 		}
 	});
 

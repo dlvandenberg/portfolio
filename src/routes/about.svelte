@@ -11,7 +11,7 @@
 
 {#if personalInfo}
 	<div data-testid="personal-info" class="wrapper">
-		<Section title="$ whoami">
+		<Section title="whoami">
 			<div slot="outline-col">
 				<!-- prettier-ignore -->
 				<pre class="json">

@@ -1,7 +1,13 @@
 import type { Project } from '$lib/model';
+import { isObject, type RequiredKeys } from './required-keys';
 
-const keys: (keyof Project)[] = ['title', 'tags', 'featured'];
-
-export const isProject = (value: unknown): value is Project => {
-	return typeof value === 'object' && !!value && keys.every((key) => key in value);
+const REQUIRED_KEYS: RequiredKeys<Project> = {
+	title: true,
+	tags: true,
+	featured: true,
+	content: false,
+	githubUrl: false,
+	websiteUrl: false,
 };
+
+export const isProject = (value: unknown): value is Project => isObject(REQUIRED_KEYS, value);

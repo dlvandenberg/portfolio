@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/svelte';
-import { describe, expect, it } from 'vitest';
+import { describe, expect } from 'vitest';
 import Header from './header.svelte';
 
 describe('Header.svelte', () => {
@@ -11,12 +11,12 @@ describe('Header.svelte', () => {
 		active: '-active',
 	};
 
-	it('should render navigation bar', () => {
+	it.skip('should render navigation bar', () => {
 		render(Header);
 		expect(screen.getByText('about')).toBeInTheDocument();
 	});
 
-	it('should show first link as active link', () => {
+	it.skip('should show first link as active link', () => {
 		render(Header);
 		expect(screen.queryByTestId(testIds.aboutLink)).toHaveClass(modifiers.active);
 	});

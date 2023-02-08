@@ -58,14 +58,7 @@
 		align-items: center;
 
 		&__title {
-			font-weight: 100;
-			font-size: x-large;
-			color: $color-sand-100;
-			margin-bottom: 0.5rem;
-
-			&::first-letter {
-				color: $color-sand-500;
-			}
+			@include dollar-title;
 		}
 
 		&__list {

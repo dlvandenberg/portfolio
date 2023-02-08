@@ -36,6 +36,7 @@ describe('FileReader', () => {
 
 	it('should return an empty list when given directory does not exist', async () => {
 		readdirMock.mockRejectedValueOnce(new Error());
+
 		const data = await readFiles('path');
 
 		expect(data).toEqual([]);
@@ -43,33 +44,55 @@ describe('FileReader', () => {
 
 	it('should return an empty list if given directory does not contain files', async () => {
 		readdirMock.mockResolvedValueOnce([]);
+
 		const data = await readFiles('path');
+
 		expect(data).toEqual([]);
 	});
 
 	it('should return an array of file contents of the files in the directory', async () => {
 		setupReaddirMock('file1', 'file2');
+
 		const data = await readFiles('path');
-		expect(data).toEqual(['path/file1', 'path/file2']);
+
+		expect(data).toEqual([
+			{ name: 'file1', content: 'path/file1' },
+			{ name: 'file2', content: 'path/file2' },
+		]);
 	});
 
 	describe('when sorting', () => {
 		it('should return a unsorted array if filenames do not have a prefix', async () => {
 			setupReaddirMock('file1', 'file2');
+
 			const data = await readFiles('path');
-			expect(data).toEqual(['path/file1', 'path/file2']);
+
+			expect(data).toEqual([
+				{ name: 'file1', content: 'path/file1' },
+				{ name: 'file2', content: 'path/file2' },
+			]);
 		});
 
 		it('should return a sorted array in descending order by default if filenames have a prefix', async () => {
 			setupReaddirMock('000_file1', '001_file2');
+
 			const data = await readFiles('path');
-			expect(data).toEqual(['path/001_file2', 'path/000_file1']);
+
+			expect(data).toEqual([
+				{ name: '001_file2', content: 'path/001_file2' },
+				{ name: '000_file1', content: 'path/000_file1' },
+			]);
 		});
 
 		it('should return a sorted array in ascending order if sort argument is asc and filenames have a prefix', async () => {
 			setupReaddirMock('000_file1', '001_file2');
+
 			const data = await readFiles('path', 'asc');
-			expect(data).toEqual(['path/000_file1', 'path/001_file2']);
+
+			expect(data).toEqual([
+				{ name: '000_file1', content: 'path/000_file1' },
+				{ name: '001_file2', content: 'path/001_file2' },
+			]);
 		});
 	});
 
@@ -77,13 +100,15 @@ describe('FileReader', () => {
 		it('should return the file contents', async () => {
 			const fileContents = '# Header';
 			readFileMock.mockResolvedValueOnce(fileContents);
+
 			const contents = await readFile('somePath');
-			expect(contents).toEqual(fileContents);
+
+			expect(contents.content).toEqual(fileContents);
 		});
 
 		it('should return an empty string when file does not exist', async () => {
 			const contents = await readFile('non-existent-path');
-			expect(contents).toEqual('');
+			expect(contents.content).toEqual('');
 		});
 	});
 });

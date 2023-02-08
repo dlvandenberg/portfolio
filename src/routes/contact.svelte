@@ -4,7 +4,7 @@
 	export let email: string;
 </script>
 
-<Section title="$ contact">
+<Section title="contact">
 	<svelte:fragment slot="outline-col">
 		<p data-testid="contact-info" class="info">
 			I am not looking for any jobs at the moment, but if you wish to contact me with a question or

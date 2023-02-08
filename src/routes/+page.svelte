@@ -39,17 +39,17 @@
 <WorkExperience workExperience={data.workExperience} />
 
 {#if featuredProjects.length >= 1}
-	<Projects title="$ projects --feat" projects={featuredProjects} featured />
+	<Projects title="projects --feat" projects={featuredProjects} featured />
 {/if}
 {#if regularProjects.length >= 1}
-	<Projects title="$ projects" projects={regularProjects} />
+	<Projects title="projects" projects={regularProjects} />
 {/if}
 
-<Section title="$ skills" subtitle="(Hover to see the color)">
+<Section title="skills" subtitle="(Hover to see the color)">
 	<Skills {skills} slot="outline-col" />
 </Section>
 
-<Section title="$ skills --learning" subtitle="(Hover to see the color)">
+<Section title="skills --learning" subtitle="(Hover to see the color)">
 	<Skills skills={learning} slot="outline-col" />
 </Section>
 

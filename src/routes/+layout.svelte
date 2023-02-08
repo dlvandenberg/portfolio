@@ -40,9 +40,10 @@
 		background-size: 1em 1em;
 		min-height: calc(100vh - $header-height - $footer-height);
 		width: 100vw;
-		padding: 2rem;
+		padding: 0.8rem;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		padding-top: $header-height * 1.2;
 	}
 </style>

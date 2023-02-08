@@ -1,3 +1,5 @@
+@import '/src/styles/markdown';
+
 * {
   margin: 0;
   padding: 0;
@@ -9,6 +11,7 @@ body {
   min-height: 100vh;
   font-family: $font-family;
   color: $color-white;
+  font-size: $font-size;
 }
 
 /* Defaults */
@@ -26,32 +29,12 @@ a {
   }
 }
 
-ul {
+ul,ol {
   list-style: none;
 }
 
 @media (min-width: $md-breakpoint) {
   .g-container {
     max-width: $md-breakpoint;
-  }
-}
-
-/* markdown sections */
-.md-wrapper {
-  p {
-    margin-bottom: 1rem;
-  }
-
-  h1,h2,h3,h4 {
-    color: $color-sand-100;
-  }
-
-  ul {
-    margin-bottom: 1rem;
-    
-    & > li::before {
-      content: '> ';
-      color: $color-yellow;
-    }
   }
 }

@@ -21,7 +21,7 @@
 
 {#if tabData && tabData.size > 0}
 	<div data-testid="tabs" class="tabs g-container">
-		<h1 class="tabs__title">$ exp --work</h1>
+		<h1 class="tabs__title">exp --work</h1>
 		<div class="tabs__wrapper">
 			<div class="tabs__list">
 				{#each tabTitles as title}
@@ -55,14 +55,7 @@
 		width: 100%;
 
 		&__title {
-			font-weight: 100;
-			font-size: x-large;
-			padding-bottom: 0.5rem;
-			color: $color-sand-100;
-
-			&::first-letter {
-				color: $color-sand-500;
-			}
+			@include dollar-title;
 		}
 
 		&__wrapper {

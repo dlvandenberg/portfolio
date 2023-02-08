@@ -10,13 +10,26 @@ const config = {
 		vitePreprocess(),
 		preprocess({
 			scss: {
-				prependData: '@use "src/variables.scss" as *;',
+				prependData:
+					'@use "src/styles/variables.scss" as *; @use "src/styles/font.scss" as *; @use "src/styles/mixins.scss" as *;',
 			},
 		}),
 	],
 
 	kit: {
 		adapter: adapter(),
+		prerender: {
+			entries: [
+				'*',
+				'/code-snippets/test',
+				'/code-snippets/test-copy',
+				'/code-snippets/test-2',
+				'/code-snippets/test-3',
+				'/code-snippets/test-4',
+				'/code-snippets/test-5',
+				'/code-snippets/test-6',
+			],
+		},
 	},
 };
 

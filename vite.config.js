@@ -20,7 +20,8 @@ const config = {
 	css: {
 		preprocessorOptions: {
 			scss: {
-				additionalData: '@use "src/variables.scss" as *; @use "src/font.scss" as *;',
+				additionalData:
+					'@use "src/styles/variables.scss" as *; @use "src/styles/font.scss" as *; @use "src/styles/mixins.scss" as *;',
 			},
 		},
 	},

@@ -23,7 +23,7 @@ describe('About.svelte', () => {
 		};
 
 		render(About, { personalInfo: info });
-		expect(screen.getByText('$ whoami')).toBeInTheDocument();
+		expect(screen.getByText('whoami')).toBeInTheDocument();
 		expect(screen.getByText(`"${info.firstName}"`)).toBeInTheDocument();
 		expect(screen.getByText(`"${info.lastName}"`)).toBeInTheDocument();
 		expect(screen.getByText(`"${formatDate(info.dateOfBirth)}"`)).toBeInTheDocument();

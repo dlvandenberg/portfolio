@@ -1,4 +1,4 @@
-import { ENDPOINT_TOKEN } from '$env/static/private';
+import { request } from '$lib/http';
 import type { PersonalInfo, Project, Work } from '$lib/model';
 import type { PageServerLoad } from './$types';
 
@@ -14,9 +14,3 @@ export const load = (async ({ fetch }) => {
 		projects: (await projectResponse.json()) as Project[],
 	};
 }) satisfies PageServerLoad;
-
-type FetchFn = (input: RequestInfo | URL, init?: RequestInit | undefined) => Promise<Response>;
-
-const request = async (fetch: FetchFn, url: RequestInfo | URL) => {
-	return fetch(url, { headers: new Headers({ token: ENDPOINT_TOKEN }) });
-};
