@@ -12,11 +12,11 @@ export class WorkExperienceElement {
 
 	constructor(page: Page) {
 		this.page = page;
-		this.tabsList = this.page.locator('.tabs__item');
-		this.jobTitle = this.page.locator('.job__title');
-		this.jobCompany = this.page.locator('.job__company');
-		this.jobPeriod = this.page.locator('.job__period');
-		this.jobDescription = this.page.locator('.job__description > md-wrapper');
+		this.tabsList = this.page.getByTestId('tabs-item');
+		this.jobTitle = this.page.getByTestId('job-title');
+		this.jobCompany = this.page.getByTestId('job-company');
+		this.jobPeriod = this.page.getByTestId('job-period');
+		this.jobDescription = this.page.getByTestId('job-description');
 		this.jobSkills = this.page.locator('.job__tags > .skill__item');
 		this.tabContent = this.page.locator('.tab__content');
 	}

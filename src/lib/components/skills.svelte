@@ -5,7 +5,6 @@
 	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
 
 	export let skills: string[] | SkillIcon[] | undefined;
-
 	const skillName = (skill: string | SkillIcon) => (isSkillIcon(skill) ? skill.name : skill);
 
 	const getIconDefinition = (skill: SkillIcon): [IconPrefix, IconName] => {
@@ -32,6 +31,7 @@
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
+		justify-content: center;
 
 		&__item {
 			background-color: $color-coffee;

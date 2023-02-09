@@ -14,6 +14,7 @@ export const GET = (async ({ params }): Promise<Response> => {
 	return readFile(`data/code-snippets/${slug}.md`).then(({ content }) => {
 		const { attributes, body } = matter(content);
 		let snippet: CodeSnippet;
+		console.log(attributes);
 		if (isCodeSnippet(attributes)) {
 			snippet = { ...attributes, content: body };
 		} else {

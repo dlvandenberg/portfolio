@@ -1,0 +1,56 @@
+.hljs {
+  color: $color-white;
+  font-weight: 100;
+  line-height: 1.2rem;
+
+  &-keyword {
+    font-weight: 900;
+    color: $color-sand-500;
+  }
+
+  &-title {
+  
+    &.class_ {
+      color: darken($color-yellow, 5%);
+      font-weight: 300;
+    }
+
+    &.inherited__ {
+      color: $color-gold;
+    }
+
+    &.function_ {
+      color: $color-yellow;
+      font-weight: 200;
+    }
+  }
+
+  &-attr {
+    color: $color-sand-200;
+    font-style: italic;
+  }
+
+  &-built_in {
+    color: $color-blue;
+    font-weight: 500;
+  }
+
+  &-string {
+    color: $color-sand-100;
+    font-weight: 300;
+  }
+
+  &-meta {
+    color: lighten($color-coffee, 40%);
+    font-weight: 700;
+  }
+
+  &-property {
+    color: $color-sand-100;
+  }
+
+  &-function {
+    color: $color-sand-100;
+    font-weight: 300;
+  }
+}

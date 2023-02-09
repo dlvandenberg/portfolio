@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { afterNavigate } from '$app/navigation';
 	import { page } from '$app/stores';
 	import SlidingHeader from '$lib/components/sliding-header.svelte';
 	import { onMount } from 'svelte';
@@ -10,6 +11,13 @@
 	let y: number;
 
 	$: path = $page.url.pathname;
+
+	afterNavigate(() => {
+		if (menuOpen) {
+			toggleMenu();
+			window.scrollTo(0, 0);
+		}
+	});
 
 	onMount(() => {
 		mounted = true;
@@ -51,12 +59,17 @@
 			</a>
 		</div>
 		<div
+			data-testid="navbar-toggle"
 			class="navbar__toggle"
 			class:-active={menuOpen}
 			on:click={toggleMenu}
 			on:keyup={(e) => toggleMenu(e)} />
 	</div>
-	<nav class="navbar__collapse" class:-visible={menuOpen} transition:slide>
+	<nav
+		class="navbar__collapse"
+		data-testid="navbar-menu"
+		class:-visible={menuOpen}
+		transition:slide>
 		<ul class="navbar__menu">
 			<li class="navbar__item">
 				<a
@@ -67,18 +80,11 @@
 			</li>
 			<li class="navbar__item">
 				<a
-					data-testid="navbar-link-about"
+					data-testid="navbar-link-code-snippets"
 					class="navbar__item-link"
 					class:-active={path.includes('code-snippets')}
 					href="/code-snippets">code_snippets</a>
 			</li>
-
-			<!-- <li class="navbar__item">
-				<a href="/">projects</a>
-			</li>
-			<li class="navbar__item">
-				<a href="/">blog</a>
-			</li> -->
 		</ul>
 	</nav>
 </SlidingHeader>

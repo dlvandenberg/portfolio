@@ -7,6 +7,7 @@ const REQUIRED_KEYS: RequiredKeys<CodeSnippet> = {
 	title: true,
 	content: false,
 	slug: false,
+	tags: false,
 };
 
 export const isCodeSnippet = (value: unknown): value is CodeSnippet =>

@@ -11,7 +11,7 @@ test.describe('Navigation bar', () => {
 
 	test('should have "about" as default active page', async () => {
 		await expect(navigationBar.header).toBeVisible();
-		expect(await navigationBar.activeLinkText()).toBe('about');
+		expect(navigationBar.aboutLink).toHaveClass(/-active/);
 	});
 
 	test('should dissapear/appear on scroll down/up', async ({ page }) => {
@@ -44,19 +44,16 @@ test.describe('Small viewport header', () => {
 	});
 
 	test('should have the menu toggle', async () => {
-		expect(navigationBar.menuToggle).toBeVisible();
+		await expect(navigationBar.menuToggle).toBeVisible();
 	});
 
 	test('should open/close the menu when toggle is clicked', async () => {
-		expect(navigationBar.menu).not.toHaveClass(/-visible/);
-		expect(navigationBar.menuToggle).not.toHaveClass(/-active/);
-
-		await navigationBar.clickMenu();
-		expect(navigationBar.menu).toHaveClass(/-visible/);
+		await navigationBar.menuToggle.click();
+		await expect(navigationBar.menu).toHaveClass(/-visible/);
 		expect(navigationBar.menuToggle).toHaveClass(/-active/);
 
-		await navigationBar.clickMenu();
-		expect(navigationBar.menu).not.toHaveClass(/-visible/);
+		await navigationBar.menuToggle.click();
+		await expect(navigationBar.menu).not.toHaveClass(/-visible/);
 		expect(navigationBar.menuToggle).not.toHaveClass(/-active/);
 	});
 });

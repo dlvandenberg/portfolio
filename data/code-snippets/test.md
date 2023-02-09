@@ -2,6 +2,9 @@
 title: Lorem ipsum
 description: 'Vivamus sem nisi, placerat ac porttitor non, convallis eget enim. Donec sagittis tristique neque eget convallis. Proin ultrices ut justo at molestie.'
 dateAdded: 2023-02-01T17:00
+tags:
+  - Angular
+  - TypeScript
 ---
 
 # Header 1
@@ -121,6 +124,42 @@ alert(s);
 ```python
 s = 'Python syntax'
 print s
+```
+
+```typescript
+import { Injectable, OnDestroy } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+
+@Injectable()
+export class DestroyObservable extends Observable<void> implements OnDestroy {
+	private readonly life$ = new Subject<void>();
+
+	constructor() {
+		super((subscriber) => this.life$.subscribe(subscriber));
+	}
+
+	public ngOnDestroy(): void {
+		this.life$.next();
+		this.life$.complete();
+	}
+}
+```
+
+```typescript
+export type RequiredKeys<T extends { [key: string]: unknown }> = { [P in keyof T]: boolean };
+
+export const isObject = <T extends { [key: string]: unknown }>(
+	keys: RequiredKeys<T>,
+	value: unknown,
+): value is T => {
+	return (
+		!!value &&
+		typeof value === 'object' &&
+		Object.entries(keys)
+			.filter(([, required]) => required)
+			.every(([key]) => key in value)
+	);
+};
 ```
 
 # Tables

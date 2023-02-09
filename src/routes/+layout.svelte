@@ -15,9 +15,12 @@
 		faJava,
 		faJsSquare,
 		faSwift,
+		type IconDefinition,
 	} from '@fortawesome/free-brands-svg-icons';
+	import { faClone } from '@fortawesome/free-regular-svg-icons';
 
 	library.add(faAngular, faHtml5, faCss3Alt, faJava, faJsSquare, faSwift);
+	library.add(faClone as IconDefinition);
 
 	const vdbSvelte = svgToFaIconDefinition(svelteIcon, 'vdb', 'svelte', 'e001');
 	const vdbTypeScript = svgToFaIconDefinition(typeScriptIcon, 'vdb', 'typescript', 'e002');

@@ -15,16 +15,16 @@
 		<svelte:fragment let:activeTab>
 			<div data-testid="job" class="job">
 				<div class="job__data">
-					<h1 class="job__title">{activeTab.jobTitle}</h1>
-					<h3 class="job__company">@ {activeTab.company}</h3>
+					<h1 data-testid="job-title" class="job__title">{activeTab.jobTitle}</h1>
+					<h3 data-testid="job-company" class="job__company">@ {activeTab.company}</h3>
 				</div>
-				<p class="job__period">
+				<p data-testid="job-period" class="job__period">
 					{formatDate(activeTab.dateFrom)} - {formatDate(activeTab.dateTo) ?? 'Present'}
 				</p>
 			</div>
 			<div class="job__description">
 				<h3 class="job__subtitle">_ description</h3>
-				<div class="md-wrapper">
+				<div data-testid="job-description" class="md-wrapper">
 					<SvelteMarkdown source={activeTab.content} />
 				</div>
 			</div>

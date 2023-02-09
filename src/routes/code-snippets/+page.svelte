@@ -5,15 +5,11 @@
 </script>
 
 <svelte:head>
-	<title>Code Snippets</title>
+	<title>Code Snippets - vdberg.dev - Personal Portfolio</title>
 </svelte:head>
 
 {#if data}
-	<!-- <Section title="$ code_snippets">
-		<svelte:fragment slot="outline-col">
-			<SvelteMarkdown source={data.snippets[0]?.content} />
-		</svelte:fragment>
-	</Section> -->
-
-	<ItemList title="$ code_snippets()" items={data.snippets} />
+	<div class="-animate-fade-in">
+		<ItemList title="code_snippets()" items={data.snippets} />
+	</div>
 {/if}
