@@ -8,7 +8,7 @@
 </script>
 
 {#if items && items.length > 0}
-	<div class="items g-container">
+	<div class="items g-container -animate-fade-in">
 		<h1 class="items__title" data-testid="item-list-title">{title}</h1>
 		<div class="items__list">
 			{#each items as item}

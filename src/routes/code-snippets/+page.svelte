@@ -9,7 +9,7 @@
 </svelte:head>
 
 {#if data}
-	<div class="-animate-fade-in">
+	<div class="wrapper -animate-fade-in">
 		<ItemList title="code_snippets()" items={data.snippets} />
 	</div>
 {/if}

@@ -35,6 +35,13 @@ ul,ol {
   list-style: none;
 }
 
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 @media (min-width: $md-breakpoint) {
   .g-container {
     max-width: $md-breakpoint;

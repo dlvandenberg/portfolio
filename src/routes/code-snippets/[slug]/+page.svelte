@@ -12,7 +12,7 @@
 	<title>{data.snippet.title} - Code Snippets - vdberg.dev</title>
 </svelte:head>
 
-<div class="-animate-fade-in">
+<div class="wrapper -animate-fade-in">
 	<Section title={data.snippet.title} subtitle={formatDate(data.snippet.dateAdded)}>
 		<svelte:fragment slot="header-actions">
 			<a href="/code-snippets" class="back-link"><div class="back-link__button">&lt;_</div></a>

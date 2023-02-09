@@ -53,4 +53,9 @@
     color: $color-sand-100;
     font-weight: 300;
   }
+
+  &-params {
+    color: lighten($color-blue, 10%);
+    font-style: italic;
+  }
 }
