@@ -6,6 +6,7 @@ test.describe('CodeSnippets', () => {
 
 	test.beforeEach(async ({ page }) => {
 		codeSnippetsPage = new CodeSnippetsPage(page);
+		await page.waitForLoadState('load', { timeout: 30000 });
 		await codeSnippetsPage.goto();
 	});
 

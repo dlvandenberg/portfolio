@@ -6,6 +6,7 @@ test.describe('Navigation', () => {
 
 	test.beforeEach(async ({ page }) => {
 		navigationBar = new NavigationBarElement(page);
+		await page.waitForLoadState('load', { timeout: 30000 });
 		await page.goto('/');
 	});
 
