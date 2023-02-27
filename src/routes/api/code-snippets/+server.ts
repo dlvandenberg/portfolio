@@ -1,25 +1,11 @@
-import { readFiles } from '$lib/fs';
-import type { CodeSnippet } from '$lib/model/code-snippet';
-import { isCodeSnippet } from '$lib/type-guard/code-snippet';
-import { json } from '@sveltejs/kit';
-import matter from 'front-matter';
-import type { RequestHandler } from './$types';
+import { codeSnippetDataService } from '@apps/code-snippets';
+import { json, type RequestHandler } from '@sveltejs/kit';
 
 export const GET = (async (): Promise<Response> => {
-	return readFiles('data/code-snippets')
-		.then((snippets) =>
-			snippets.map(({ content, name }) => {
-				const { attributes } = matter(content);
-				let codeSnippet: CodeSnippet;
-				if (isCodeSnippet(attributes)) {
-					codeSnippet = { ...attributes, slug: createSlug(name) };
-				} else {
-					throw Error('Could not extract CodeSnippet from file');
-				}
-				return codeSnippet;
-			}),
-		)
-		.then((snippets) => json(snippets));
+	return codeSnippetDataService
+		.getAll()
+		.then((links) => json(links))
+		.catch((error) => {
+			throw error(404, error);
+		});
 }) satisfies RequestHandler;
-
-const createSlug = (filename: string): string => filename.replaceAll(' ', '-').replace(/\.md$/, '');

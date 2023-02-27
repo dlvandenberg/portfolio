@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { formatDate } from '$lib/date';
-	import type { CodeSnippet } from '$lib/model/code-snippet';
+	import type { CodeSnippetLink } from '$lib/model/code-snippet';
 
 	export let title: string;
-	export let items: CodeSnippet[];
+	export let items: CodeSnippetLink[];
 </script>
 
 {#if items && items.length > 0}
@@ -12,7 +12,7 @@
 		<h1 class="items__title" data-testid="item-list-title">{title}</h1>
 		<div class="items__list">
 			{#each items as item}
-				<div class="item" data-testid="item">
+				<div class="item">
 					<div class="item__header">
 						<h2 class="item__title" data-testid="item-title">{item.title}</h2>
 						<h3 class="item__date" data-testid="item-date">@ {formatDate(item.dateAdded)}</h3>

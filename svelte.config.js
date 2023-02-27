@@ -30,6 +30,15 @@ const config = {
 				'/code-snippets/test-6',
 			],
 		},
+		alias: {
+			'@apps/code-snippets': './apps/code-snippets/index',
+		},
+		typescript: {
+			config: (config) => ({
+				...config,
+				include: [...config.include, '../apps/**/*.svelte', '../apps/**/*.ts'],
+			}),
+		},
 	},
 };
 

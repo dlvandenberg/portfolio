@@ -1,14 +1,13 @@
-import type { CodeSnippet } from '$lib/model/code-snippet';
-import { isObject, type RequiredKeys } from './required-keys';
+import type { CodeSnippetLink, CodeSnippetPost } from '$lib/model/code-snippet';
 
-const REQUIRED_KEYS: RequiredKeys<CodeSnippet> = {
-	dateAdded: true,
-	description: true,
-	title: true,
-	content: false,
-	slug: false,
-	tags: false,
-};
+export function isCodeSnippetPost(value: unknown): value is CodeSnippetPost {
+	return isTaggedObject(value, 'CodeSnippetPost');
+}
 
-export const isCodeSnippet = (value: unknown): value is CodeSnippet =>
-	isObject(REQUIRED_KEYS, value);
+export function isCodeSnippetLink(value: unknown): value is CodeSnippetLink {
+	return isTaggedObject(value, 'CodeSnippetLink');
+}
+
+function isTaggedObject<T extends string>(value: unknown, tag: T): value is { __typename: T } {
+	return !!value && typeof value === 'object' && '__typename' in value && value.__typename === tag;
+}

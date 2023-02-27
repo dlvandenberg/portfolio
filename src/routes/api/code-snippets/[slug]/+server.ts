@@ -1,9 +1,6 @@
-import { readFile } from '$lib/fs';
-import type { CodeSnippet } from '$lib/model/code-snippet';
-import { isCodeSnippet } from '$lib/type-guard/code-snippet';
+import { codeSnippetDataService } from '@apps/code-snippets';
 import { error, json } from '@sveltejs/kit';
-import matter from 'front-matter';
-import type { RequestHandler } from '../$types';
+import type { RequestHandler } from './$types';
 
 export const GET = (async ({ params }): Promise<Response> => {
 	const slug: string = params.slug;
@@ -11,16 +8,11 @@ export const GET = (async ({ params }): Promise<Response> => {
 		throw error(404, 'Could not find code snippet');
 	}
 
-	return readFile(`data/code-snippets/${slug}.md`).then(({ content }) => {
-		const { attributes, body } = matter(content);
-		let snippet: CodeSnippet;
-		console.log(attributes);
-		if (isCodeSnippet(attributes)) {
-			snippet = { ...attributes, content: body };
-		} else {
-			throw error(404, 'Could not extract CodeSnippet');
-		}
-
-		return json(snippet);
-	});
+	return codeSnippetDataService
+		.getBySlug(slug)
+		.then((post) => json(post))
+		.catch((error) => {
+			console.log('hi error');
+			throw error(404, error);
+		});
 }) satisfies RequestHandler;
