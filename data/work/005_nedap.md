@@ -12,7 +12,7 @@ tags:
   - HTML
 ---
 
-With a small team I am responsible for the frontend application of AtWork, an application to manage access to buildings and doors within that building. It will be expanded with additional functionality in the future.
+With a small team I am responsible for the frontend application. 
 
 I am also responsible for the CI/CD of the frontend, user Docker images and Github Actions to build, test and deploy new functionality each increment.
 
