@@ -1,8 +1,8 @@
 import { formatDate } from '$lib/date';
-import type { Work } from '$lib/model';
 import { render, screen } from '@testing-library/svelte';
 import { describe, expect, it } from 'vitest';
-import WorkExperience from './work-experience.svelte';
+import { WorkExperience } from '.';
+import type { Work } from '../../domain/model';
 
 describe('WorkExperience.svelte', () => {
 	const testIds = {
@@ -24,7 +24,7 @@ describe('WorkExperience.svelte', () => {
 		const workExperienceList: Work[] = [
 			{
 				name: 'Vitest',
-				dateFrom: '2023-01-01',
+				dateFrom: new Date('2023-01-01'),
 				content: 'Unit testing',
 				company: 'Tester',
 				jobTitle: 'Tester',
@@ -47,8 +47,8 @@ describe('WorkExperience.svelte', () => {
 		const workExperienceList: Work[] = [
 			{
 				name: 'Vitest',
-				dateFrom: '2023-01-01T00:00:00',
-				dateTo: '2023-10-10T00:00:00',
+				dateFrom: new Date('2023-01-01T00:00:00'),
+				dateTo: new Date('2023-10-10T00:00:00'),
 				content: 'Unit testing',
 				company: 'Tester',
 				jobTitle: 'Tester',

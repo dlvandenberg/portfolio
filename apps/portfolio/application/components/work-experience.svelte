@@ -1,9 +1,7 @@
 <script lang="ts">
-	import Skills from '$lib/components/skills.svelte';
-	import TabSection from '$lib/components/tab-section.svelte';
+	import { Markdown, Skills, TabSection } from '$lib/components';
 	import { formatDate } from '$lib/date';
-	import type { Work } from '$lib/model/work';
-	import SvelteMarkdown from 'svelte-markdown';
+	import type { Work } from '../../domain/model';
 
 	export let workExperience: Work[] | undefined;
 
@@ -25,7 +23,7 @@
 			<div class="job__description">
 				<h3 class="job__subtitle">_ description</h3>
 				<div data-testid="job-description" class="md-wrapper">
-					<SvelteMarkdown source={activeTab.content} />
+					<Markdown source={activeTab.content} />
 				</div>
 			</div>
 			{#if activeTab.tags && activeTab.tags.length >= 1}

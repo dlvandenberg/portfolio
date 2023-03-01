@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Projects from '$lib/components/projects.svelte';
+	import { Projects, WorkExperience } from '$apps/portfolio';
 	import Section from '$lib/components/section.svelte';
 	import Skills from '$lib/components/skills.svelte';
 	import type { SkillIcon } from '$lib/model/skill-icon';
@@ -7,7 +7,6 @@
 	import About from './about.svelte';
 	import Contact from './contact.svelte';
 	import Hero from './hero.svelte';
-	import WorkExperience from './work-experience.svelte';
 
 	export let data: PageData;
 

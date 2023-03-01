@@ -1,4 +1,4 @@
-import { codeSnippetDataService } from '@apps/code-snippets';
+import { codeSnippetDataService } from '$apps/code-snippets';
 import { json, type RequestHandler } from '@sveltejs/kit';
 
 export const GET = (async (): Promise<Response> => {

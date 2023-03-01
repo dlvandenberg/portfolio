@@ -1,7 +1,7 @@
-import type { Project } from '$lib/model';
 import { render, screen } from '@testing-library/svelte';
 import { describe, it } from 'vitest';
-import Projects from './projects.svelte';
+import { Projects } from '.';
+import type { Project } from '../../domain/model';
 
 describe('Projects.svelte', () => {
 	const featuredClass = '-featured';

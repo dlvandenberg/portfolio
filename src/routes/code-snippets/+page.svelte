@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { CodeSnippetList } from '@apps/code-snippets';
+	import { CodeSnippetList } from '$apps/code-snippets';
 	import type { PageData } from './$types';
 	export let data: PageData;
 </script>

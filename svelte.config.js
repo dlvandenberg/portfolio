@@ -31,7 +31,8 @@ const config = {
 			],
 		},
 		alias: {
-			'@apps/code-snippets': './apps/code-snippets/index',
+			'$apps/code-snippets': './apps/code-snippets/index',
+			'$apps/portfolio': './apps/portfolio/index',
 		},
 		typescript: {
 			config: (config) => ({

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ItemList from '$lib/ui/item-list.svelte';
+	import { ItemList } from '$lib/components';
 	import type { CodeSnippetLink } from '../../domain/model';
 
 	export let snippets: CodeSnippetLink[];

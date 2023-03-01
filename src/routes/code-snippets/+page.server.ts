@@ -1,6 +1,5 @@
+import { isCodeSnippetsArray } from '$apps/code-snippets';
 import { request } from '$lib/http';
-import type { CodeSnippetLink } from '$lib/model/code-snippet';
-import { isCodeSnippetLink } from '$lib/type-guard';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
@@ -20,7 +19,3 @@ export const load = (async ({ fetch }) => {
 		throw error(response.status, 'Something went wrong while fetching CodeSnippets');
 	}
 }) satisfies PageServerLoad;
-
-function isCodeSnippetsArray(value: unknown[]): value is CodeSnippetLink[] {
-	return Array.isArray(value) && value.every((element) => isCodeSnippetLink(element));
-}

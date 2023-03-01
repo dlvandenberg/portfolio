@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { CodeSnippetPost } from '@apps/code-snippets';
+	import { CodeSnippetPost } from '$apps/code-snippets';
 	import type { PageData } from './$types';
 
 	export let data: PageData;

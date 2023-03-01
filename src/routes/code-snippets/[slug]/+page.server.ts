@@ -1,5 +1,5 @@
+import { isCodeSnippetPost } from '$apps/code-snippets';
 import { request } from '$lib/http';
-import { isCodeSnippetPost } from '$lib/type-guard';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 

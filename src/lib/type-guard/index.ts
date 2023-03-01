@@ -1,5 +1,3 @@
-export * from './code-snippet';
 export * from './personal-info';
-export * from './project';
+export * from './required-keys';
 export * from './skill-icon';
-export * from './work';

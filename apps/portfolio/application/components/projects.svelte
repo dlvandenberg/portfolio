@@ -1,10 +1,9 @@
 <script lang="ts">
+	import { Markdown, Skills } from '$lib/components';
 	import { faGithub } from '@fortawesome/free-brands-svg-icons';
 	import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
-	import SvelteMarkdown from 'svelte-markdown';
-	import type { Project } from '../model/project';
-	import Skills from './skills.svelte';
+	import type { Project } from '../../domain/model';
 
 	export let projects: Project[] | undefined;
 	export let title: string;
@@ -36,7 +35,7 @@
 						</div>
 					{/if}
 					<div data-testid="project-description" class="project__description md-wrapper">
-						<SvelteMarkdown source={project.content} />
+						<Markdown source={project.content} />
 					</div>
 					{#if project.tags && project.tags.length > 0}
 						<div data-testid="project-tags" class="project__tags">
