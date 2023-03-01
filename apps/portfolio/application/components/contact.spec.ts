@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/svelte';
 import { describe, it } from 'vitest';
-import Contact from './contact.svelte';
+import { Contact } from '.';
 
 describe('Contact.svelte', () => {
 	const testIds = {

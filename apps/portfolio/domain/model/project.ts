@@ -4,5 +4,5 @@ export type Project = {
 	githubUrl?: string;
 	content: string;
 	featured: boolean;
-	tags?: string[];
+	tags: string[];
 };

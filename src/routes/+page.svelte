@@ -1,12 +1,9 @@
 <script lang="ts">
-	import { Projects, WorkExperience } from '$apps/portfolio';
+	import { About, Contact, Hero, Projects, WorkExperience } from '$apps/portfolio';
 	import Section from '$lib/components/section.svelte';
 	import Skills from '$lib/components/skills.svelte';
 	import type { SkillIcon } from '$lib/model/skill-icon';
 	import type { PageData } from './$types';
-	import About from './about.svelte';
-	import Contact from './contact.svelte';
-	import Hero from './hero.svelte';
 
 	export let data: PageData;
 

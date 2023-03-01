@@ -1,5 +1,5 @@
-import type { PersonalInfo } from '$lib/model';
-import { isObject, type RequiredKeys } from './required-keys';
+import { isObject, type RequiredKeys } from '$lib/type-guard';
+import type { PersonalInfo } from '../model/personal-info';
 
 const REQUIRED_KEYS: RequiredKeys<PersonalInfo> = {
 	firstName: true,

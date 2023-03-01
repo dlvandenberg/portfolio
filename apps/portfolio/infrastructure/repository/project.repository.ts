@@ -2,7 +2,7 @@ import { readFiles } from '$lib/fs';
 import matter from 'front-matter';
 import { isProjectMetadata, type ProjectMetadata } from '../model/project-metadata';
 
-export type ProjectFile = {
+type ProjectFile = {
 	metadata: ProjectMetadata;
 	content: string;
 };

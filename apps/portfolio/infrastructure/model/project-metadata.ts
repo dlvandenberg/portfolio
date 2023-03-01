@@ -1,4 +1,4 @@
-import { isObject, type RequiredKeys } from '$lib/type-guard/required-keys';
+import { isObject, type RequiredKeys } from '$lib/type-guard';
 
 export type ProjectMetadata = {
 	title: string;

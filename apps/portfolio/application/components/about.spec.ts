@@ -1,7 +1,7 @@
 import { formatDate } from '$lib/date';
-import type { PersonalInfo } from '$lib/model';
 import { render, screen } from '@testing-library/svelte';
 import { describe, expect, it } from 'vitest';
+import type { PersonalInfo } from '../../domain/model';
 import About from './about.svelte';
 
 describe('About.svelte', () => {
@@ -10,7 +10,7 @@ describe('About.svelte', () => {
 	};
 
 	it('should render personal info', () => {
-		const info: PersonalInfo = {
+		const info = {
 			firstName: 'Dennis',
 			lastName: 'van den Berg',
 			dateOfBirth: '1989-10-14T00:00:00.000Z',

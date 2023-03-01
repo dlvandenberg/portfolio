@@ -1,7 +1,7 @@
 export type PersonalInfo = {
 	firstName: string;
 	lastName: string;
-	dateOfBirth: string;
+	dateOfBirth: Date;
 	gender: string;
 	nationality: string;
 	email: string;

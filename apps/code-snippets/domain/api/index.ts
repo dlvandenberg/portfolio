@@ -1,1 +1,1 @@
-export * from './type-guard';
+export * from './code-snippet.type-guard';

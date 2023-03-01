@@ -1,1 +1,1 @@
-export * from './code-snippet-repository';
+export * from './code-snippet.repository';

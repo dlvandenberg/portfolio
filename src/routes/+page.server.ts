@@ -1,18 +1,17 @@
-import { isProjectArray, isWorkArray } from '$apps/portfolio';
+import { isPersonalInfo, isProjectArray, isWorkArray } from '$apps/portfolio';
 import { request } from '$lib/http';
-import type { PersonalInfo } from '$lib/model';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 export const prerender = true;
 
 export const load = (async ({ fetch }) => {
-	const personalInfoResponse = await request(fetch, '/api/personal-info');
+	const personalInfo = await getData(fetch, '/api/personal-info', isPersonalInfo, 'PersonalInfo');
 	const projects = await getData(fetch, '/api/projects', isProjectArray, 'Projects');
 	const workExperience = await getData(fetch, '/api/works', isWorkArray, 'Works');
 
 	return {
-		personalInfo: (await personalInfoResponse.json()) as PersonalInfo,
+		personalInfo,
 		projects,
 		workExperience,
 	};

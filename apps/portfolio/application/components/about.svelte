@@ -1,8 +1,7 @@
 <script lang="ts">
-	import Section from '$lib/components/section.svelte';
+	import { Markdown, Section } from '$lib/components';
 	import { formatDate } from '$lib/date';
-	import type { PersonalInfo } from '$lib/model';
-	import SvelteMarkdown from 'svelte-markdown';
+	import type { PersonalInfo } from '../../domain/model';
 
 	export let personalInfo: PersonalInfo;
 
@@ -28,7 +27,7 @@
 			</pre>
 			</div>
 			<div slot="col" class="md-wrapper">
-				<SvelteMarkdown source={personalInfo.content} />
+				<Markdown source={personalInfo.content} />
 			</div>
 		</Section>
 	</div>

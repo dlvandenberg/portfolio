@@ -1,7 +1,5 @@
 <script lang="ts">
-	import Markdown from '$lib/components/markdown.svelte';
-	import Section from '$lib/components/section.svelte';
-	import Skills from '$lib/components/skills.svelte';
+	import { Markdown, Section, Skills } from '$lib/components';
 	import { formatDate } from '$lib/date';
 	import type { CodeSnippetPost } from '../../domain/model';
 

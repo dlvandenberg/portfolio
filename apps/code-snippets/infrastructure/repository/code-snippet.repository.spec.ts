@@ -1,6 +1,6 @@
 import { readFile, readFiles } from '$lib/fs';
 import { describe, expect, it, vi } from 'vitest';
-import { codeSnippetRepository } from './code-snippet-repository';
+import { codeSnippetRepository } from './code-snippet.repository';
 
 describe('CodeSnippetRepository', () => {
 	vi.mock('$lib/fs');
