@@ -15,9 +15,12 @@
 		faJava,
 		faJsSquare,
 		faSwift,
+		type IconDefinition,
 	} from '@fortawesome/free-brands-svg-icons';
+	import { faClone } from '@fortawesome/free-regular-svg-icons';
 
 	library.add(faAngular, faHtml5, faCss3Alt, faJava, faJsSquare, faSwift);
+	library.add(faClone as IconDefinition);
 
 	const vdbSvelte = svgToFaIconDefinition(svelteIcon, 'vdb', 'svelte', 'e001');
 	const vdbTypeScript = svgToFaIconDefinition(typeScriptIcon, 'vdb', 'typescript', 'e002');
@@ -40,9 +43,10 @@
 		background-size: 1em 1em;
 		min-height: calc(100vh - $header-height - $footer-height);
 		width: 100vw;
-		padding: 2rem;
+		padding: 0.8rem;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		padding-top: $header-height * 1.2;
 	}
 </style>

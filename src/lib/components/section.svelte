@@ -4,10 +4,19 @@
 </script>
 
 <section class="section g-container">
-	<h1 class="section__title">{title}</h1>
-	{#if subtitle}
-		<h3 data-testid="section-subtitle" class="section__subtitle">{subtitle}</h3>
-	{/if}
+	<div class="section__header">
+		{#if $$slots['header-actions']}
+			<div class="section__actions">
+				<slot name="header-actions" />
+			</div>
+		{/if}
+		<div class="section__titles">
+			<h1 class="section__title">{title}</h1>
+			{#if subtitle}
+				<h3 data-testid="section-subtitle" class="section__subtitle">{subtitle}</h3>
+			{/if}
+		</div>
+	</div>
 	<div class="section__content">
 		{#if $$slots['outline-col']}
 			<div data-testid="section-column-outline" class="section__column -outline">
@@ -29,29 +38,42 @@
 		align-items: center;
 		margin-bottom: 5rem;
 		width: 100%;
+		position: relative;
+
+		&__header {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			width: 100%;
+		}
+
+		&__actions {
+			flex-grow: 0;
+			align-items: flex-start;
+			position: absolute;
+		}
+
+		&__titles {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			flex-grow: 1;
+		}
 
 		&__title {
-			font-size: x-large;
-			font-weight: 100;
-			padding-bottom: 0.5rem;
-			color: $color-sand-100;
-
-			&::first-letter {
-				color: $color-sand-500;
-			}
+			@include dollar-title;
 		}
 
 		&__subtitle {
-			font-size: small;
-			font-weight: 100;
-			padding-bottom: 0.5rem;
-			color: $color-sand-500;
+			@include dollar-subtitle;
 		}
 
 		&__content {
 			display: flex;
 			flex-wrap: wrap;
 			flex-direction: row;
+			width: 100%;
 		}
 
 		&__column {

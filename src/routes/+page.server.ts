@@ -1,22 +1,38 @@
-import { ENDPOINT_TOKEN } from '$env/static/private';
-import type { PersonalInfo, Project, Work } from '$lib/model';
+import { isPersonalInfo, isProjectArray, isWorkArray } from '$apps/portfolio';
+import { request } from '$lib/http';
+import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 export const prerender = true;
 
 export const load = (async ({ fetch }) => {
-	const personalInfoResponse = await request(fetch, '/api/personal-info');
-	const workExperienceResponse = await request(fetch, '/api/works');
-	const projectResponse = await request(fetch, '/api/projects');
+	const personalInfo = await getData(fetch, '/api/personal-info', isPersonalInfo, 'PersonalInfo');
+	const projects = await getData(fetch, '/api/projects', isProjectArray, 'Projects');
+	const workExperience = await getData(fetch, '/api/works', isWorkArray, 'Works');
+
 	return {
-		personalInfo: (await personalInfoResponse.json()) as PersonalInfo,
-		workExperience: (await workExperienceResponse.json()) as Work[],
-		projects: (await projectResponse.json()) as Project[],
+		personalInfo,
+		projects,
+		workExperience,
 	};
 }) satisfies PageServerLoad;
 
-type FetchFn = (input: RequestInfo | URL, init?: RequestInit | undefined) => Promise<Response>;
+async function getData<T>(
+	fetchFn: typeof fetch,
+	apiUrl: string,
+	typeGuard: (value: unknown) => value is T,
+	name: string,
+): Promise<T> {
+	const response = await request(fetchFn, apiUrl);
+	if (response.status === 200) {
+		const json = await response.json();
 
-const request = async (fetch: FetchFn, url: RequestInfo | URL) => {
-	return fetch(url, { headers: new Headers({ token: ENDPOINT_TOKEN }) });
-};
+		if (typeGuard(json)) {
+			return json;
+		} else {
+			throw error(404, `Could not find ${name}`);
+		}
+	} else {
+		throw error(response.status, `Something went wrong while fetching ${name}`);
+	}
+}

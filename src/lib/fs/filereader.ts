@@ -1,10 +1,15 @@
 import fs from 'fs/promises';
 import path from 'path';
 
+type File = {
+	name: string;
+	content: string;
+};
+
 export const readFiles = async (
 	directory: string,
 	sort: 'asc' | 'desc' = 'desc',
-): Promise<string[]> => {
+): Promise<File[]> => {
 	let files;
 	try {
 		files = await fs.readdir(directory, { withFileTypes: true });
@@ -27,7 +32,7 @@ const sortOnPrefix = (fileA: string, fileB: string, sort: 'asc' | 'desc'): numbe
 	return sort === 'asc' ? prefixA - prefixB : prefixB - prefixA;
 };
 
-export const readFile = async (path: string): Promise<string> => {
-	const fileContents = await fs.readFile(path, 'utf-8');
-	return fileContents ?? '';
+export const readFile = async (filepath: string): Promise<File> => {
+	const fileContents = await fs.readFile(filepath, 'utf-8');
+	return { name: path.basename(filepath), content: fileContents ?? '' };
 };

@@ -1,0 +1,31 @@
+@use './variables.scss' as *;
+
+@mixin dollar-title {
+  &::before {
+    content: '$';
+    margin-right: 1rem;
+    color: $color-sand-500;
+  }
+
+  font-size: x-large;
+  font-weight: 100;
+  padding-bottom: 0.5rem;
+  color: $color-sand-100;
+}
+
+@mixin dollar-subtitle {
+  font-size: small;
+  font-weight: 100;
+  padding-bottom: 0.5rem;
+  color: $color-sand-500;
+}
+
+@mixin border-box {
+  width: 100%;
+  background-color: $color-coffee;
+  border: 1px solid $color-sand-100;
+  padding: 1rem;
+  text-align: center;
+  font-weight: 200;
+  font-size: small;
+}

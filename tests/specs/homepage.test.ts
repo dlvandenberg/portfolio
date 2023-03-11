@@ -9,6 +9,7 @@ test.describe('WorkExperience', () => {
 	test.beforeEach(async ({ page }) => {
 		homePage = new HomePage(page);
 		workExperienceElement = homePage.workExperience;
+		await page.waitForLoadState('load', { timeout: 30000 });
 		await homePage.goto();
 	});
 

@@ -1,7 +1,10 @@
 import type { SkillIcon } from '$lib/model/skill-icon';
+import { isObject, type RequiredKeys } from './required-keys';
 
-const keys: (keyof SkillIcon)[] = ['name', 'icon'];
-
-export const isSkillIcon = (value: unknown): value is SkillIcon => {
-	return typeof value === 'object' && !!value && keys.every((key) => key in value);
+const REQUIRED_KEYS: RequiredKeys<SkillIcon> = {
+	icon: true,
+	name: true,
+	prefix: false,
 };
+
+export const isSkillIcon = (value: unknown): value is SkillIcon => isObject(REQUIRED_KEYS, value);

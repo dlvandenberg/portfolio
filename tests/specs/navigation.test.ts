@@ -6,13 +6,21 @@ test.describe('Navigation', () => {
 
 	test.beforeEach(async ({ page }) => {
 		navigationBar = new NavigationBarElement(page);
+		await page.waitForLoadState('load', { timeout: 30000 });
 		await page.goto('/');
 	});
 
 	test('should navigate to "about" via navbar', async ({ page, baseURL }) => {
-		await navigationBar.clickLink('about');
+		await navigationBar.aboutLink.click();
 
+		await expect(navigationBar.aboutLink).toHaveClass(/-active/);
 		expect(page.url()).toBe(`${baseURL}/`);
-		expect(await navigationBar.activeLinkText()).toBe('about');
+	});
+
+	test('should navigate to "code-snippets" via navbar', async ({ page, baseURL }) => {
+		await navigationBar.codeSnippetsLink.click();
+
+		await expect(navigationBar.codeSnippetsLink).toHaveClass(/-active/);
+		expect(page.url()).toBe(`${baseURL}/code-snippets`);
 	});
 });

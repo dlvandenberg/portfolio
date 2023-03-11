@@ -10,13 +10,27 @@ const config = {
 		vitePreprocess(),
 		preprocess({
 			scss: {
-				prependData: '@use "src/variables.scss" as *;',
+				prependData:
+					'@use "src/styles/variables.scss" as *; @use "src/styles/font.scss" as *; @use "src/styles/mixins.scss" as *;',
 			},
 		}),
 	],
 
 	kit: {
 		adapter: adapter(),
+		prerender: {
+			entries: ['*', '/code-snippets/remove-old-git-remotes'],
+		},
+		alias: {
+			'$apps/code-snippets': './apps/code-snippets/index',
+			'$apps/portfolio': './apps/portfolio/index',
+		},
+		typescript: {
+			config: (config) => ({
+				...config,
+				include: [...config.include, '../apps/**/*.svelte', '../apps/**/*.ts'],
+			}),
+		},
 	},
 };
 

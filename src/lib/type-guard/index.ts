@@ -1,3 +1,2 @@
-export * from './personal-info';
-export * from './project';
-export * from './work';
+export * from './required-keys';
+export * from './skill-icon';
