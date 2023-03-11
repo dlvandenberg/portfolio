@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { About, Contact, Hero, Projects, WorkExperience } from '$apps/portfolio';
-	import Section from '$lib/components/section.svelte';
-	import Skills from '$lib/components/skills.svelte';
+	import { Section, Skills } from '$lib/components';
+
 	import type { SkillIcon } from '$lib/model/skill-icon';
 	import type { PageData } from './$types';
 

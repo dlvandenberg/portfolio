@@ -1,15 +1,23 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { formatDate } from '$lib/date';
-	import type { CodeSnippetLink } from '$lib/model/code-snippet';
 
 	export let title: string;
-	export let items: CodeSnippetLink[];
+	export let subtitle: string = '';
+	export let items: {
+		title: string;
+		dateAdded: Date;
+		description: string;
+		slug: string;
+	}[];
 </script>
 
 {#if items && items.length > 0}
 	<div class="items g-container -animate-fade-in">
 		<h1 class="items__title" data-testid="item-list-title">{title}</h1>
+		{#if subtitle}
+			<h3 class="items__subtitle" data-testid="item-list-subtitle">{subtitle}</h3>
+		{/if}
 		<div class="items__list">
 			{#each items as item}
 				<div class="item">
@@ -36,6 +44,10 @@
 
 		&__title {
 			@include dollar-title;
+		}
+
+		&__subtitle {
+			@include dollar-subtitle;
 		}
 
 		&__list {

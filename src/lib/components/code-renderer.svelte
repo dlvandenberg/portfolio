@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
 	import { default as Highlight, HighlightSvelte } from 'svelte-highlight';
-	import { javascript, json, typescript } from 'svelte-highlight/languages';
+	import { bash, javascript, json, typescript } from 'svelte-highlight/languages';
 	export let lang: string;
 	export let text: string;
 
@@ -21,6 +21,10 @@
 
 			case 'javascript':
 				language = { label: 'JavaScript', language: javascript };
+				break;
+
+			case 'bash':
+				language = { label: 'Bash', language: bash };
 				break;
 
 			default:

@@ -7,6 +7,6 @@
 
 {#if snippets.length > 0}
 	<div class="wrapper -animate-fade-in">
-		<ItemList title="code_snippets()" items={snippets} />
+		<ItemList title="code_snippets()" items={snippets} subtitle="Small and helpful code snippets" />
 	</div>
 {/if}

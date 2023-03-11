@@ -11,7 +11,8 @@ export const GET = (async ({ params }): Promise<Response> => {
 	return codeSnippetDataService
 		.getBySlug(slug)
 		.then((post) => json(post))
-		.catch((error) => {
-			throw error(404, error);
+		.catch((errorMessage) => {
+			console.error(errorMessage);
+			throw error(500, { message: errorMessage.message });
 		});
 }) satisfies RequestHandler;
