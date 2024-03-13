@@ -1,6 +1,4 @@
 <script lang="ts">
-	export const prerender = true;
-
 	import { svelteIcon, typeScriptIcon } from '$lib/svg/icons';
 	import '../app.scss';
 	import Footer from './footer.svelte';

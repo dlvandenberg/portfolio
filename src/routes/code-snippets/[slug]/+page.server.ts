@@ -13,9 +13,9 @@ export const load = (async ({ fetch, params }) => {
 		if (isCodeSnippetPost(json)) {
 			return { snippet: json };
 		} else {
-			throw error(404, 'Could not find CodeSnippet');
+			error(404, 'Could not find CodeSnippet');
 		}
 	} else {
-		throw error(response.status, 'Something went wrong while fetching CodeSnippet');
+		error(response.status, 'Something went wrong while fetching CodeSnippet');
 	}
 }) satisfies PageServerLoad;

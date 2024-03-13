@@ -69,7 +69,7 @@
 		class="navbar__collapse"
 		data-testid="navbar-menu"
 		class:-visible={menuOpen}
-		transition:slide>
+		transition:slide|global>
 		<ul class="navbar__menu">
 			<li class="navbar__item">
 				<a

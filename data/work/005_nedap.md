@@ -12,9 +12,9 @@ tags:
   - HTML
 ---
 
-With a small team I am responsible for the frontend application. 
+With a small team I am responsible for the frontend application.
 
-I am also responsible for the CI/CD of the frontend, user Docker images and Github Actions to build, test and deploy new functionality each increment.
+I am also responsible for the CI/CD of the frontend, use Docker images and Github Actions to build, test and deploy new functionality each increment.
 
 ### Responsibilities
 

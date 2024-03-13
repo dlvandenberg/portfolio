@@ -30,9 +30,9 @@ async function getData<T>(
 		if (typeGuard(json)) {
 			return json;
 		} else {
-			throw error(404, `Could not find ${name}`);
+			error(404, `Could not find ${name}`);
 		}
 	} else {
-		throw error(response.status, `Something went wrong while fetching ${name}`);
+		error(response.status, `Something went wrong while fetching ${name}`);
 	}
 }

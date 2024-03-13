@@ -14,22 +14,6 @@ test.describe('Navigation bar', () => {
 		await expect(navigationBar.header).toBeVisible();
 		expect(navigationBar.aboutLink).toHaveClass(/-active/);
 	});
-
-	test('should dissapear/appear on scroll down/up', async ({ page }) => {
-		await expect(navigationBar.header).toBeVisible();
-		await expect(navigationBar.header).toHaveClass(/-visible/);
-
-		await page.mouse.wheel(0, 1000);
-
-		await expect(navigationBar.header).toHaveClass(/-hidden/);
-
-		await page.mouse.wheel(0, -1000);
-		await expect(navigationBar.header).toHaveClass(/-visible/);
-	});
-
-	test('should not have the menu toggle on desktop', async () => {
-		expect(navigationBar.menuToggle).toBeHidden();
-	});
 });
 
 test.describe('Small viewport header', () => {

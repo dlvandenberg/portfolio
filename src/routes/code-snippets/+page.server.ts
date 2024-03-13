@@ -14,9 +14,9 @@ export const load = (async ({ fetch }) => {
 			return { snippets: json };
 		} else {
 			console.error('Response is not a CodeSnippets array');
-			throw error(404, 'Could not find CodeSnippets');
+			error(404, 'Could not find CodeSnippets');
 		}
 	} else {
-		throw error(response.status, 'Something went wrong while fetching CodeSnippets.');
+		error(response.status, 'Something went wrong while fetching CodeSnippets.');
 	}
 }) satisfies PageServerLoad;

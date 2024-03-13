@@ -30,14 +30,15 @@
 						class="tabs__item"
 						class:-active={activeTabTitle === title}
 						on:click={() => selectTab(title)}
-						on:keyup={(e) => selectTab(title, e)}>
+						on:keyup={(e) => selectTab(title, e)}
+					>
 						{title}
 					</div>
 				{/each}
 			</div>
 			<div class="tab">
 				{#key activeTab}
-					<div data-testid="tab-content" class="tab__content" transition:slide>
+					<div data-testid="tab-content" class="tab__content" transition:slide|global>
 						<slot {activeTab} />
 					</div>
 				{/key}
