@@ -63,27 +63,31 @@
 			class="navbar__toggle"
 			class:-active={menuOpen}
 			on:click={toggleMenu}
-			on:keyup={(e) => toggleMenu(e)} />
+			on:keyup={(e) => toggleMenu(e)}
+		/>
 	</div>
 	<nav
 		class="navbar__collapse"
 		data-testid="navbar-menu"
 		class:-visible={menuOpen}
-		transition:slide|global>
+		transition:slide|global
+	>
 		<ul class="navbar__menu">
 			<li class="navbar__item">
 				<a
 					data-testid="navbar-link-about"
 					class="navbar__item-link"
 					class:-active={path === '/'}
-					href="/">about</a>
+					href="/">about</a
+				>
 			</li>
 			<li class="navbar__item">
 				<a
-					data-testid="navbar-link-code-snippets"
+					data-testid="navbar-link-blog"
 					class="navbar__item-link"
-					class:-active={path.includes('code-snippets')}
-					href="/code-snippets">code_snippets</a>
+					class:-active={path.includes('blog')}
+					href="/blog">blog</a
+				>
 			</li>
 		</ul>
 	</nav>

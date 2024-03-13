@@ -17,10 +17,10 @@ test.describe('Navigation', () => {
 		expect(page.url()).toBe(`${baseURL}/`);
 	});
 
-	test('should navigate to "code-snippets" via navbar', async ({ page, baseURL }) => {
-		await navigationBar.codeSnippetsLink.click();
+	test('should navigate to "blog" via navbar', async ({ page, baseURL }) => {
+		await navigationBar.blogLink.click();
 
-		await expect(navigationBar.codeSnippetsLink).toHaveClass(/-active/);
-		expect(page.url()).toBe(`${baseURL}/code-snippets`);
+		await expect(navigationBar.blogLink).toHaveClass(/-active/);
+		expect(page.url()).toBe(`${baseURL}/blog`);
 	});
 });
