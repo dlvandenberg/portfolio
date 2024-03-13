@@ -37,7 +37,7 @@
 			</div>
 			<div class="tab">
 				{#key activeTab}
-					<div data-testid="tab-content" class="tab__content" transition:slide>
+					<div data-testid="tab-content" class="tab__content" transition:slide|global>
 						<slot {activeTab} />
 					</div>
 				{/key}
