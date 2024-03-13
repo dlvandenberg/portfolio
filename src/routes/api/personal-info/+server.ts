@@ -8,6 +8,6 @@ export const GET = (async (): Promise<Response> => {
 		.then((info) => json(info))
 		.catch((errorMessage) => {
 			console.error(errorMessage);
-			throw error(500, { message: errorMessage.message });
+			error(500, { message: errorMessage.message });
 		});
 }) satisfies RequestHandler;
