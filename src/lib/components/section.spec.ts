@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/svelte';
-import html from 'svelte-htm';
+import html from 'svelte4-htm';
 import { describe, expect, it } from 'vitest';
 import Section from './section.svelte';
 

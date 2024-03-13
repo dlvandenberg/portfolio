@@ -30,7 +30,8 @@
 						class="tabs__item"
 						class:-active={activeTabTitle === title}
 						on:click={() => selectTab(title)}
-						on:keyup={(e) => selectTab(title, e)}>
+						on:keyup={(e) => selectTab(title, e)}
+					>
 						{title}
 					</div>
 				{/each}
