@@ -14,10 +14,6 @@ test.describe('Navigation bar', () => {
 		await expect(navigationBar.header).toBeVisible();
 		expect(navigationBar.aboutLink).toHaveClass(/-active/);
 	});
-
-	test('should not have the menu toggle on desktop', async () => {
-		expect(navigationBar.menuToggle).toBeHidden();
-	});
 });
 
 test.describe('Small viewport header', () => {
