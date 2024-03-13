@@ -19,10 +19,10 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		prerender: {
-			entries: ['*', '/code-snippets/remove-old-git-remotes'],
+			entries: ['*', '/blog/remove-old-git-remotes'],
 		},
 		alias: {
-			'$apps/code-snippets': './apps/code-snippets/index',
+			'$apps/blog': './apps/blog/index',
 			'$apps/portfolio': './apps/portfolio/index',
 		},
 		typescript: {

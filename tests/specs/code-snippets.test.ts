@@ -1,17 +1,17 @@
-import { CodeSnippetsPage } from '@pages/code-snippets.page';
+import { BlogPage } from '@pages/blog.page';
 import { expect, test } from '@playwright/test';
 
-test.describe('CodeSnippets', () => {
-	let codeSnippetsPage: CodeSnippetsPage;
+test.describe('BlogPage', () => {
+	let blogPage: BlogPage;
 
 	test.beforeEach(async ({ page }) => {
-		codeSnippetsPage = new CodeSnippetsPage(page);
+		blogPage = new BlogPage(page);
 		await page.waitForLoadState('load', { timeout: 30000 });
-		await codeSnippetsPage.goto();
+		await blogPage.goto();
 	});
 
 	test.describe('when API responds with a list', () => {
-		const codeSnippets = [
+		const blogPosts = [
 			{
 				title: 'Vitest',
 				description: 'This is a short description',
@@ -21,15 +21,14 @@ test.describe('CodeSnippets', () => {
 		];
 
 		test.beforeEach(async ({ page }) => {
-			await page.route('http://localhost:4173/api/code-snippets/', async (route) => {
-				console.log('hello from code-snippets');
-				const json = codeSnippets;
+			await page.route('http://localhost:4173/api/blog-posts/', async (route) => {
+				const json = blogPosts;
 				await route.fulfill({ json });
 			});
 		});
 
-		test('should show list of code snippets', async () => {
-			expect(codeSnippetsPage.title).toHaveText('code_snippets()');
+		test('should show list of blog posts', async () => {
+			expect(blogPage.title).toHaveText('blog_posts()');
 			// expect(codeSnippetsPage.itemTitle).toHaveText(['Vitest']);
 		});
 	});

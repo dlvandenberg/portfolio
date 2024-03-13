@@ -8,7 +8,7 @@ export class NavigationBarElement {
 	public readonly header: Locator;
 
 	public readonly aboutLink: Locator;
-	public readonly codeSnippetsLink: Locator;
+	public readonly blogLink: Locator;
 
 	public readonly activeClass = '-active';
 
@@ -20,6 +20,6 @@ export class NavigationBarElement {
 		this.menu = page.getByTestId('navbar-menu');
 
 		this.aboutLink = page.getByTestId('navbar-link-about');
-		this.codeSnippetsLink = page.getByTestId('navbar-link-code-snippets');
+		this.blogLink = page.getByTestId('navbar-link-blog');
 	}
 }
