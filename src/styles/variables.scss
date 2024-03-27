@@ -1,27 +1,28 @@
 /* Variables and mixins declared here will be available in all other SCSS files */
 /* Colors */
-$color-yellow: #F7DA00;
-$color-gold: #A39000;
-$color-blue: #78B0BA;
-$color-teal: #4C8994;
-$color-coffee: #342E37;
-$color-sand-100: #C9C7BA;
-$color-sand-200: #C0BEAF;
-$color-sand-300: #B7B5A4;
-$color-sand-400: #ADAB99;
-$color-sand-500: #938F79;
-$color-white: #FFF;
+$color-yellow: #f7da00;
+$color-gold: #a39000;
+$color-blue: #78b0ba;
+$color-teal: #4c8994;
+$color-coffee: #342e37;
+$color-sand-100: #c9c7ba;
+$color-sand-200: #c0beaf;
+$color-sand-300: #b7b5a4;
+$color-sand-400: #adab99;
+$color-sand-500: #938f79;
+$color-white: #fff;
+$color-grey: #808080;
 
 /* Skill colors */
-$color-angular: #DD1B16;
-$color-css: #2965F1;
-$color-html: #E44D26;
-$color-java: #F89820;
-$color-javascript: #F0DB4F;
-$color-swiftui: #0171E3;
-$color-svelte: #FF3E00;
-$color-sveltekit: #FF3E00;
-$color-typescript: #007ACC;
+$color-angular: #dd1b16;
+$color-css: #2965f1;
+$color-html: #e44d26;
+$color-java: #f89820;
+$color-javascript: #f0db4f;
+$color-swiftui: #0171e3;
+$color-svelte: #ff3e00;
+$color-sveltekit: #ff3e00;
+$color-typescript: #007acc;
 
 /* Fonts */
 $font-family: 'Fira Code', 'Fira Code Fallback', sans-serif;
@@ -39,3 +40,4 @@ $md-breakpoint: 768px;
 $lg-breakpoint: 992px;
 $xl-breakpoint: 1200px;
 $xxl-breakpoint: 1400px;
+
