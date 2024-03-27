@@ -8,7 +8,7 @@ tags:
   - CSS
 websiteUrl: ''
 githubUrl: ''
-featured: true
+featured: false
 ---
 
 To get familiar with Svelte and SvelteKit, I created this portfolio website. I always wanted to create my personal portfolio, but never got around to making one.
