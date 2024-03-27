@@ -8,17 +8,21 @@ export const blogPostDataService = {
 
 async function getAll(): Promise<BlogPostLink[]> {
 	const files = await blogPostRepository.getAll();
-	const blogPostLinks: BlogPostLink[] = files.map(({ metadata: file, filename: name }) => {
-		const { description, title, tags, dateAdded } = file;
-		return {
-			__typename: 'BlogPostLink',
-			description,
-			tags,
-			title,
-			dateAdded,
-			slug: createSlug(name),
-		};
-	});
+	const blogPostLinks: BlogPostLink[] = files
+		.sort((a, b) => b.metadata.dateAdded.getTime() - a.metadata.dateAdded.getTime())
+		.map(({ metadata: file, filename: name }) => {
+			const { description, title, tags, dateAdded } = file;
+			return {
+				__typename: 'BlogPostLink',
+				description,
+				tags,
+				title,
+				dateAdded,
+				slug: createSlug(name),
+			};
+		});
+
+	console.log(blogPostLinks);
 
 	return blogPostLinks;
 }
