@@ -19,7 +19,7 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		prerender: {
-			entries: ['*', '/blog/remove-old-git-remotes'],
+			entries: ['*', '/blog/remove-old-git-remotes', '/blog/testing-in-neovim'],
 		},
 		alias: {
 			'$apps/blog': './apps/blog/index',
