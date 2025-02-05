@@ -2,7 +2,11 @@
 	import { ItemList } from '$lib/components';
 	import type { BlogPostLink } from '../../domain/model';
 
-	export let posts: BlogPostLink[];
+	interface Props {
+		posts: BlogPostLink[];
+	}
+
+	let { posts }: Props = $props();
 </script>
 
 {#if posts.length > 0}

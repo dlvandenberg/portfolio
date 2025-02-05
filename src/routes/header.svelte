@@ -6,11 +6,11 @@
 	import { slide } from 'svelte/transition';
 	const brandUrl = new URL('/brand.svg', import.meta.url).href;
 
-	let mounted = false;
-	let menuOpen = false;
-	let y: number;
+	let mounted = $state(false);
+	let menuOpen = $state(false);
+	let y: number = $state();
 
-	$: path = $page.url.pathname;
+	let path = $derived($page.url.pathname);
 
 	afterNavigate(() => {
 		if (menuOpen) {
@@ -53,7 +53,7 @@
 		<div class="navbar__brand">
 			<a href="/" class="navbar__brand-link">
 				{#if mounted}
-					<div class="navbar__brand-logo" style="background-image: url('{brandUrl}')" />
+					<div class="navbar__brand-logo" style="background-image: url('{brandUrl}')"></div>
 				{/if}
 				<p>vdberg</p>
 			</a>
@@ -62,9 +62,9 @@
 			data-testid="navbar-toggle"
 			class="navbar__toggle"
 			class:-active={menuOpen}
-			on:click={toggleMenu}
-			on:keyup={(e) => toggleMenu(e)}
-		/>
+			onclick={toggleMenu}
+			onkeyup={(e) => toggleMenu(e)}
+		></div>
 	</div>
 	<nav
 		class="navbar__collapse"

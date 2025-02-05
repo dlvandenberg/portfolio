@@ -1,10 +1,12 @@
-<script lang="ts">
+<script lang="ts" generics="Tab extends { [key: string]: any }">
 	import { slide } from 'svelte/transition';
-	type T = $$Generic;
 
-	type KeyValueData = Map<string, T>;
+	interface Props {
+		tabData: Map<string, Tab>;
+		children?: import('svelte').Snippet<[any]>;
+	}
 
-	export let tabData: KeyValueData;
+	let { tabData, children }: Props = $props();
 
 	const selectTab = (title: string, e?: KeyboardEvent) => {
 		if (e && !(e.key === 'Enter' || e.key === 'Space')) {
@@ -14,9 +16,9 @@
 		activeTabTitle = title;
 	};
 
-	$: tabTitles = Array.from(tabData.keys());
-	$: activeTabTitle = tabTitles[0];
-	$: activeTab = tabData.get(activeTabTitle)!;
+	let tabTitles = $derived(Array.from(tabData.keys()));
+	let activeTabTitle = $derived(tabTitles[0]);
+	let activeTab = $derived(tabData.get(activeTabTitle)!);
 </script>
 
 {#if tabData && tabData.size > 0}
@@ -29,8 +31,8 @@
 						data-testid="tabs-item"
 						class="tabs__item"
 						class:-active={activeTabTitle === title}
-						on:click={() => selectTab(title)}
-						on:keyup={(e) => selectTab(title, e)}
+						onclick={() => selectTab(title)}
+						onkeyup={(e) => selectTab(title, e)}
 					>
 						{title}
 					</div>
@@ -39,7 +41,7 @@
 			<div class="tab">
 				{#key activeTab}
 					<div data-testid="tab-content" class="tab__content" transition:slide|global>
-						<slot {activeTab} />
+						{@render children?.({ activeTab })}
 					</div>
 				{/key}
 			</div>

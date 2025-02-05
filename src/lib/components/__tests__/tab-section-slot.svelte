@@ -1,11 +1,19 @@
 <script lang="ts">
-	export let component: any;
-	export let data: any;
+	interface Props {
+		component: any;
+		data: any;
+	}
+
+	let { component, data }: Props = $props();
+
+	const SvelteComponent = $derived(component);
 </script>
 
-<svelte:component this={component} tabData={data}>
-	<svelte:fragment let:activeTab>
-		<h1>{activeTab.title}</h1>
-		<p>{activeTab.description}</p>
-	</svelte:fragment>
-</svelte:component>
+<SvelteComponent tabData={data}>
+	{#snippet children({ activeTab })}
+	
+			<h1>{activeTab.title}</h1>
+			<p>{activeTab.description}</p>
+		
+	{/snippet}
+</SvelteComponent>

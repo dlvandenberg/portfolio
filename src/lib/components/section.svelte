@@ -1,13 +1,27 @@
 <script lang="ts">
-	export let title: string;
-	export let subtitle = '';
+  interface Props {
+    title: string;
+    subtitle: string;
+    headerActions?: any;
+    outlineCol?: any;
+    col?: any;
+  }
+
+  let {
+    title,
+    subtitle = '',
+    headerActions,
+    outlineCol,
+    col
+  }: Props = $props();
+
 </script>
 
 <section class="section g-container">
 	<div class="section__header">
-		{#if $$slots['header-actions']}
+		{#if headerActions}
 			<div class="section__actions">
-				<slot name="header-actions" />
+        {@render headerActions()}
 			</div>
 		{/if}
 		<div class="section__titles">
@@ -18,14 +32,14 @@
 		</div>
 	</div>
 	<div class="section__content">
-		{#if $$slots['outline-col']}
+		{#if outlineCol}
 			<div data-testid="section-column-outline" class="section__column -outline">
-				<slot name="outline-col" />
+        {@render outlineCol()}
 			</div>
 		{/if}
-		{#if $$slots.col}
+		{#if col}
 			<div data-testid="section-column" class="section__column">
-				<slot name="col" />
+        {@render col()}
 			</div>
 		{/if}
 	</div>

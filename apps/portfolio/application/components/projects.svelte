@@ -5,9 +5,13 @@
 	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
 	import type { Project } from '../../domain/model';
 
-	export let projects: Project[] | undefined;
-	export let title: string;
-	export let featured = false;
+	interface Props {
+		projects: Project[] | undefined;
+		title: string;
+		featured?: boolean;
+	}
+
+	let { projects, title, featured = false }: Props = $props();
 </script>
 
 {#if projects && projects.length > 0}

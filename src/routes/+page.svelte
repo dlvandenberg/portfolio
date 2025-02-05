@@ -5,7 +5,11 @@
 	import type { SkillIcon } from '$lib/model/skill-icon';
 	import type { PageData } from './$types';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 
 	const skills: SkillIcon[] = [
 		{ name: 'Angular', icon: 'angular' },
@@ -22,8 +26,8 @@
 		{ name: 'SwiftUI', icon: 'swift' },
 	];
 
-	$: featuredProjects = data.projects?.filter((project) => project.featured) ?? [];
-	$: regularProjects = data.projects?.filter((project) => !project.featured) ?? [];
+	let featuredProjects = $derived(data.projects?.filter((project) => project.featured) ?? []);
+	let regularProjects = $derived(data.projects?.filter((project) => !project.featured) ?? []);
 </script>
 
 <svelte:head>
@@ -42,11 +46,15 @@
 {/if}
 
 <Section title="skills" subtitle="(Hover to see the color)">
-	<Skills {skills} slot="outline-col" />
+	{#snippet outlineCol()}
+		<Skills {skills} />
+	{/snippet}
 </Section>
 
 <Section title="skills --learning" subtitle="(Hover to see the color)">
-	<Skills skills={learning} slot="outline-col" />
+	{#snippet outlineCol()}
+		<Skills skills={learning} />
+	{/snippet}
 </Section>
 
 <Contact email={data.personalInfo.email} />

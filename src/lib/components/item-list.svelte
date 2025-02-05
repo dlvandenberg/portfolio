@@ -2,14 +2,18 @@
 	import { page } from '$app/stores';
 	import { formatDate } from '$lib/date';
 
-	export let title: string;
-	export let subtitle: string = '';
-	export let items: {
+	interface Props {
+		title: string;
+		subtitle?: string;
+		items: {
 		title: string;
 		dateAdded: Date;
 		description: string;
 		slug: string;
 	}[];
+	}
+
+	let { title, subtitle = '', items }: Props = $props();
 </script>
 
 {#if items && items.length > 0}

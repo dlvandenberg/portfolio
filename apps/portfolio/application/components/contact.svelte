@@ -1,11 +1,15 @@
 <script lang="ts">
 	import Section from '$lib/components/section.svelte';
 
-	export let email: string;
+	interface Props {
+		email: string;
+	}
+
+	let { email }: Props = $props();
 </script>
 
 <Section title="contact">
-	<svelte:fragment slot="outline-col">
+	{#snippet outlineCol()}
 		<p data-testid="contact-info" class="info">
 			I am not looking for any jobs at the moment, but if you wish to contact me with a question or
 			to say hi, feel free to send me an email!
@@ -15,7 +19,7 @@
 				<a data-testid="email-button" class="button__email" href="mailto:{email}">contact me</a>
 			</div>
 		{/if}
-	</svelte:fragment>
+	{/snippet}
 </Section>
 
 <style lang="scss">
