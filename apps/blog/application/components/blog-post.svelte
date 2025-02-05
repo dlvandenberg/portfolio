@@ -3,24 +3,30 @@
 	import type { BlogPost } from '../../domain/model';
 	import { formatDate } from '$lib/date';
 
-	export let post: BlogPost;
+	interface Props {
+		post: BlogPost;
+	}
+
+	let { post }: Props = $props();
 </script>
 
 <div class="wrapper -animate-fade-in">
 	<Section title={post.title} subtitle={formatDate(post.dateAdded)}>
-		<svelte:fragment slot="header-actions">
+		{#snippet headerActions()}
 			<a href="/blog" class="back-link"><div class="back-link__button">&lt;_</div></a>
-		</svelte:fragment>
-		<div class="md-wrapper" slot="outline-col">
-			<Markdown source={post.content} />
-		</div>
+		{/snippet}
+		{#snippet outlineCol()}
+			<div class="md-wrapper">
+				<Markdown source={post.content} />
+			</div>
+		{/snippet}
 	</Section>
 
 	{#if post.tags && post.tags.length >= 1}
 		<Section title="tagged">
-			<svelte:fragment slot="outline-col">
+			{#snippet outlineCol()}
 				<Skills skills={post.tags} />
-			</svelte:fragment>
+			{/snippet}
 		</Section>
 	{/if}
 </div>

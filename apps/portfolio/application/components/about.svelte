@@ -3,17 +3,22 @@
 	import { formatDate } from '$lib/date';
 	import type { PersonalInfo } from '../../domain/model';
 
-	export let personalInfo: PersonalInfo;
+	interface Props {
+		personalInfo: PersonalInfo;
+	}
 
-	$: formattedDate = personalInfo ? formatDate(personalInfo.dateOfBirth) : '';
+	let { personalInfo }: Props = $props();
+
+	let formattedDate = $derived(personalInfo ? formatDate(personalInfo.dateOfBirth) : '');
 </script>
 
 {#if personalInfo}
 	<div data-testid="personal-info" class="wrapper">
 		<Section title="whoami">
-			<div slot="outline-col">
-				<!-- prettier-ignore -->
-				<pre class="json">
+			{#snippet outlineCol()}
+				<div>
+					<!-- prettier-ignore -->
+					<pre class="json">
 &#123;
   "firstName": <span class="json__value">"{personalInfo.firstName}"</span>,
   "lastName": <span class="json__value">"{personalInfo.lastName}"</span>,
@@ -25,10 +30,13 @@
   "kids": <span class="json__value">{personalInfo.kids}</span>,
 &#125;
 			</pre>
-			</div>
-			<div slot="col" class="md-wrapper">
-				<Markdown source={personalInfo.content} />
-			</div>
+				</div>
+			{/snippet}
+			{#snippet col()}
+				<div class="md-wrapper">
+					<Markdown source={personalInfo.content} />
+				</div>
+			{/snippet}
 		</Section>
 	</div>
 {/if}

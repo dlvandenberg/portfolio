@@ -3,7 +3,7 @@
 
 	const portraitUrl = new URL('/portrait.svg', import.meta.url).href;
 
-	let mounted = false;
+	let mounted = $state(false);
 
 	onMount(() => {
 		mounted = true;
@@ -12,7 +12,7 @@
 
 <div class="hero">
 	{#if mounted}
-		<div class="hero__avatar -animate" style="background-image: url('{portraitUrl}')" />
+		<div class="hero__avatar -animate" style="background-image: url('{portraitUrl}')"></div>
 	{/if}
 	<div class="hero__titles">
 		<h1 class="hero__title -animate">Dennis van den Berg</h1>

@@ -1,8 +1,13 @@
 <script lang="ts">
-	export let activeClass = '-active';
-	export let isActive = false;
+	interface Props {
+		activeClass?: string;
+		isActive?: boolean;
+		children?: import('svelte').Snippet;
+	}
 
-	let y: number;
+	let { activeClass = '-active', isActive = false, children }: Props = $props();
+
+	let y: number = $state();
 	let lastY = 0;
 	let offset = 40;
 
@@ -25,11 +30,11 @@
 	const isCurrentYWithinOffset = (y: number): boolean => y < offset;
 	const isScrollingUp = (dy: number): boolean => dy > 0;
 
-	$: headerClass = updateClass(y);
+	let headerClass = $derived(updateClass(y));
 </script>
 
 <header data-testid="header" class={`header ${headerClass} ${isActive ? activeClass : ''}`}>
-	<slot />
+	{@render children?.()}
 </header>
 
 <svelte:window bind:scrollY={y} />

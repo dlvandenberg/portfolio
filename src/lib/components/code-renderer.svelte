@@ -2,8 +2,13 @@
 	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
 	import { default as Highlight, HighlightSvelte } from 'svelte-highlight';
 	import { bash, javascript, json, typescript, lua } from 'svelte-highlight/languages';
-	export let lang: string;
-	export let text: string;
+
+	interface Props {
+		lang: string;
+		text: string;
+	}
+
+	let { lang, text }: Props = $props();
 
 	type LanguageType = {
 		label: string;
@@ -47,13 +52,13 @@
 		console.log('Copied to clipboard!', text);
 	};
 
-	$: language = getLanguageFromString(lang);
+	let language = $derived(getLanguageFromString(lang));
 </script>
 
 <div class="code-block">
 	<div class="code-block__header">
 		<div class="code-block__label">{language.label}</div>
-		<div class="code-block__action" on:click={copyCode} on:keyup={copyCode}>
+		<div class="code-block__action" onclick={copyCode} onkeyup={copyCode}>
 			<FontAwesomeIcon icon={['far', 'clone']} />
 		</div>
 	</div>

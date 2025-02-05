@@ -16,6 +16,11 @@
 		type IconDefinition,
 	} from '@fortawesome/free-brands-svg-icons';
 	import { faClone } from '@fortawesome/free-regular-svg-icons';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 
 	library.add(faAngular, faHtml5, faCss3Alt, faJava, faJsSquare, faSwift);
 	library.add(faClone as IconDefinition);
@@ -29,7 +34,7 @@
 <Header />
 
 <div id="content">
-	<slot />
+	{@render children?.()}
 </div>
 
 <Footer />

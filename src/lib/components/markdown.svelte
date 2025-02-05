@@ -1,8 +1,12 @@
 <script lang="ts">
-	import SvelteMarkdown from 'svelte-markdown';
+	import SvelteMarkdown from '@humanspeak/svelte-markdown';
 	import CodeRenderer from './code-renderer.svelte';
 
-	export let source: string | undefined;
+	interface Props {
+		source: string | undefined;
+	}
+
+	let { source }: Props = $props();
 </script>
 
 <SvelteMarkdown {source} renderers={{ code: CodeRenderer }} />

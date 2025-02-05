@@ -4,7 +4,11 @@
 	import type { IconName, IconPrefix } from '@fortawesome/free-brands-svg-icons';
 	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
 
-	export let skills: string[] | SkillIcon[] | undefined;
+	interface Props {
+		skills: string[] | SkillIcon[] | undefined;
+	}
+
+	let { skills }: Props = $props();
 	const skillName = (skill: string | SkillIcon) => (isSkillIcon(skill) ? skill.name : skill);
 
 	const getIconDefinition = (skill: SkillIcon): [IconPrefix, IconName] => {
