@@ -23,14 +23,14 @@
 		"@fortawesome/free-regular-svg-icons": "^6.3.0",
 		"@fortawesome/free-solid-svg-icons": "^6.2.1",
 		"@fortawesome/svelte-fontawesome": "^0.2.0",
+		"@humanspeak/svelte-markdown": "^0.7.16",
 		"@playwright/test": "^1.28.1",
-		"@sveltejs/adapter-auto": "^3.0.0",
-		"@sveltejs/adapter-vercel": "^5.6.1",
+		"@sveltejs/adapter-vercel": "^5.8.0",
 		"@sveltejs/kit": "^2.5.27",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
 		"@testing-library/dom": "^8.20.0",
 		"@testing-library/jest-dom": "^5.16.5",
-		"@testing-library/svelte": "^4.1.0",
+		"@testing-library/svelte": "^5.2.8",
 		"@testing-library/user-event": "^14.4.3",
 		"@types/svg-parser": "^2.0.3",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
@@ -47,9 +47,7 @@
 		"svelte": "^5.0.0",
 		"svelte-check": "^4.0.0",
 		"svelte-highlight": "^7.1.2",
-		"@humanspeak/svelte-markdown": "^0.7.16",
 		"svelte-preprocess": "^6.0.0",
-		"svelte4-htm": "^1.0.0",
 		"svg-parser": "^2.0.4",
 		"tslib": "^2.4.1",
 		"typescript": "^5.5.0",
@@ -57,5 +55,6 @@
 		"vitest": "^1.0.0"
 	},
 	"type": "module",
-	"dependencies": {}
+	"dependencies": {},
+	"packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

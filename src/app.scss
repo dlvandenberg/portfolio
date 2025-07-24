@@ -1,49 +1,51 @@
-@import '/src/styles/markdown';
-@import '/src/styles/highlight';
-@import '/src/styles/animations';
+@use '/src/styles/markdown';
+@use '/src/styles/highlight';
+@use '/src/styles/animations';
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
-  background-color: $color-coffee;
-  min-height: 100vh;
-  font-family: $font-family;
-  color: $color-white;
-  font-size: $font-size;
+	background-color: $color-coffee;
+	min-height: 100vh;
+	font-family: $font-family;
+	color: $color-white;
+	font-size: $font-size;
 }
 
 /* Defaults */
 a {
-  text-decoration: none;
-  color: $color-blue;
-  transition: .2s;
+	text-decoration: none;
+	color: $color-blue;
+	transition: 0.2s;
 
-  &:hover {
-    color: $color-yellow;
-  }
+	&:hover {
+		color: $color-yellow;
+	}
 
-  &:active {
-    color: $color-gold;
-  }
+	&:active {
+		color: $color-gold;
+	}
 }
 
-ul,ol {
-  list-style: none;
+ul,
+ol {
+	list-style: none;
 }
 
 .wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 @media (min-width: $md-breakpoint) {
-  .g-container {
-    max-width: $md-breakpoint;
-  }
+	.g-container {
+		max-width: $md-breakpoint;
+	}
 }
+

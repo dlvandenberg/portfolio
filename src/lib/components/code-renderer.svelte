@@ -58,6 +58,8 @@
 <div class="code-block">
 	<div class="code-block__header">
 		<div class="code-block__label">{language.label}</div>
+		<!-- eslint-disable-next-line svelte/valid-compile -->
+		<!-- svelte-ignore a11y_no_static_element_interactions -->
 		<div class="code-block__action" onclick={copyCode} onkeyup={copyCode}>
 			<FontAwesomeIcon icon={['far', 'clone']} />
 		</div>
@@ -72,6 +74,9 @@
 </div>
 
 <style lang="scss">
+	@use 'sass:color';
+	@use 'src/styles/variables.scss' as *;
+
 	.code-block {
 		display: flex;
 		flex-direction: column;
@@ -82,7 +87,7 @@
 			justify-content: flex-end;
 			z-index: 1;
 			width: 100%;
-			background-color: lighten($color-coffee, 5%);
+			background-color: color.adjust($color-coffee, $lightness: 5%);
 			border-bottom: 1px solid $color-sand-100;
 			align-items: center;
 		}
@@ -104,7 +109,7 @@
 
 			&:hover {
 				color: $color-yellow;
-				background-color: lighten($color-coffee, 2%);
+				background-color: color.adjust($color-coffee, $lightness: 2%);
 			}
 		}
 
