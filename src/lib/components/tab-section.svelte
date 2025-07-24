@@ -1,9 +1,10 @@
 <script lang="ts" generics="Tab extends { [key: string]: any }">
 	import { slide } from 'svelte/transition';
+	import type { Snippet } from 'svelte';
 
 	interface Props {
 		tabData: Map<string, Tab>;
-		children?: import('svelte').Snippet<[any]>;
+		children?: Snippet<[any]>;
 	}
 
 	let { tabData, children }: Props = $props();
@@ -18,7 +19,7 @@
 
 	let tabTitles = $derived(Array.from(tabData.keys()));
 	let activeTabTitle = $derived(tabTitles[0]);
-	let activeTab = $derived(tabData.get(activeTabTitle)!);
+	let activeTab = $derived(tabData.get(activeTabTitle));
 </script>
 
 {#if tabData && tabData.size > 0}
@@ -27,6 +28,8 @@
 		<div class="tabs__wrapper">
 			<div class="tabs__list">
 				{#each tabTitles as title}
+					<!--  eslint-disable-next-line svelte/valid-compile -->
+					<!-- svelte-ignore a11y_no_static_element_interactions -->
 					<div
 						data-testid="tabs-item"
 						class="tabs__item"
