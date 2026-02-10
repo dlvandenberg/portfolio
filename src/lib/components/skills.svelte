@@ -19,7 +19,7 @@
 
 {#if skills && skills.length > 0}
 	<div data-testid="skill-list" class="skill-list">
-		{#each skills as skill}
+		{#each skills as skill (skill)}
 			<div data-testid="skill-item" class="skill-list__item -{skillName(skill).toLowerCase()}">
 				{#if isSkillIcon(skill)}
 					<FontAwesomeIcon icon={getIconDefinition(skill)} size="2x" />
@@ -89,6 +89,10 @@
 
 				&.-typescript {
 					background-color: $color-typescript;
+				}
+
+				&.-go {
+					background-color: $color-go;
 				}
 			}
 		}

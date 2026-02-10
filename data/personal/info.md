@@ -4,7 +4,7 @@ lastName: van den Berg
 dateOfBirth: 1989-10-14
 gender: Male
 nationality: Dutch
-email: dennis@vdberg.dev
+email: contact@vdberg.dev
 married: true
 kids: 2
 ---

@@ -6,7 +6,7 @@ tags:
   - HTML
   - CSS
 featured: false
-websiteUrl: https://pwr.devd.be
+websiteUrl: https://pwr.vdberg.dev
 githubUrl:
 ---
 

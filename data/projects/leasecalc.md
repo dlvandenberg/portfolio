@@ -6,7 +6,7 @@ tags:
   - RxJs
   - HTML
   - CSS
-websiteUrl: 'https://lease.devd.be'
+websiteUrl: 'https://lease.vdberg.dev'
 githubUrl: ''
 featured: false
 ---

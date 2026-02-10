@@ -1,19 +1,10 @@
 <script lang="ts">
-	import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+	import { faGithub } from '@fortawesome/free-brands-svg-icons';
 	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
 </script>
 
 <footer class="footer">
 	<div class="footer__socials">
-		<div class="footer__item">
-			<a
-				data-testid="footer-linkedin-link"
-				class="footer__item__link"
-				href="https://www.linkedin.com/in/dlvandenberg/"
-			>
-				<FontAwesomeIcon icon={faLinkedin} />
-			</a>
-		</div>
 		<div class="footer__item">
 			<a
 				data-testid="footer-github-link"

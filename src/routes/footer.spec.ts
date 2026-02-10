@@ -5,18 +5,15 @@ import Footer from './footer.svelte';
 describe('Footer.svelte', () => {
 	const testIds = {
 		githubLink: 'footer-github-link',
-		linkedInLink: 'footer-linkedin-link',
 	};
 
 	const links = {
-		linkedin: 'https://www.linkedin.com/in/dlvandenberg/',
 		github: 'https://github.com/dlvandenberg',
 	};
 
 	it('should render social links', () => {
 		render(Footer);
 
-		expect(screen.queryByTestId(testIds.linkedInLink)).toHaveAttribute('href', links.linkedin);
 		expect(screen.queryByTestId(testIds.githubLink)).toHaveAttribute('href', links.github);
 	});
 

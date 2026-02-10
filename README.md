@@ -25,13 +25,13 @@ If you wish to run this site yourself, follow these steps:
 1. Install dependencies
 
 ```bash
-yarn install
+pnpm install
 ```
 
 2. Start the development server
 
 ```bash
-yarn run dev
+pnpm run dev
 ```
 
 ## 🧪 Unit and E2E tests
@@ -39,13 +39,13 @@ yarn run dev
 1. Run unit tests using Vitest
 
 ```bash
-yarn run test:unit
+pnpm run test:unit
 ```
 
 2. Run E2E tests using Playwright
 
 ```bash
-yarn run test
+pnpm run test
 ```
 
 ## 🚀 Build and run for production
@@ -53,11 +53,11 @@ yarn run test
 1. Generate the production build
 
 ```bash
-yarn run build
+pnpm run build
 ```
 
 2. Preview the site
 
 ```bash
-yarn run preview
+pnpm run preview
 ```

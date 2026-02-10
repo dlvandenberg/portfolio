@@ -23,4 +23,4 @@ I am also responsible for the CI/CD of the frontend, use Docker images and Githu
 
 ### Technologies/tools
 
-Angular, NgRx, RxJs, Jest, Cypress, Docker, Docker compose, Github Actions, GitLab, Kubernetes, Nomad, Atlassian Stack, Visual Studio Code
+Angular, NestJs, GraphQL, RxJs, Jest, Playwright, Docker (compose), Github Actions, Jira, Neovim

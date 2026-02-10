@@ -13,16 +13,18 @@
 		faJava,
 		faJsSquare,
 		faSwift,
+		faGolang,
 		type IconDefinition,
 	} from '@fortawesome/free-brands-svg-icons';
 	import { faClone } from '@fortawesome/free-regular-svg-icons';
+	import { faCode } from '@fortawesome/free-solid-svg-icons';
 	interface Props {
 		children?: import('svelte').Snippet;
 	}
 
 	let { children }: Props = $props();
 
-	library.add(faAngular, faHtml5, faCss3Alt, faJava, faJsSquare, faSwift);
+	library.add(faAngular, faHtml5, faCss3Alt, faJava, faJsSquare, faSwift, faGolang, faCode);
 	library.add(faClone as IconDefinition);
 
 	const vdbSvelte = svgToFaIconDefinition(svelteIcon, 'vdb', 'svelte', 'e001');

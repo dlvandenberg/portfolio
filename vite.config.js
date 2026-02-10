@@ -24,15 +24,6 @@ const config = {
 			reporter: ['text', 'json', 'html'],
 		},
 	},
-
-	// css: {
-	// 	preprocessorOptions: {
-	// 		scss: {
-	// 			additionalData:
-	// 				'@use "src/styles/variables.scss" as *; @use "src/styles/font.scss" as *; @use "src/styles/mixins.scss" as *;',
-	// 		},
-	// 	},
-	// },
 };
 
 export default config;

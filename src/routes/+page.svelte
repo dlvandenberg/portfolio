@@ -18,12 +18,14 @@
 		{ name: 'HTML', icon: 'html5' },
 		{ name: 'CSS', icon: 'css3-alt' },
 		{ name: 'Java', icon: 'java' },
-	];
-
-	const learning: SkillIcon[] = [
 		{ name: 'Svelte', icon: 'svelte', prefix: 'vdb' },
 		{ name: 'SvelteKit', icon: 'svelte', prefix: 'vdb' },
 		{ name: 'SwiftUI', icon: 'swift' },
+	];
+
+	const learning: SkillIcon[] = [
+		{ name: 'Go', icon: 'golang' },
+		{ name: 'HTMX', icon: 'code', prefix: 'fas' },
 	];
 
 	let featuredProjects = $derived(data.projects?.filter((project) => project.featured) ?? []);
