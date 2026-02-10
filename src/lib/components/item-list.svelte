@@ -6,11 +6,11 @@
 		title: string;
 		subtitle?: string;
 		items: {
-		title: string;
-		dateAdded: Date;
-		description: string;
-		slug: string;
-	}[];
+			title: string;
+			dateAdded: Date;
+			description: string;
+			slug: string;
+		}[];
 	}
 
 	let { title, subtitle = '', items }: Props = $props();
@@ -31,7 +31,8 @@
 					</div>
 					<div class="item__description" data-testid="item-description">{item.description}</div>
 					<a href={$page.url + '/' + item.slug} class="item__more" data-testid="read-more-link"
-						>read more</a>
+						>read more</a
+					>
 				</div>
 			{/each}
 		</div>
@@ -39,6 +40,9 @@
 {/if}
 
 <style lang="scss">
+	@use '$styles/mixins' as *;
+	@use '$styles/variables' as *;
+
 	$item-gap: 1rem;
 
 	.items {

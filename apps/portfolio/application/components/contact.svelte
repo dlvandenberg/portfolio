@@ -23,6 +23,7 @@
 </Section>
 
 <style lang="scss">
+	@use '$styles/variables' as *;
 	.button {
 		margin-top: 2rem;
 		width: 100%;

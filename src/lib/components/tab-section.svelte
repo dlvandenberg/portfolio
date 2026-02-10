@@ -27,7 +27,7 @@
 		<h1 class="tabs__title">exp --work</h1>
 		<div class="tabs__wrapper">
 			<div class="tabs__list">
-				{#each tabTitles as title}
+				{#each tabTitles as title (title)}
 					<!--  eslint-disable-next-line svelte/valid-compile -->
 					<!-- svelte-ignore a11y_no_static_element_interactions -->
 					<div
@@ -53,6 +53,9 @@
 {/if}
 
 <style lang="scss">
+	@use '$styles/mixins' as *;
+	@use '$styles/variables' as *;
+
 	.tabs {
 		display: flex;
 		flex-direction: column;

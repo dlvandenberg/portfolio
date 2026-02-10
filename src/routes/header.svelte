@@ -95,6 +95,7 @@
 <svelte:window bind:scrollY={y} />
 
 <style lang="scss">
+	@use '$styles/variables' as *;
 	.navbar {
 		position: relative;
 		top: 0;

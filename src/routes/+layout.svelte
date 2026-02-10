@@ -40,6 +40,8 @@
 <Footer />
 
 <style lang="scss">
+	@use '$styles/variables' as *;
+
 	#content {
 		background-image: radial-gradient(rgb(163, 144, 0, 0.2) 1px, #342e37 1px);
 		background-position: 0 0;

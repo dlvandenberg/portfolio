@@ -1,27 +1,20 @@
 <script lang="ts">
-  interface Props {
-    title: string;
-    subtitle: string;
-    headerActions?: any;
-    outlineCol?: any;
-    col?: any;
-  }
+	interface Props {
+		title: string;
+		subtitle?: string;
+		headerActions?: any;
+		outlineCol?: any;
+		col?: any;
+	}
 
-  let {
-    title,
-    subtitle = '',
-    headerActions,
-    outlineCol,
-    col
-  }: Props = $props();
-
+	let { title, subtitle = '', headerActions, outlineCol, col }: Props = $props();
 </script>
 
 <section class="section g-container">
 	<div class="section__header">
 		{#if headerActions}
 			<div class="section__actions">
-        {@render headerActions()}
+				{@render headerActions()}
 			</div>
 		{/if}
 		<div class="section__titles">
@@ -34,18 +27,21 @@
 	<div class="section__content">
 		{#if outlineCol}
 			<div data-testid="section-column-outline" class="section__column -outline">
-        {@render outlineCol()}
+				{@render outlineCol()}
 			</div>
 		{/if}
 		{#if col}
 			<div data-testid="section-column" class="section__column">
-        {@render col()}
+				{@render col()}
 			</div>
 		{/if}
 	</div>
 </section>
 
 <style lang="scss">
+	@use '$styles/mixins' as *;
+	@use '$styles/variables' as *;
+
 	.section {
 		display: flex;
 		flex-direction: column;

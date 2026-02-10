@@ -22,7 +22,7 @@
 		{#each skills as skill}
 			<div data-testid="skill-item" class="skill-list__item -{skillName(skill).toLowerCase()}">
 				{#if isSkillIcon(skill)}
-					<FontAwesomeIcon icon={getIconDefinition(skill)} size={'2x'} />
+					<FontAwesomeIcon icon={getIconDefinition(skill)} size="2x" />
 				{/if}
 				{skillName(skill)}
 			</div>
@@ -31,6 +31,7 @@
 {/if}
 
 <style lang="scss">
+	@use '$styles/variables' as *;
 	.skill-list {
 		display: flex;
 		flex-direction: row;

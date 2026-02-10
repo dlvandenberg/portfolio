@@ -32,6 +32,7 @@
 </div>
 
 <style lang="scss">
+	@use '$styles/variables' as *;
 	.back-link {
 		&__button {
 			font-size: 1.1rem;

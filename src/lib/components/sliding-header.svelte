@@ -40,6 +40,8 @@
 <svelte:window bind:scrollY={y} />
 
 <style lang="scss">
+	@use '$styles/variables' as *;
+
 	.header {
 		position: fixed;
 		top: 0;

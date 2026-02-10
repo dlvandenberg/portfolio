@@ -42,6 +42,8 @@
 {/if}
 
 <style lang="scss">
+	@use '$styles/variables' as *;
+
 	.json {
 		font-size: smaller;
 		font-weight: 300;

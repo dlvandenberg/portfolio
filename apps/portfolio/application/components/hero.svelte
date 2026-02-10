@@ -21,6 +21,7 @@
 </div>
 
 <style lang="scss">
+	@use '$styles/variables' as *;
 	.hero {
 		display: flex;
 		flex-direction: column;

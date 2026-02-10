@@ -9,6 +9,8 @@
 </div>
 
 <style lang="scss">
+	@use '$styles/mixins' as *;
+
 	.error {
 		display: flex;
 		flex-direction: column;

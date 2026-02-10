@@ -9,39 +9,41 @@
 
 	let { workExperience }: Props = $props();
 
-	let experienceMap = $derived(new Map(workExperience ? workExperience.map((exp) => [exp.name, exp]) : []));
+	let experienceMap = $derived(
+		new Map(workExperience ? workExperience.map((exp) => [exp.name, exp]) : []),
+	);
 </script>
 
 {#if experienceMap && experienceMap.size > 0}
 	<TabSection tabData={experienceMap}>
-    {#snippet children({ activeTab })}
-      <div data-testid="job" class="job">
-        <div class="job__data">
-          <h1 data-testid="job-title" class="job__title">{activeTab.jobTitle}</h1>
-          <h3 data-testid="job-company" class="job__company">@ {activeTab.company}</h3>
-        </div>
-        <p data-testid="job-period" class="job__period">
-          {formatDate(activeTab.dateFrom)} - {formatDate(activeTab.dateTo) ?? 'Present'}
-        </p>
-      </div>
-      <div class="job__description">
-        <h3 class="job__subtitle">_ description</h3>
-        <div data-testid="job-description" class="md-wrapper">
-          <Markdown source={activeTab.content} />
-        </div>
-      </div>
-      {#if activeTab.tags && activeTab.tags.length >= 1}
-        <div class="job__tags">
-          <h3 class="job__subtitle">_ tags</h3>
-          <Skills skills={activeTab.tags} />
-        </div>
-      {/if}
-
-    {/snippet}
-  </TabSection>
+		{#snippet children({ activeTab })}
+			<div data-testid="job" class="job">
+				<div class="job__data">
+					<h1 data-testid="job-title" class="job__title">{activeTab.jobTitle}</h1>
+					<h3 data-testid="job-company" class="job__company">@ {activeTab.company}</h3>
+				</div>
+				<p data-testid="job-period" class="job__period">
+					{formatDate(activeTab.dateFrom)} - {formatDate(activeTab.dateTo) ?? 'Present'}
+				</p>
+			</div>
+			<div class="job__description">
+				<h3 class="job__subtitle">_ description</h3>
+				<div data-testid="job-description" class="md-wrapper">
+					<Markdown source={activeTab.content} />
+				</div>
+			</div>
+			{#if activeTab.tags && activeTab.tags.length >= 1}
+				<div class="job__tags">
+					<h3 class="job__subtitle">_ tags</h3>
+					<Skills skills={activeTab.tags} />
+				</div>
+			{/if}
+		{/snippet}
+	</TabSection>
 {/if}
 
 <style lang="scss">
+	@use '$styles/variables' as *;
 	.job {
 		display: flex;
 		flex-direction: column;

@@ -25,14 +25,14 @@ const config = {
 		},
 	},
 
-	css: {
-		preprocessorOptions: {
-			scss: {
-				additionalData:
-					'@use "src/styles/variables.scss" as *; @use "src/styles/font.scss" as *; @use "src/styles/mixins.scss" as *;',
-			},
-		},
-	},
+	// css: {
+	// 	preprocessorOptions: {
+	// 		scss: {
+	// 			additionalData:
+	// 				'@use "src/styles/variables.scss" as *; @use "src/styles/font.scss" as *; @use "src/styles/mixins.scss" as *;',
+	// 		},
+	// 	},
+	// },
 };
 
 export default config;

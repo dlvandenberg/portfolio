@@ -75,7 +75,7 @@
 
 <style lang="scss">
 	@use 'sass:color';
-	@use 'src/styles/variables.scss' as *;
+	@use '$styles/variables' as *;
 
 	.code-block {
 		display: flex;

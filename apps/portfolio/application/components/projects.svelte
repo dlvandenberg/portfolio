@@ -18,7 +18,7 @@
 	<div data-testid="projects" class="projects g-container">
 		<h1 data-testid="projects-title" class="projects__title">{title}</h1>
 		<div class="projects__list">
-			{#each projects as project}
+			{#each projects as project (project.title)}
 				<div data-testid="project" class="project" class:-featured={featured}>
 					<h2 data-testid="project-title" class="project__title">_ {project.title}</h2>
 					{#if project.githubUrl || project.websiteUrl}
@@ -32,7 +32,8 @@
 								<a
 									data-testid="project-website-url"
 									href={project.websiteUrl}
-									class="project__link">
+									class="project__link"
+								>
 									<FontAwesomeIcon icon={faArrowUpRightFromSquare} />
 								</a>
 							{/if}
@@ -54,6 +55,8 @@
 {/if}
 
 <style lang="scss">
+	@use '$styles/mixins' as *;
+	@use '$styles/variables' as *;
 	$project-gap: 1rem;
 	.projects {
 		display: flex;

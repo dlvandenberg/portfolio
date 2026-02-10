@@ -9,7 +9,8 @@
 			<a
 				data-testid="footer-linkedin-link"
 				class="footer__item__link"
-				href="https://www.linkedin.com/in/dlvandenberg/">
+				href="https://www.linkedin.com/in/dlvandenberg/"
+			>
 				<FontAwesomeIcon icon={faLinkedin} />
 			</a>
 		</div>
@@ -17,7 +18,8 @@
 			<a
 				data-testid="footer-github-link"
 				class="footer__item__link"
-				href="https://github.com/dlvandenberg">
+				href="https://github.com/dlvandenberg"
+			>
 				<FontAwesomeIcon icon={faGithub} />
 			</a>
 		</div>
@@ -29,6 +31,8 @@
 </footer>
 
 <style lang="scss">
+	@use '$styles/variables' as *;
+
 	.footer {
 		border-top: 1px solid $color-sand-100;
 		display: flex;
